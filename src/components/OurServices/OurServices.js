@@ -11,9 +11,9 @@ import img7 from "@/assets/img7.jpg";
 const OurServices = () => {
     const services = [
         { id: 1, image: img1, title: "Online Tutoring", description: "Discover the convenience of online tutoring. Our platform connects you with verified tutors who are passionate about helping you succeed." },
-        { id: 2, image: img7, title: "Group Tutoring", description: "Experience collaborative learning at its best with our group tutoring services. Join dynamic study sessions led by expert tutors..." },
+        { id: 2, image: img7, title: "Group Tutoring", description: "Experience collaborative learning at its best with our group tutoring services. Join dynamic study sessions led by expert tutors." },
         { id: 3, image: img3, title: "Personalized Tutoring", description: "Connect with experienced tutors who tailor their teaching methods to your individual learning style." },
-        { id: 4, image: img4, title: "Secure Platform", description: "Your safety is our priority. Our platform employs robust security measures to ensure a safe learning environment for both students.." },
+        { id: 4, image: img4, title: "Secure Platform", description: "Your safety is our priority. Our platform employs robust security measures to ensure a safe learning environment for both students." },
         { id: 5, image: img5, title: "Verified Tutors", description: "We take the guesswork out of finding the right tutor. All tutors go through a thorough verification, ensuring their qualifications." },
         { id: 6, image: img6, title: "Home Tutoring", description: "Our expert tutors bring education directly to your doorstep, providing personalized learning that fits your schedule and needs. " },
     ]
