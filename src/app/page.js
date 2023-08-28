@@ -1,6 +1,8 @@
+import FeaturedSubject from "@/components/FeaturedSubject/FeaturedSubject";
 import FeaturedTutors from "@/components/FeaturedTutors/FeaturedTutors";
 import HeroSection from "@/components/HeroSection/HeroSection";
 import OurServices from "@/components/OurServices/OurServices";
+import TrialClass from "@/components/TrialClass/TrialClass";
 
 const Home = () => {
   return (
@@ -8,6 +10,8 @@ const Home = () => {
       <HeroSection/>
       <OurServices/>
       <FeaturedTutors/>
+      <FeaturedSubject/>
+      <TrialClass/>
     </div>
   )
 }

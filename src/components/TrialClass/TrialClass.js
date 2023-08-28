@@ -1,0 +1,25 @@
+import Image from "next/image";
+
+const TrialClass = () => {
+    return (
+        <div className="hero min-h-screen bg-white">
+            <div className="hero-content flex-col lg:flex-row">
+                <Image
+                    src="https://i.ibb.co/PZ0NQzq/students-doing-exam-preparation-illustration-concept-on-white-background-vector-1.jpg"
+                    alt=""
+                    width={1500}
+                    height={1500}
+                    className="max-w-2xl"
+                />
+                <div>
+                    <h1 className="text-5xl font-bold text-[#004E7C]">Request A Class</h1>
+                    <h2 className="mt-4 text-5xl font-semibold">For FREE Trail</h2>
+                    <p className="py-6">Experience the power of personalized learning with our free trial class. Choose your preferred subject, select a convenient time slot, and let our dedicated tutors guide you through a one-on-one session tailored to your learning goals.</p>
+                    <button className="btn primary-btn">search tutor</button>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default TrialClass;
