@@ -1,6 +1,6 @@
 const Navbar = () => {
     const navItems = <>
-        <li><a>Home</a></li>
+        <li className="font-semibold text-[#00A5A7] underline"><a>Home</a></li>
         <li><a>Find a Tutor</a></li>
         <li><a>Become a Tutor</a></li>
         <li><a>Blogs</a></li>
@@ -19,7 +19,7 @@ const Navbar = () => {
                         {navItems}
                     </ul>
                 </div>
-                <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
+                <a className="btn btn-ghost normal-case text-xl">Tutor<span className="text-[#00A5A7]">Connect</span></a>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
@@ -27,7 +27,7 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <a className="btn">Button</a>
+                <a className="primary-btn btn">sign In</a>
             </div>
         </div>
     );
