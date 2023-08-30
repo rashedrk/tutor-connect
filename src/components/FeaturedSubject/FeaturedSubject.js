@@ -7,7 +7,10 @@ const FeaturedSubject = () => {
             titleFirst= "Featured"
             titleLast="Subjects"
             />
-
+            
+            <div className="grid grid-cols-6">
+                
+            </div>
             
         </div>
     );
