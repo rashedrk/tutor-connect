@@ -22,5 +22,9 @@
   },
   "devDependencies": {
     "daisyui": "^3.6.3"
-  }
+  },
+  "main": "index.js",
+  "repository": "https://github.com/rashedrk/tutor-connect.git",
+  "author": "rashedrk <rashedrk001@gmail.com>",
+  "license": "MIT"
 }
