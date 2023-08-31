@@ -16,7 +16,7 @@ import img11 from "@/assets/sponsors/img11.png";
 const Sponsors = () => {
     const sponsors = [img1, img4, img5, img6, img7, img8, img9, img10, img11];
     return (
-        <div className="bg-white mb-20">
+        <div className="bg-white mb-10">
             <SectionTitle
                 titleFirst="Our Partners &"
                 titleLast="Sponsors"
