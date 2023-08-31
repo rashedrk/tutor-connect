@@ -5,8 +5,8 @@ import Image from "next/image";
 const TutorCard = ({tutor}) => {
     const {id, name, description, image, rating, price, expertise } = tutor;
     return (
-        <div className="card w-96 bg-base-100 shadow-xl">
-            <figure>
+        <div className="card w-96 h-[34rem] bg-base-100 shadow-xl">
+            <figure className="h-56">
                 <Image
                     src={image}
                     alt=""

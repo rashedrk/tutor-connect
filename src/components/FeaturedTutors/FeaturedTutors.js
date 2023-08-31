@@ -1,3 +1,6 @@
+'use client'
+
+import { Fade } from "react-awesome-reveal";
 import SectionTitle from "../SectionTitle/SectionTitle";
 import TutorCard from "../TutorCard/TutorCard";
 
@@ -96,14 +99,16 @@ const FeaturedTutors = () => {
                 titleLast="Tutors"
             />
             <div className="grid md:grid-cols-3 gap-10 max-w-6xl justify-center pb-10 mx-auto">
-                {
-                    tutors.map(tutor => <TutorCard
-                    key={tutor.id}
-                    tutor={tutor}
-                    >
+                <Fade direction="left" cascade duration={400} damping={0.2}>
+                    {
+                        tutors.map(tutor => <TutorCard
+                            key={tutor.id}
+                            tutor={tutor}
+                        >
 
-                    </TutorCard>)
-                }
+                        </TutorCard>)
+                    }
+                </Fade>
             </div>
         </div>
     );
