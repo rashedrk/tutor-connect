@@ -1,3 +1,6 @@
+'use client'
+
+import { Fade } from "react-awesome-reveal";
 import SectionTitle from "../SectionTitle/SectionTitle";
 import ServiceCard from "../ServiceCard/ServiceCard";
 
@@ -20,21 +23,23 @@ const OurServices = () => {
     return (
         <div className=" bg-white pb-10">
             <div className="mx-auto max-w-5xl">
-            <SectionTitle
-                titleFirst="What"
-                titleLast="We offer"
-            />
-            <div className="grid gap-y-14 gap-x-6 justify-center md:grid-cols-3">
-                {
-                    services.map(service => <ServiceCard
-                    key={service.id}
-                    title={service.title}
-                    description={service.description}
-                    image={service.image}
-                    ></ServiceCard>)
-                }
+                <SectionTitle
+                    titleFirst="What"
+                    titleLast="We offer"
+                />
+                <div className="grid gap-y-14 gap-x-6 justify-center md:grid-cols-3">
+                    <Fade direction="up" cascade duration={500}>
+                        {
+                            services.map(service => <ServiceCard
+                                key={service.id}
+                                title={service.title}
+                                description={service.description}
+                                image={service.image}
+                            ></ServiceCard>)
+                        }
+                    </Fade>
+                </div>
             </div>
-        </div>
         </div>
     );
 };
