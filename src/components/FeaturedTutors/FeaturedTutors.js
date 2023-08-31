@@ -90,7 +90,7 @@ const FeaturedTutors = () => {
 
 
     return (
-        <div>
+        <div className="bg-[#E8E8E8]">
             <SectionTitle
                 titleFirst="Featured"
                 titleLast="Tutors"

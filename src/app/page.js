@@ -4,14 +4,16 @@ import HeroSection from "@/components/HeroSection/HeroSection";
 import OurServices from "@/components/OurServices/OurServices";
 import Sponsors from "@/components/Sponsors/Sponsors";
 import TrialClass from "@/components/TrialClass/TrialClass";
+import VisionMission from "@/components/VisionMission/VisionMission";
 
 const Home = () => {
   return (
-    <div className="bg-[#E8E8E8]">
+    <div>
       <HeroSection/>
       <OurServices/>
       <FeaturedTutors/>
       <FeaturedSubject/>
+      <VisionMission/>
       <Sponsors/>
       <TrialClass/>
       
