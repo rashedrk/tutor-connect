@@ -99,7 +99,7 @@ const FeaturedTutors = () => {
                 titleLast="Tutors"
             />
             <div className="grid md:grid-cols-3 gap-10 max-w-6xl justify-center pb-10 mx-auto">
-                <Fade direction="left" cascade duration={400} damping={0.2}>
+                <Fade direction="left" cascade duration={600} damping={0.2}>
                     {
                         tutors.map(tutor => <TutorCard
                             key={tutor.id}
