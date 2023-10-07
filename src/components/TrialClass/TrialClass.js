@@ -5,7 +5,7 @@ import Image from "next/image";
 
 const TrialClass = () => {
     return (
-        <div className="hero min-h-screen bg-white">
+        <div className="hero  bg-white">
             <div className="hero-content flex-col lg:flex-row">
                 <Fade direction="up">
                     <Image

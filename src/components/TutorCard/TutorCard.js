@@ -21,7 +21,7 @@ const TutorCard = ({tutor}) => {
                 </div>
                 <p>{description}</p>
                 <div className="card-actions my-3 ">
-                    {expertise.map(sub =>  <div key={sub} className="badge badge-outline">{sub}</div>)}
+                    {expertise.map((sub, index) =>  <div key={index} className="badge badge-outline">{sub}</div>)}
                 </div>
                 <div className="card-actions justify-between items-center">
                     <div className="flex  gap-2">

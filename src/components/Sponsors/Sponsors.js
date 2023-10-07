@@ -23,8 +23,8 @@ const Sponsors = () => {
             />
             <Marquee className="py-5">
                 {
-                    sponsors.map(sponsor => <Image
-                        key=""
+                    sponsors.map((sponsor, index) => <Image
+                        key={index}
                         src={sponsor}
                         alt=""
                         width={150}

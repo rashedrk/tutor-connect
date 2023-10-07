@@ -1,12 +1,27 @@
-const Navbar = () => {
-    const navItems = <>
-        <li className="font-semibold text-[#00A5A7] underline"><a>Home</a></li>
-        <li><a>Find a Tutor</a></li>
-        <li><a>Become a Tutor</a></li>
-        <li><a>Blogs</a></li>
-        <li><a>About Us</a></li>
-        
+"use client"
 
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+
+const Navbar = () => {
+    const pathname = usePathname();
+    
+    const navItems = <>
+        <li className={pathname == "/" ? "font-semibold text-[#00A5A7] underline" : ""}>
+            <Link href="/">Home</Link>
+        </li>
+        <li className={pathname == "/find_tutor" ? "font-semibold text-[#00A5A7] underline" : ""}>
+            <Link href='/find_tutor'>Find a Tutor</Link>
+        </li>
+        <li className={pathname == "/become_tutor" ? "font-semibold text-[#00A5A7] underline" : ""}>
+            <Link href='/become_tutor'>Become a Tutor</Link>
+        </li>
+        <li className={pathname == "/blogs" ? "font-semibold text-[#00A5A7] underline" : ""}>
+            <Link href='/blogs'>Blogs</Link>
+        </li>
+        <li className={pathname == "/about_us" ? "font-semibold text-[#00A5A7] underline" : ""}>
+            <Link href='/about_us'>About Us</Link>
+        </li>
     </>
     return (
         <div className="navbar bg-base-100">
