@@ -1,8 +1,13 @@
 'use client'
 
+import dynamic from 'next/dynamic';
 import SectionTitle from '../SectionTitle/SectionTitle';
-import MapComponent from '../MapComponent/MapComponent';
 import { Fade } from "react-awesome-reveal";
+
+const MapComponent = dynamic(() => import("../MapComponent/MapComponent"), {
+    loading: () => <span className="loading loading-spinner loading-xs"></span>,
+    ssr: false
+})
 
 const OurNetwork = () => {
     return (
