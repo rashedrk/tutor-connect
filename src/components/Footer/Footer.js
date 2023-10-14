@@ -5,7 +5,7 @@ import { FaFacebookF, FaInstagram, FaRegPaperPlane, FaTwitter } from 'react-icon
 const Footer = () => {
     return (
         <>
-            <div className='p-10 bg-[#001919] text-white px-20'>
+            <div className='p-10 bg-[#001919] text-white md:px-20'>
                 <footer className="footer">
                     <aside>
                         <p className='font-bold text-2xl' >Tutor<span className="text-[#00A5A7]">Connect</span></p>
