@@ -2232,6 +2232,11 @@ react-fast-marquee@^1.6.0:
   resolved "https://registry.yarnpkg.com/react-fast-marquee/-/react-fast-marquee-1.6.1.tgz#38ee8a8725a98eac3e8a16da914b04b6f7d0e5cc"
   integrity sha512-SFY+FQectFXsuCrcJuIxrh34YzJ+TKH0Lp6BqZaalVhjdmu6Sx11rKKGQiC6vvC/q9ySXYVn9sozoOvPXFSMoQ==
 
+react-icons@^4.11.0:
+  version "4.11.0"
+  resolved "https://registry.yarnpkg.com/react-icons/-/react-icons-4.11.0.tgz#4b0e31c9bfc919608095cc429c4f1846f4d66c65"
+  integrity sha512-V+4khzYcE5EBk/BvcuYRq6V/osf11ODUM2J8hg2FDSswRrGvqiYUYPRy4OdrWaQOBj4NcpJfmHZLNaD+VH0TyA==
+
 react-intersection-observer@^9.4.3:
   version "9.5.2"
   resolved "https://registry.yarnpkg.com/react-intersection-observer/-/react-intersection-observer-9.5.2.tgz#f68363a1ff292323c0808201b58134307a1626d0"
