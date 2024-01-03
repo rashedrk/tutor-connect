@@ -1,10 +1,10 @@
-import React from 'react';
+import SearchTutor from '@/components/SearchTutor/SearchTutor';
 
 const page = () => {
     return (
-        <div>
-            This is find tutor
-        </div>
+        <>
+            <SearchTutor />
+        </>
     );
 };
 

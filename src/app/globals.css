@@ -5,6 +5,7 @@
 .primary-btn{
     background-color: #00A5A7;
     color: white;
+    border: none;
 }
 .primary-btn:hover{
     background-color: #008E90;
