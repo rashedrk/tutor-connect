@@ -12,38 +12,48 @@ const SearchTutor = () => {
                 <div className='w-[45%] p-9 bg-[#0a202c] bg-opacity-50 rounded-xl'>
                     <div className='grid grid-cols-2 gap-5 mb-4'>
                         <select className="select select-bordered w-full max-w-xs rounded-full">
-                            <option disabled selected>Who shot first?</option>
-                            <option>Han Solo</option>
-                            <option>Greedo</option>
+                            <option disabled selected>Select District</option>
+                            <option>Dhaka</option>
+                            <option>Bogura</option>
+                            <option>Rajshahi</option>
+                            <option>Chittagong</option>
+                            <option>Sylhet</option>
                         </select>
-                        <select className="select select-bordered w-full max-w-xs">
-                            <option disabled selected>Who shot first?</option>
-                            <option>Han Solo</option>
-                            <option>Greedo</option>
+                        <select className="select select-bordered w-full max-w-xs rounded-full">
+                            <option disabled selected>Select Area</option>
+                            <option>Dhaka</option>
+                            <option>Bogura</option>
                         </select>
-                        <select className="select select-bordered w-full max-w-xs">
-                            <option disabled selected>Who shot first?</option>
-                            <option>Han Solo</option>
-                            <option>Greedo</option>
+                        <select className="select select-bordered w-full max-w-xs rounded-full">
+                            <option disabled selected>Select Class</option>
+                            <option>Class 7</option>
+                            <option>Class 6</option>
+                            <option>Class 5</option>
+                            <option>Class 4</option>
+                            <option>Class 3</option>
+                            <option>Class 2</option>
+                            <option>Class 1</option>
                         </select>
-                        <select className="select select-bordered w-full max-w-xs">
-                            <option disabled selected>Who shot first?</option>
-                            <option>Han Solo</option>
-                            <option>Greedo</option>
+                        <select className="select select-bordered w-full max-w-xs rounded-full">
+                            <option disabled selected>Select Medium</option>
+                            <option>Bangla</option>
+                            <option>English</option>
                         </select>
-                        <select className="select select-bordered w-full max-w-xs">
-                            <option disabled selected>Who shot first?</option>
-                            <option>Han Solo</option>
-                            <option>Greedo</option>
+                        <select className="select select-bordered w-full max-w-xs rounded-full">
+                            <option disabled selected>Select Subject</option>
+                            <option>Bangla</option>
+                            <option>English</option>
+                            <option>Math</option>
+                            <option>Science</option>
                         </select>
-                        <select className="select select-bordered w-full max-w-xs">
-                            <option disabled selected>Who shot first?</option>
-                            <option>Han Solo</option>
-                            <option>Greedo</option>
+                        <select className="select select-bordered w-full max-w-xs rounded-full">
+                            <option disabled selected>Select Gender</option>
+                            <option>Male</option>
+                            <option>Female</option>
                         </select>
 
                     </div>
-                    <button className="btn primary-btn min-w-full">Search Tutor</button>
+                    <button className="btn primary-btn min-w-full rounded-full">Search Tutor</button>
                 </div>
             </div>
         </div>
