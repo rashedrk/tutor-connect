@@ -9,7 +9,7 @@ const ServiceCard = ({ image, title, description }) => {
                     alt=""
                     width={120}
                     height={120}
-                    className="mx-auto"
+                    className="mx-auto hover:grayscale"
                 />
             </div>
             <h2 className="mt-4 font-semibold text-xl">{title}</h2>
