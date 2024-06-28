@@ -1,7 +1,7 @@
 'use client'
 
 import dynamic from 'next/dynamic';
-import SectionTitle from '../SectionTitle/SectionTitle';
+import SectionTitle from '../../shared/SectionTitle/SectionTitle';
 import { Fade } from "react-awesome-reveal";
 
 const MapComponent = dynamic(() => import("../MapComponent/MapComponent"), {
