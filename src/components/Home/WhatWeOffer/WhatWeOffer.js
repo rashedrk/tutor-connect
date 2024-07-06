@@ -1,8 +1,8 @@
 'use client'
 
 import { Fade } from "react-awesome-reveal";
-import SectionTitle from "../SectionTitle/SectionTitle";
-import ServiceCard from "../ServiceCard/ServiceCard";
+import SectionTitle from "@/components/shared/SectionTitle/SectionTitle";
+
 
 import img1 from "@/assets/img1.jpg";
 import img3 from "@/assets/img3.jpg";
@@ -10,6 +10,7 @@ import img4 from "@/assets/img4.png";
 import img5 from "@/assets/img5.svg";
 import img6 from "@/assets/img6.png";
 import img7 from "@/assets/img7.jpg";
+import ServiceCard from "@/components/ServiceCard/ServiceCard";
 
 const OurServices = () => {
     const services = [

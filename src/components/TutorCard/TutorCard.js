@@ -1,38 +1,42 @@
 import { Rating } from "@smastrom/react-rating";
 import '@smastrom/react-rating/style.css'
 import Image from "next/image";
+import Link from "next/link";
 
-const TutorCard = ({tutor}) => {
-    const {id, name, description, image, rating, price, expertise } = tutor;
+const TutorCard = ({ tutor }) => {
+    const { id, profile, details, rating, experties, tutorQualification } = tutor;
     return (
-        <div className="card w-96 h-[34rem] bg-base-100 shadow-xl">
+        <div className="card card-compact w-96 h-[28rem] bg-base-100 shadow-xl">
             <figure className="h-56">
                 <Image
-                    src={image}
+                    src={profile.profileImage}
                     alt=""
                     width={450}
                     height={450}
                 />
             </figure>
             <div className="card-body">
-                <div className="flex ">
-                    <h2 className="card-title flex-grow">{name}</h2>
-                    <h1 className="font-bold text-2xl ">${price}/hr</h1>
+                <div className="flex justify-between">
+                    <div>
+                        <h2 className="card-title flex-grow">{profile.name}</h2>
+                        <p>{tutorQualification[0].qualification?.degree}</p>
+                    </div>
+                    <h1 className="font-bold text-md "><span className="text-2xl">2000</span> tk/month</h1>
                 </div>
-                <p>{description}</p>
+                <p className="line-clamp-3">{details}</p>
                 <div className="card-actions my-3 ">
-                    {expertise.map((sub, index) =>  <div key={index} className="badge badge-outline">{sub}</div>)}
+                    {experties.map((sub, index) => <div key={index} className="badge badge-outline">{sub}</div>)}
                 </div>
                 <div className="card-actions justify-between items-center">
                     <div className="flex  gap-2">
                         <span className="mt-1 font-bold text-orange-600">{rating}</span>
                         <Rating
                             style={{ maxWidth: 90 }}
-                            value={rating}
+                            value={rating || 0}
                             readOnly
                         />
                     </div>
-                    <button className="btn primary-btn">see more</button>
+                    <Link href={`/tutor/${id}`} className="btn primary-btn">see more</Link>
                 </div>
             </div>
         </div>

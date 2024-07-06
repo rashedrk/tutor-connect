@@ -1,5 +1,5 @@
 import Image from "next/image";
-import SectionTitle from "../SectionTitle/SectionTitle";
+import SectionTitle from "@/components/shared/SectionTitle/SectionTitle";
 import Marquee from "react-fast-marquee";
 
 import img1 from "@/assets/sponsors/img1.png";

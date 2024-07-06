@@ -2,7 +2,7 @@
 
 import { Fade } from "react-awesome-reveal";
 import Image from "next/image";
-import SectionTitle from "../SectionTitle/SectionTitle";
+
 
 import ai from "@/assets/subjects/ai.png";
 import art from "@/assets/subjects/art.png";
@@ -12,6 +12,7 @@ import history from "@/assets/subjects/history.png";
 import math from "@/assets/subjects/math.png";
 import physics from "@/assets/subjects/physics.png";
 import programming from "@/assets/subjects/programming.png";
+import SectionTitle from "@/components/shared/SectionTitle/SectionTitle";
 
 const FeaturedSubject = () => {
     return (
