@@ -29,7 +29,7 @@ const OurServices = () => {
                     titleLast="We offer"
                 />
                 <div className="grid gap-y-14 gap-x-6 justify-center md:grid-cols-3">
-                    <Fade direction="up" cascade duration={500} damping={0.2}>
+                    <Fade triggerOnce direction="up" cascade duration={500} damping={0.2}>
                         {
                             services.map(service => <ServiceCard
                                 key={service.id}

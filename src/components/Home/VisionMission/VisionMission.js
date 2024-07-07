@@ -10,7 +10,7 @@ const VisionMission = () => {
 
                 {/* vision and mission cards */}
                 <div className="grid md:grid-cols-2 mb-52 text-black gap-10 justify-center relative top-28  mx-4">
-                    <Fade direction="left">
+                    <Fade triggerOnce direction="left">
                         <div className="card w-100 md:h-96 p-5 bg-base-100 shadow-xl">
                             <div className="card-body">
                                 <h2 className="bg-teal-600 text-white card-title p-3 rounded-md w-32">Our Vision</h2>
@@ -19,7 +19,7 @@ const VisionMission = () => {
                             </div>
                         </div>
                     </Fade>
-                    <Fade direction="right">
+                    <Fade triggerOnce direction="right">
                         <div className="card w-100 md:h-96 p-5 bg-base-100 shadow-xl">
                             <div className="card-body">
                                 <h2 className="card-title text-white p-3 rounded-md bg-[#004E7C] w-36">Our Mission</h2>

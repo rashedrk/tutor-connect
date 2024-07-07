@@ -7,7 +7,7 @@ const TrialClass = () => {
     return (
         <div className="hero  bg-white">
             <div className="hero-content flex-col lg:flex-row">
-                <Fade direction="up">
+                <Fade triggerOnce direction="up">
                     <Image
                         src="https://i.ibb.co/PZ0NQzq/students-doing-exam-preparation-illustration-concept-on-white-background-vector-1.jpg"
                         alt=""
@@ -16,7 +16,7 @@ const TrialClass = () => {
                         className="md:max-w-2xl"
                     />
                 </Fade>
-                <Fade direction="right">
+                <Fade triggerOnce direction="right">
                     <div>
                         <h1 className="text-5xl font-bold text-[#004E7C]">Request A Class</h1>
                         <h2 className="mt-4 text-5xl font-semibold">For FREE Trail</h2>

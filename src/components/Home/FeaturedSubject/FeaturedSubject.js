@@ -23,7 +23,7 @@ const FeaturedSubject = () => {
             />
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-y-10 justify-center mb-20 mx-5 md:mx-10">
                     {/* put fade component inside the parent div so that it gets all inside div as child and able to cascade */}
-                    <Fade direction="left" cascade duration={600}>
+                    <Fade triggerOnce direction="left" cascade duration={600}>
                         <div className="flex flex-col  justify-center items-center">
                             <Image
                                 src={biology}
