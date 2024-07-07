@@ -1,11 +1,21 @@
 "use client"
 
+import useUserInfo from "@/hooks/useUserInfo";
+import { logoutUser } from "@/services/actions/logoutUser";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { FaRegUserCircle } from "react-icons/fa";
+import { MdOutlineDashboard } from "react-icons/md";
+import { IoIosLogOut } from "react-icons/io";
+import './navbar.css'
+import Image from "next/image";
 
 const Navbar = () => {
     const pathname = usePathname();
-    
+    const userInfo = useUserInfo();
+    const router = useRouter()
+
+
     const navItems = <>
         <li className={pathname == "/" ? "font-semibold text-[#00A5A7] underline" : ""}>
             <Link href="/">Home</Link>
@@ -42,7 +52,42 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <Link href={"/sign_in"} className="primary-btn btn">sign In</Link>
+                {
+                    userInfo?.role ?
+
+
+                        <div className="dropdown dropdown-end">
+                            <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                                <div className="w-10 rounded-full">
+                                    <Image
+                                        alt="profile image"
+                                        src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" 
+                                        width={50}
+                                        height={50}
+                                        />
+                                        
+                                </div>
+                            </div>
+                            <ul
+                                tabIndex={0}
+                                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+                                <li>
+                                    <a>
+                                        <MdOutlineDashboard /> Dashboard
+                                    </a>
+                                </li>
+                                <li>
+                                    <a>
+                                        <FaRegUserCircle /> Profile
+                                    </a>
+                                </li>
+                                <li><a onClick={() => logoutUser(router)}><IoIosLogOut /> Logout</a></li>
+                            </ul>
+                        </div>
+
+                        :
+                        <Link href={"/sign_in"} className="primary-btn btn">sign In</Link>
+                }
             </div>
         </div>
     );

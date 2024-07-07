@@ -1,0 +1,8 @@
+.menu li :hover{
+    background-color: transparent;
+    color:  #00A5A7; 
+}
+
+.menu a :active {
+    background-color: white;
+}
