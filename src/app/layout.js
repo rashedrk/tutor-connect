@@ -1,6 +1,7 @@
 import { Toaster } from 'sonner'
 import './globals.css'
 import { Inter } from 'next/font/google'
+import Providers from '@/lib/providers/Providers'
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -14,8 +15,10 @@ const RootLayout = ({ children }) => {
   return (
     <html lang="en" data-theme="light">
       <body className={inter.className}>
-        <Toaster/>
-        {children}
+        <Toaster />
+        <Providers>
+          {children}
+        </Providers>
       </body>
     </html>
   )

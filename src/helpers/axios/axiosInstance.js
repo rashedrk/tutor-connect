@@ -1,3 +1,6 @@
+import { authKey } from "@/constant/global";
+import { removeUser } from "@/services/auth.services";
+import { getFromLocalStorage } from "@/utils/local-storage";
 import axios from "axios";
 
 const axiosInstance = axios.create();
@@ -10,6 +13,7 @@ axiosInstance.interceptors.request.use(
   function (config) {
     // Do something before request is sent
     const accessToken = getFromLocalStorage(authKey);
+    console.log("acceaccessToken", accessToken);
     if (accessToken) {
       config.headers.Authorization = accessToken;
     }

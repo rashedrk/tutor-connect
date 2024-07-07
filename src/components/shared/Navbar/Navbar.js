@@ -9,12 +9,15 @@ import { MdOutlineDashboard } from "react-icons/md";
 import { IoIosLogOut } from "react-icons/io";
 import './navbar.css'
 import Image from "next/image";
+import { useGetMyProfileQuery } from "@/redux/features/users/userApi";
 
 const Navbar = () => {
     const pathname = usePathname();
     const userInfo = useUserInfo();
-    const router = useRouter()
+    const router = useRouter();
 
+    const {data, isLoading} = useGetMyProfileQuery();
+    console.log(data, isLoading);
 
     const navItems = <>
         <li className={pathname == "/" ? "font-semibold text-[#00A5A7] underline" : ""}>
@@ -53,7 +56,7 @@ const Navbar = () => {
             </div>
             <div className="navbar-end">
                 {
-                    userInfo?.role ?
+                    userInfo?.role && !isLoading ?
 
 
                         <div className="dropdown dropdown-end">
@@ -61,7 +64,7 @@ const Navbar = () => {
                                 <div className="w-10 rounded-full">
                                     <Image
                                         alt="profile image"
-                                        src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" 
+                                        src={data?.data?.profile?.profileImage} 
                                         width={50}
                                         height={50}
                                         />
