@@ -10,7 +10,7 @@ const FeaturedTutors = async() => {
     const res = await fetch('http://localhost:5000/api/v1/tutor', {cache: "no-store"});
     const tutors = await res.json();
 
-console.log(tutors);
+// console.log(tutors);
     // const tutors = [
     //     {
     //         id: 1,

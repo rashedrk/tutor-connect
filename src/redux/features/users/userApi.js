@@ -10,7 +10,6 @@ const userApi = baseApi.injectEndpoints({
                 }
             },
             transformResponse: (response) => {
-                console.log(response);
                 return {
                     data: response.data,
                 }
