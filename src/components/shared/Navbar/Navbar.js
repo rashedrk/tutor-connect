@@ -16,8 +16,8 @@ const Navbar = () => {
     const userInfo = useUserInfo();
     const router = useRouter();
 
-    const {data, isLoading} = useGetMyProfileQuery();
-    console.log(data, isLoading);
+    const { data, isLoading, status } = useGetMyProfileQuery(undefined);
+
 
     const navItems = <>
         <li className={pathname == "/" ? "font-semibold text-[#00A5A7] underline" : ""}>
@@ -56,7 +56,7 @@ const Navbar = () => {
             </div>
             <div className="navbar-end">
                 {
-                    userInfo?.role && !isLoading ?
+                    userInfo?.role && !isLoading && status !== 200 ?
 
 
                         <div className="dropdown dropdown-end">
@@ -64,11 +64,11 @@ const Navbar = () => {
                                 <div className="w-10 rounded-full">
                                     <Image
                                         alt="profile image"
-                                        src={data?.data?.profile?.profileImage} 
+                                        src={data?.data?.profile?.profileImage}
                                         width={50}
                                         height={50}
-                                        />
-                                        
+                                    />
+
                                 </div>
                             </div>
                             <ul
