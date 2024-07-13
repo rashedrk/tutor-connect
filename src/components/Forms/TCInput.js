@@ -7,11 +7,13 @@ const TCInput = ({ name, label, type, placeholder, disabled = false, className }
         <Controller
             control={control}
             name={name}
-            render={({field}) => (
+            render={({ field }) => (
                 <label className="form-control w-full">
-                    <div className="label">
-                        <span className="label-text">{label}</span>
-                    </div>
+                    {
+                        label && <div className="label">
+                            <span className="label-text">{label}</span>
+                        </div>
+                    }
                     <input
                         {...field}
                         type={type}
