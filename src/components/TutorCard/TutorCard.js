@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 const TutorCard = ({ tutor }) => {
-    const { id, profile, details, rating, experties, tutorQualification } = tutor;
+    const { tutor_id, profile, details, rating, experties, tutorQualification } = tutor;
     return (
         <div className="card card-compact w-96 h-[28rem] bg-base-100 shadow-xl">
             <figure className="h-56">
@@ -36,7 +36,7 @@ const TutorCard = ({ tutor }) => {
                             readOnly
                         />
                     </div>
-                    <Link href={`/tutor/${id}`} className="btn primary-btn">see more</Link>
+                    <Link href={`/tutor/${tutor_id}`} className="btn primary-btn">see more</Link>
                 </div>
             </div>
         </div>

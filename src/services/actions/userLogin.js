@@ -14,7 +14,7 @@ export const userLogin = async (data) => {
         }
     );
     const userInfo = await res.json();
-    console.log(userInfo);
+    // console.log(userInfo);
 
     if (userInfo.data.accessToken) {
         setAccessToken(userInfo.data.accessToken, {

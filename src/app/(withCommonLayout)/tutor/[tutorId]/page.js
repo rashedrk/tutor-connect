@@ -8,7 +8,7 @@ const TutorDetails = async ({ params }) => {
 
     const { details, experties, yearOfExperience, fee, tutorQualification } = tutor?.data;
     const { profileImage, name, contactNo, email } = tutor?.data?.profile;
-    const { village, policeStaion, upozila, district, postOffice, postalCode } = tutor?.data?.profile?.presentAddress;
+    const { address, area, district } = tutor?.data?.profile?.presentAddress;
 
     return (
         <>
@@ -31,13 +31,13 @@ const TutorDetails = async ({ params }) => {
                     </p>
                     <p className="py-1 font-semibold">Qualifications:</p>
                     <div className="pb-2">
-                        {tutorQualification?.map(({ qualification }) => <div key={qualification?.id}>
+                        {tutorQualification?.map(({ qualification }) => <div key={qualification?.qualification_id}>
                             {qualification.degree}, {qualification.institution}, {qualification.year} .
                         </div>)}
                     </div>
                     <p className="py-1 font-semibold">Address:</p>
                     <p className="pb-2">
-                        {village}, {policeStaion}, {postOffice} - {postalCode}, {upozila}, {district}.
+                        {address}, {area}, {district}.
                     </p>
                     <p className="py-1 font-semibold">Contact No:</p>
                     <p className="pb-2">
@@ -47,10 +47,10 @@ const TutorDetails = async ({ params }) => {
                     <p className="pb-2">
                         {email}
                     </p>
-                    <BookTutorModal/>
+                    <BookTutorModal />
                 </div>
             </div>
-            
+
         </>
     );
 };

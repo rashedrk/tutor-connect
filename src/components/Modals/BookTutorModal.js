@@ -44,11 +44,7 @@ const BookTutorModal = () => {
                             <TCSelect options={subjectsOptions} label="Select subject" name="experties" />
                             <TCSelect options={studentClassOptions} label="Select Class" name="class" />
                             <TCSelect options={mediumOptions} label="Select Medium" name="medium" />
-
-                            <TCInput name="address.village" placeholder="Enter your village name" type="text" />
-                            <TCInput name="address.postOffice" placeholder="Enter your Post office" type="text" />
-                            <TCInput name="address.postalCode" placeholder="Enter your Post office" type="text" />
-                            <TCInput name="address.policeStaion" placeholder="Enter your Post office" type="text" />
+                            <TCInput name="address.village" placeholder="Enter your Address" type="text" />
 
                             <select name='address.district' value={selectedDistrict} onChange={handleSelect} className="select select-bordered w-full max-w-xs">
                                 <option disabled selected value="">Select District</option>
@@ -58,12 +54,13 @@ const BookTutorModal = () => {
                             </select>
                             <TCSelect disabled={!upozila} options={selectOptions(upozila?.upazillas)} label="Select Area" name="address.upozila" />
                         </div>
-                        <button className="btn" type="submit">Request</button>
+                        <button className="btn primary-btn" type="submit" onClick={handleBookingSubmit}>Request</button>
+                        
                     </TCForm>
                     <div className="modal-action">
                         <form method="dialog">
 
-                            <button className="btn">Close</button>
+                        <button className="btn">Close</button>
                         </form>
                     </div>
                 </div>

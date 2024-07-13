@@ -35,7 +35,7 @@ const FindTutorPage = () => {
                         <SectionTitle titleFirst="Available" titleLast="Tutors" />
                         <div className="grid md:grid-cols-3 gap-10 max-w-6xl justify-center pb-10 mx-auto">
                             {
-                                tutors.map(tutor => <TutorCard tutor={tutor} key={tutor.id} />)
+                                tutors.map(tutor => <TutorCard tutor={tutor} key={tutor.tutor_id} />)
                             }
                         </div>
                     </>
