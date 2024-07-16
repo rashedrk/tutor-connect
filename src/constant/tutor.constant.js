@@ -41,3 +41,6 @@ export const subjectsOptions = selectOptions(subjects);
 
 export const gender = ['Male', 'Female'];
 export const genderOptions = selectOptions(gender);
+
+export const days = ['Sat','Sun', 'Mon', 'Tue', 'Wed', 'Thu'];
+export const daysOptions = selectOptions(days);

@@ -1,7 +1,7 @@
 import { authKey } from "@/constant/global";
 import { removeUser } from "@/services/auth.services";
 import { getFromLocalStorage } from "@/utils/local-storage";
-import axios from "axios";
+import axios, { HttpStatusCode } from "axios";
 
 const axiosInstance = axios.create();
 axiosInstance.defaults.headers.post["Content-Type"] = "application/json";
@@ -13,7 +13,6 @@ axiosInstance.interceptors.request.use(
   function (config) {
     // Do something before request is sent
     const accessToken = getFromLocalStorage(authKey);
-    console.log("acceaccessToken", accessToken);
     if (accessToken) {
       config.headers.Authorization = accessToken;
     }
@@ -36,7 +35,7 @@ axiosInstance.interceptors.response.use(
     // Any status codes that falls outside the range of 2xx cause this function to trigger
     // Do something with response error
 
-    if (error?.response?.status === 500) {
+    if (error?.response?.status === HttpStatusCode.Unauthorized) {
       return removeUser();
     } else {
       const responseObject = {

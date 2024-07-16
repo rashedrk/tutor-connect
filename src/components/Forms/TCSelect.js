@@ -8,7 +8,7 @@ const TCSelect = ({ name, label, options, disabled = false, className }) => {
             control={control}
             name={name}
             render={({ field }) => (
-                <select disabled={disabled} {...field} className={`select select-bordered w-full max-w-xs ${className}`}>
+                <select disabled={disabled} {...field} className={`select select-bordered w-full  ${className}`}>
                     <option disabled selected>{label}</option>
                     {
                         options?.map(option => <option key={option.label} value={option.value}>{option.label}</option>)

@@ -14,7 +14,7 @@ const TCForm = ({ children, onsubmit, resolver, defaultValues }) => {
 
     const submit = (data) => {
         onsubmit(data);
-        reset()
+        // reset()
     }
 
     return (
