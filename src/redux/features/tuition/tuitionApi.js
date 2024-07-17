@@ -2,6 +2,15 @@ import { baseApi } from "@/redux/api/baseApi";
 
 const tuitionApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
+        createTuition: builder.mutation({
+            query: (data) => {
+                return {
+                    url: '/tuition/create',
+                    method: 'POST',
+                    data
+                }
+            },
+        }),
         requestTutor: builder.mutation({
             query: (args) => {
                 console.log("from redux",args);
@@ -16,4 +25,4 @@ const tuitionApi = baseApi.injectEndpoints({
 
 });
 
-export const { useRequestTutorMutation } = tuitionApi;
+export const { useCreateTuitionMutation,useRequestTutorMutation } = tuitionApi;
