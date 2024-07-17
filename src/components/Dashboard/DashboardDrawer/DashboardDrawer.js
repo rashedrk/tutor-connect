@@ -33,7 +33,7 @@ const DashboardDrawer = ({ children }) => {
                 </div>
                 {/* Page content here */}
 
-                <div className="p-4">
+                <div className="p-4 w-screen lg:w-full">
                     {children}
                 </div>
 

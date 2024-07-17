@@ -11,6 +11,18 @@ const tuitionApi = baseApi.injectEndpoints({
                 }
             },
         }),
+        getMyPostedTuitions: builder.query({
+            query: () => {
+                return {
+                    url: '/tuition/posted',
+                    method: 'GET'
+                }
+            },
+            transformResponse: (response) => {
+                return response.data;
+            },
+            providesTags: ['tuition']
+        }),
         requestTutor: builder.mutation({
             query: (args) => {
                 console.log("from redux",args);
@@ -25,4 +37,4 @@ const tuitionApi = baseApi.injectEndpoints({
 
 });
 
-export const { useCreateTuitionMutation,useRequestTutorMutation } = tuitionApi;
+export const { useCreateTuitionMutation,useRequestTutorMutation, useGetMyPostedTuitionsQuery } = tuitionApi;
