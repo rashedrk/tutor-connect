@@ -3,7 +3,7 @@ import DatePicker from "react-datepicker";
 import { Controller, useFormContext } from "react-hook-form";
 import "react-datepicker/dist/react-datepicker.css";
 
-const TCTimePicker = ({ name, placeholder, disabled = false, className }) => {
+const TCDatePicker = ({ name, placeholder, disabled = false, className }) => {
     const { control } = useFormContext();
     const [startDate, setStartDate] = useState("");
 
@@ -20,11 +20,6 @@ const TCTimePicker = ({ name, placeholder, disabled = false, className }) => {
                             setStartDate(date)
                             field.onChange(date);
                         }}
-                        showTimeSelect
-                        showTimeSelectOnly
-                        timeIntervals={30}
-                        timeCaption="Time"
-                        dateFormat="h:mm aa"
                         className={`input input-bordered w-full input-md ${className}`}
                         disabled={disabled}
                         placeholderText={placeholder}
@@ -35,4 +30,4 @@ const TCTimePicker = ({ name, placeholder, disabled = false, className }) => {
     );
 };
 
-export default TCTimePicker;
+export default TCDatePicker;

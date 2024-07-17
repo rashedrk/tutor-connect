@@ -81,8 +81,8 @@ const BookTutorModal = () => {
                             </select>
                             <TCSelect disabled={!upozila} options={selectOptions(upozila?.upazillas)} label="Select Area" name="fullAddress.area" />
 
-                            <TCTimePicker name="schedule.startTime" label="Select Start Time" />
-                            <TCTimePicker name="schedule.endTime" label="Select End Time" />
+                            <TCTimePicker name="schedule.startTime" placeholder="Start Time" />
+                            <TCTimePicker name="schedule.endTime" placeholder="End Time" />
                             <TCMultiSelect placeholder="Select days" options={daysOptions} name="schedule.days" />
 
                             <TCInput placeholder="Enter your contact No" name="contactNo" />

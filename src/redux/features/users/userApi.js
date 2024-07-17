@@ -15,8 +15,26 @@ const userApi = baseApi.injectEndpoints({
                 }
             }
         }),
+        registerTutor: builder.mutation({
+            query: (data) => {
+                return {
+                    url: '/user/tutor/create',
+                    method: 'POST',
+                    data
+                }
+            }
+        }),
+        registerStudent: builder.mutation({
+            query: (data) => {
+                return {
+                    url: '/user/student/create',
+                    method: 'POST',
+                    data
+                }
+            }
+        }),
     })
 
 });
 
-export const { useGetMyProfileQuery } = userApi;
+export const { useGetMyProfileQuery, useRegisterTutorMutation, useRegisterStudentMutation } = userApi;

@@ -9,6 +9,7 @@ import { Fade } from 'react-awesome-reveal';
 import { storeUserInfo } from '@/services/auth.services';
 import { userLogin } from '@/services/actions/userLogin';
 import { toast } from 'sonner';
+import Link from 'next/link';
 
 const SignIn = () => {
 
@@ -16,13 +17,13 @@ const SignIn = () => {
         const toastId = toast.loading("Login in.....")
         try {
             const res = await userLogin(values);
-            console.log("login",res.data.accessToken);
+            console.log("login", res.data.accessToken);
             if (res?.data?.accessToken) {
-                toast.success(res?.message, {id:toastId});
+                toast.success(res?.message, { id: toastId });
                 storeUserInfo({ accessToken: res?.data?.accessToken });
 
             } else {
-                toast.error(res?.message, {id:toastId});
+                toast.error(res?.message, { id: toastId });
 
             }
         } catch (error) {
@@ -44,10 +45,14 @@ const SignIn = () => {
                     <div className='shadow-xl p-10 rounded-md w-96'>
                         <h2 className="text-4xl font-bold uppercase text-center mb-5">Login<span className="text-[#004E7C]"> Here !</span></h2>
                         <TCForm onsubmit={handleLogin}>
-                            <TCInput type="email" name="email" placeholder="Enter your email" />
+                            <TCInput type="email" name="email" placeholder="Enter your email" className="mb-4" />
                             <TCInput type="password" name="password" placeholder="Enter your Password" />
                             <button className='btn primary-btn mt-4'>Login</button>
                         </TCForm>
+                        <div className='mt-2 flex gap-2'>
+                            <p>Dont have an account?</p>
+                            <Link href="/register" className='link'>Register</Link>
+                        </div>
                     </div>
                 </Fade>
             </div>
