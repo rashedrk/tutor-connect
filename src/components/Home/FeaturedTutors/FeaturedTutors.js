@@ -20,7 +20,7 @@ const FeaturedTutors = async() => {
             <div className="grid md:grid-cols-3 gap-10 max-w-6xl justify-center pb-10 mx-auto">
                 {/* <Fade triggerOnce direction="left" cascade duration={600} damping={0.2}> */}
                     {
-                        tutors?.data?.map(tutor => <TutorCard
+                        tutors?.data?.slice(0,6).map(tutor => <TutorCard
                             key={tutor.tutor_id}
                             tutor={tutor}
                         >
