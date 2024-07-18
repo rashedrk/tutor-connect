@@ -1,3 +1,5 @@
+import { get } from "lodash";
+
 const DataTable = ({ columns, data }) => {
 
     return (
@@ -15,7 +17,7 @@ const DataTable = ({ columns, data }) => {
                         <tr key={index}>
                             {columns.map(col => (
                                 <td key={col.name}>
-                                    {col.name === 'Action' ? col.row() : dt[col.row]}
+                                    {col.name === 'Action' ? col.row(dt) : get(dt, col.row)}
                                 </td>
                             ))}
                         </tr>
