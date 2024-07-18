@@ -9,7 +9,7 @@ import { SlOptionsVertical } from "react-icons/sl";
 const Requested = () => {
     const { data, isLoading } = useGetMyTuitionRequestQuery(undefined);
     const [cancelRequest] = useCancelTuitionRequestMutation()
-    console.log(data);
+    // console.log(data);
 
 
     const columns = [
@@ -28,6 +28,14 @@ const Requested = () => {
         {
             name: 'Medium',
             row: "medium",
+        },
+        {
+            name: 'Start Time',
+            row: "schedule.startTime",
+        },
+        {
+            name: 'End Time',
+            row: "schedule.endTime",
         },
         {
             name: 'Contact No',
