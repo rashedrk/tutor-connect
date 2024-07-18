@@ -2,6 +2,7 @@ import { baseApi } from "@/redux/api/baseApi";
 
 const tuitionApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
+        //student roles api
         createTuition: builder.mutation({
             query: (data) => {
                 return {
@@ -24,7 +25,7 @@ const tuitionApi = baseApi.injectEndpoints({
             providesTags: ['tuition']
         }),
         getAppliedTutors: builder.query({
-            query: ({tuitionId}) => {
+            query: ({ tuitionId }) => {
                 return {
                     url: `/tuition/${tuitionId}/applied`,
                     method: 'GET'
@@ -37,7 +38,7 @@ const tuitionApi = baseApi.injectEndpoints({
         }),
         requestTutor: builder.mutation({
             query: (args) => {
-                console.log("from redux",args);
+                console.log("from redux", args);
                 return {
                     url: `/tuition/request/${args.tutorId}`,
                     method: 'POST',
@@ -45,8 +46,30 @@ const tuitionApi = baseApi.injectEndpoints({
                 }
             },
         }),
+        //get the tuitions / tutors list that student requested for tuition
+        getMyTuitionRequest: builder.query({
+            query: () => {
+                return {
+                    url: `/tuition/requested`,
+                    method: 'GET'
+                }
+            },
+            transformResponse: (response) => {
+                return response.data;
+            },
+            providesTags: ['tuition_request']
+        }),
+        cancelTuitionRequest:  builder.mutation({
+            query: (tuitionRequestId) => {
+                return {
+                    url: `/tuition/cancel/${tuitionRequestId}`,
+                    method: 'PUT',
+                }
+            },
+            invalidatesTags: ['tuition_request']
+        }),
     })
 
 });
 
-export const { useCreateTuitionMutation,useRequestTutorMutation, useGetMyPostedTuitionsQuery, useGetAppliedTutorsQuery } = tuitionApi;
+export const { useCreateTuitionMutation, useRequestTutorMutation, useGetMyPostedTuitionsQuery, useGetAppliedTutorsQuery, useGetMyTuitionRequestQuery, useCancelTuitionRequestMutation } = tuitionApi;
