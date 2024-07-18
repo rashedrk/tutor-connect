@@ -59,7 +59,7 @@ const tuitionApi = baseApi.injectEndpoints({
             },
             providesTags: ['tuition_request']
         }),
-        cancelTuitionRequest:  builder.mutation({
+        cancelTuitionRequest: builder.mutation({
             query: (tuitionRequestId) => {
                 return {
                     url: `/tuition/cancel/${tuitionRequestId}`,
@@ -68,8 +68,41 @@ const tuitionApi = baseApi.injectEndpoints({
             },
             invalidatesTags: ['tuition_request']
         }),
+
+        getCurrentTuitions: builder.query({
+            query: () => {
+                return {
+                    url: `/tuition/current`,
+                    method: 'GET'
+                }
+            },
+            transformResponse: (response) => {
+                return response.data;
+            },
+        }),
+
+        //tutor roles api
+        getAllTuitions: builder.query({
+            query: () => {
+                return {
+                    url: `/tuition`,
+                    method: 'GET'
+                }
+            },
+            transformResponse: (response) => {
+                return response.data;
+            },
+        }),
+        applyToTuition: builder.mutation({
+            query: (tuitionId) => {
+                return {
+                    url: `/tuition//apply/${tuitionId}`,
+                    method: 'POST',
+                }
+            },
+        }),
     })
 
 });
 
-export const { useCreateTuitionMutation, useRequestTutorMutation, useGetMyPostedTuitionsQuery, useGetAppliedTutorsQuery, useGetMyTuitionRequestQuery, useCancelTuitionRequestMutation } = tuitionApi;
+export const { useCreateTuitionMutation, useRequestTutorMutation, useGetMyPostedTuitionsQuery, useGetAppliedTutorsQuery, useGetMyTuitionRequestQuery, useCancelTuitionRequestMutation, useGetCurrentTuitionsQuery, useGetAllTuitionsQuery, useApplyToTuitionMutation } = tuitionApi;
