@@ -1,4 +1,4 @@
-import { get } from "lodash";
+import { get, isFunction } from "lodash";
 
 const DataTable = ({ columns, data }) => {
 
@@ -17,7 +17,7 @@ const DataTable = ({ columns, data }) => {
                         <tr key={index}>
                             {columns.map(col => (
                                 <td key={col.name}>
-                                    {col.name === 'Action' ? col.row(dt) : get(dt, col.row)}
+                                    {isFunction(col.row) ? col.row(dt) : get(dt, col.row)}
                                 </td>
                             ))}
                         </tr>

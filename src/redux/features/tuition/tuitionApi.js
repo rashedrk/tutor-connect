@@ -92,6 +92,7 @@ const tuitionApi = baseApi.injectEndpoints({
             transformResponse: (response) => {
                 return response.data;
             },
+            providesTags: ['all_tuition']
         }),
         applyToTuition: builder.mutation({
             query: (tuitionId) => {
@@ -100,6 +101,7 @@ const tuitionApi = baseApi.injectEndpoints({
                     method: 'POST',
                 }
             },
+            invalidatesTags: ['all_tuition', 'tuition']
         }),
     })
 

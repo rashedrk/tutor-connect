@@ -2,16 +2,21 @@
 
 import DataTable from '@/components/shared/DataTable/DataTable';
 import { useApplyToTuitionMutation, useGetAllTuitionsQuery } from '@/redux/features/tuition/tuitionApi';
+import { getUserInfo } from '@/services/auth.services';
 import React from 'react';
 import { SlOptionsVertical } from 'react-icons/sl';
 import { toast } from 'sonner';
 
 const TuitionsPage = () => {
 
+    const user = getUserInfo()
+    //TODO: add days make time only 
+
     const { data, isLoading } = useGetAllTuitionsQuery(undefined);
     const [applyToTuition] = useApplyToTuitionMutation()
 
     // console.log(data);
+
 
     const handleRequest = async (tuitionId) => {
         const toastId = toast.loading("Application in process...")
@@ -51,20 +56,20 @@ const TuitionsPage = () => {
             row: "gender",
         },
         {
-            name: 'Start Time',
-            row: "schedule.startTime",
+            name: 'Duration',
+            row: (rowData) => `${rowData.schedule.startTime} - ${rowData.schedule.endTime}`,
         },
-        {
-            name: 'End Time',
-            row: "schedule.endTime",
-        },
+
         {
             name: 'Days',
-            row: "schedule.days",
+            row: (rowData) => rowData.schedule.days.join(', ')
         },
         {
             name: 'Action',
-            row: (rowData) => <button onClick={() => handleRequest(rowData.tuition_id)} className='btn btn-xs primary-btn text-xs'>Request</button>
+            row: (rowData) => rowData.isApplied ?
+                <button disabled className='btn btn-xs primary-btn text-xs'>Applied</button>
+                :
+                <button onClick={() => handleRequest(rowData.tuition_id)} className='btn btn-xs primary-btn text-xs'>Request</button>
         },
     ];
 
