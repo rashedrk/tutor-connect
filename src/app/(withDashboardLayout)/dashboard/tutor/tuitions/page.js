@@ -2,15 +2,13 @@
 
 import DataTable from '@/components/shared/DataTable/DataTable';
 import { useApplyToTuitionMutation, useGetAllTuitionsQuery } from '@/redux/features/tuition/tuitionApi';
-import { getUserInfo } from '@/services/auth.services';
 import React from 'react';
 import { SlOptionsVertical } from 'react-icons/sl';
 import { toast } from 'sonner';
 
 const TuitionsPage = () => {
 
-    const user = getUserInfo()
-    //TODO: add days make time only 
+    //TODO: make time only 
 
     const { data, isLoading } = useGetAllTuitionsQuery(undefined);
     const [applyToTuition] = useApplyToTuitionMutation()
@@ -63,6 +61,10 @@ const TuitionsPage = () => {
         {
             name: 'Days',
             row: (rowData) => rowData.schedule.days.join(', ')
+        },
+        {
+            name: 'Address',
+            row: (rowData) => `${rowData.address.address}, ${rowData.address.area}, ${rowData.address.district}`
         },
         {
             name: 'Action',
