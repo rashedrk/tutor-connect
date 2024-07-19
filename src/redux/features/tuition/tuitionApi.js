@@ -101,10 +101,43 @@ const tuitionApi = baseApi.injectEndpoints({
                     method: 'POST',
                 }
             },
-            invalidatesTags: ['all_tuition', 'tuition']
+            invalidatesTags: ['all_tuition', 'tuition', 'applied_tuitions']
+        }),
+        getMyAppliedTuitions: builder.query({
+            query: () => {
+                return {
+                    url: `/tuition/applied`,
+                    method: 'GET'
+                }
+            },
+            transformResponse: (response) => {
+                return response.data;
+            },
+            providesTags: ['applied_tuitions']
+        }),
+        cancelAppliedTuition: builder.mutation({
+            query: (appliedTuitionId) => {
+                return {
+                    url: `/application/cancel/${appliedTuitionId}`,
+                    method: 'PUT',
+                }
+            },
+            invalidatesTags: ['applied_tuitions']
         }),
     })
 
 });
 
-export const { useCreateTuitionMutation, useRequestTutorMutation, useGetMyPostedTuitionsQuery, useGetAppliedTutorsQuery, useGetMyTuitionRequestQuery, useCancelTuitionRequestMutation, useGetCurrentTuitionsQuery, useGetAllTuitionsQuery, useApplyToTuitionMutation } = tuitionApi;
+export const {
+    useCreateTuitionMutation,
+    useRequestTutorMutation,
+    useGetMyPostedTuitionsQuery,
+    useGetAppliedTutorsQuery,
+    useGetMyTuitionRequestQuery,
+    useCancelTuitionRequestMutation,
+    useGetCurrentTuitionsQuery,
+    useGetAllTuitionsQuery,
+    useApplyToTuitionMutation,
+    useGetMyAppliedTuitionsQuery,
+    useCancelAppliedTuitionMutation,
+} = tuitionApi;
