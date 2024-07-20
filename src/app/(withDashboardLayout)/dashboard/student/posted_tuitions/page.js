@@ -12,7 +12,7 @@ import { FaRegEye } from "react-icons/fa";
 const PostedTuitions = () => {
     const { data, isLoading } = useGetMyPostedTuitionsQuery(undefined);
 
-    console.log(data);
+    // console.log(data);
 
 
 
