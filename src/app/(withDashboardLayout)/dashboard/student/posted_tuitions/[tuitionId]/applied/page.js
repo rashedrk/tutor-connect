@@ -1,18 +1,33 @@
 'use client'
 
 import DataTable from '@/components/shared/DataTable/DataTable';
-import { useGetAppliedTutorsQuery } from '@/redux/features/tuition/tuitionApi';
-import { useParams } from 'next/navigation';
+import { useGetAppliedTutorsQuery, useSelectTutorMutation } from '@/redux/features/tuition/tuitionApi';
+import { useParams, useRouter } from 'next/navigation';
 import { SlOptionsVertical } from 'react-icons/sl';
 import { FaRegEye } from "react-icons/fa";
 import Link from 'next/link';
+import { toast } from 'sonner';
 
 const AppliedTutors = () => {
     const {tuitionId} = useParams();
+    const router = useRouter();
 
     const {data, isLoading} = useGetAppliedTutorsQuery({tuitionId});
+    const [selectTutor] = useSelectTutorMutation();
 
-    console.log(data);
+    // console.log(data);
+
+    const handleSelectTutor = async(appliedTuitionId) => {
+        const toastId = toast.loading("Please wait...")
+        const res = await selectTutor(appliedTuitionId);
+        // console.log(res);
+        if (res?.data?.success) {
+            toast.success(res?.data?.message, {id: toastId});
+            router.push('/dashboard/student/posted_tuitions')
+        } else {
+            toast.error('something went wrong', {id: toastId})
+        }
+    }
 
     const columns = [
         {
@@ -49,7 +64,7 @@ const AppliedTutors = () => {
                 <div tabIndex={0} role="button" className="btn bg-transparent hover:bg-transparent m-1"><SlOptionsVertical /></div>
                 <ul tabIndex={0} className="dropdown-content text-xs menu bg-base-100 rounded-box shadow-2xl z-[1] w-36 border p-2 ">
                     <li><Link href={`/tutor/${rowData.tutor.tutor_id}`}><FaRegEye /> See Details</Link></li>
-                    <li><a>Status</a></li>
+                    <li onClick={() => handleSelectTutor(rowData.applied_tuition_id)}><a>Select</a></li>
                 </ul>
             </div>
         },
