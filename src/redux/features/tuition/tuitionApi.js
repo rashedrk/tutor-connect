@@ -134,6 +134,30 @@ const tuitionApi = baseApi.injectEndpoints({
             },
             invalidatesTags: ['applied_tuitions']
         }),
+        getAllRequestedStudents: builder.query({
+            query: () => {
+                return {
+                    url: `/tuition/request`,
+                    method: 'GET'
+                }
+            },
+            transformResponse: (response) => {
+                return response.data;
+            },
+            providesTags: ['requested_students']
+        }),
+        changeStudentRequestStatus: builder.mutation({
+            query: (data) => {
+                return {
+                    url: `/tuition/request/${data.tuitionRequestId}`,
+                    method: 'PUT',
+                    data: {
+                        status: data.status
+                    }
+                }
+            },
+            invalidatesTags: ['requested_students']
+        }),
     })
 
 });
@@ -150,5 +174,7 @@ export const {
     useApplyToTuitionMutation,
     useGetMyAppliedTuitionsQuery,
     useCancelAppliedTuitionMutation,
-    useSelectTutorMutation
+    useSelectTutorMutation,
+    useGetAllRequestedStudentsQuery,
+    useChangeStudentRequestStatusMutation
 } = tuitionApi;

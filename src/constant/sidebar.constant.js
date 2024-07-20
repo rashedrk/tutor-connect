@@ -35,6 +35,11 @@ export const tutorSidebarItems = [
         label: 'Current Tuitions',
         path: '/dashboard/tutor/current_tuition'
     },
+    {
+        icon: "",
+        label: 'Requested Students',
+        path: '/dashboard/tutor/requests'
+    },
 ];
 
 export const studentSidebarItems = [
