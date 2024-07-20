@@ -4,8 +4,10 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import './dashboardDrawer.css'
 import { sidebarGenerator } from "@/utils/sidebarGenerator";
-import { adminSidebarItems } from "@/constant/sidebar.constant";
+import { adminSidebarItems, studentSidebarItems, tutorSidebarItems } from "@/constant/sidebar.constant";
+import useUserInfo from "@/hooks/useUserInfo";
 const DashboardDrawer = ({ children }) => {
+    const userInfo = useUserInfo()
 
     const pathname = usePathname();
 
@@ -50,7 +52,12 @@ const DashboardDrawer = ({ children }) => {
                     </div>
                     {/* Sidebar content here */}
                     {
-                        sidebarGenerator(adminSidebarItems, pathname)
+                        userInfo.role === 'tutor' &&
+                        sidebarGenerator(tutorSidebarItems, pathname)
+                    }
+                    {
+                        userInfo.role === 'student' &&
+                        sidebarGenerator(studentSidebarItems, pathname)
                     }
                 </ul>
             </div>
