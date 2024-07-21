@@ -7,7 +7,7 @@ import { SlOptionsVertical } from 'react-icons/sl';
 
 const StudentCurrentTuitionPage = () => {
     const {data, isLoading} = useGetCurrentTuitionsQuery(undefined);
-    // console.log(data);
+    console.log(data);
 
     const columns = [
         {
@@ -20,23 +20,23 @@ const StudentCurrentTuitionPage = () => {
         },
         {
             name: 'Tutor Name',
-            row: "selectedTutor.profile.name",
+            row: (rowData) => rowData?.selectedTutor?.profile?.name || rowData?.tutor?.profile?.name,
         },
         {
             name: 'Contact No',
-            row: "selectedTutor.profile.contactNo",
+            row: (rowData) => rowData?.selectedTutor?.profile?.contactNo || rowData?.tutor?.profile?.contactNo,
         },
         {
             name: 'Email',
-            row: "selectedTutor.profile.email",
+            row: (rowData) => rowData?.selectedTutor?.profile?.email || rowData?.tutor?.profile?.email,
         },
         {
             name: 'Duration',
-            row: (rowData) => `${rowData.schedule.startTime} - ${rowData.schedule.endTime}`,
+            row: (rowData) => `${rowData?.schedule?.startTime} - ${rowData?.schedule?.endTime}`,
         },
         {
             name: 'Days',
-            row: (rowData) => rowData.schedule.days.join(', ')
+            row: (rowData) => rowData?.schedule?.days?.join(', ')
         },
         // {
         //     name: 'Action',
