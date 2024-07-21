@@ -1,5 +1,6 @@
 //This is the page where students can see the list of tutors and status they requested for
 'use client'
+import EditTuitionRequestModal from "@/components/Modals/EditTuitionRequestModal";
 import DataTable from "@/components/shared/DataTable/DataTable";
 import { useCancelTuitionRequestMutation, useGetMyTuitionRequestQuery } from "@/redux/features/tuition/tuitionApi";
 import Link from "next/link";
@@ -67,7 +68,7 @@ const Requested = () => {
                 <div className="dropdown dropdown-end">
                     <div tabIndex={0} role="button" className="btn bg-transparent hover:bg-transparent "><SlOptionsVertical /></div>
                     <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box shadow-2xl text-xs border z-[1] w-32 ">
-                        <li><a><RiEdit2Line fontSize={"20px"} />Edit</a></li>
+                        <EditTuitionRequestModal tuitionRequest={rowData}/>
                         <li onClick={() => cancelRequest(rowData.tuition_request_id)}><a>Cancel</a></li>
 
                     </ul>
