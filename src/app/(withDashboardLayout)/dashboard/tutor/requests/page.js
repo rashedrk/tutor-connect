@@ -8,9 +8,9 @@ import { toast } from "sonner";
 const StudentRequests = () => {
     const { data, isLoading } = useGetAllRequestedStudentsQuery(undefined);
     const [changeStatus] = useChangeStudentRequestStatusMutation()
-    console.log(data);
+    // console.log(data);
 
-    const handleStatusChange = async(tuitionRequestId, status) => {
+    const handleStatusChange = async (tuitionRequestId, status) => {
         const toastId = toast.loading('please wait...');
         const data = {
             tuitionRequestId,
@@ -19,9 +19,9 @@ const StudentRequests = () => {
         const res = await changeStatus(data);
 
         if (res.data.success) {
-            toast.success(res.data.message, {id: toastId})
+            toast.success(res.data.message, { id: toastId })
         } else {
-            toast.error("something went wrong", {id: toastId})
+            toast.error("something went wrong", { id: toastId })
         }
     }
 
@@ -68,15 +68,17 @@ const StudentRequests = () => {
         },
         {
             name: 'Action',
-            row: (rowData) => <div className="dropdown dropdown-end">
-                <div tabIndex={0} role="button" className="btn bg-transparent hover:bg-transparent m-1"><SlOptionsVertical /></div>
-                <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box shadow-2xl z-[1] w-44 p-2 ">
+            row: (rowData) => rowData.status === 'pending' ?
+                <div className="dropdown dropdown-end">
+                    <div tabIndex={0} role="button" className="btn bg-transparent hover:bg-transparent m-1"><SlOptionsVertical /></div>
+                    <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box shadow-2xl z-[1] w-44 p-2 ">
 
-                    <li onClick={() => handleStatusChange(rowData.tuition_request_id, 'accepted')}><a>Accept</a></li>
-                    <li onClick={() => handleStatusChange(rowData.tuition_request_id, 'rejected')}><a>Reject</a></li>
+                        <li onClick={() => handleStatusChange(rowData.tuition_request_id, 'accepted')}><a>Accept</a></li>
+                        <li onClick={() => handleStatusChange(rowData.tuition_request_id, 'rejected')}><a>Reject</a></li>
 
-                </ul>
-            </div>
+                    </ul>
+                </div> :
+                <div className="btn bg-transparent cursor-default hover:bg-transparent m-1 text-gray-400"><SlOptionsVertical /></div>
         },
     ];
 

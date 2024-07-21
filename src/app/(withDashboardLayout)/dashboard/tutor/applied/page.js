@@ -7,7 +7,7 @@ import { toast } from 'sonner';
 const AppliedTuitionPage = () => {
     const { data, isLoading } = useGetMyAppliedTuitionsQuery(undefined);
     const [cancelApplication] = useCancelAppliedTuitionMutation()
-    console.log(data);
+    // console.log(data);
 
     const columns = [
         {
@@ -45,10 +45,14 @@ const AppliedTuitionPage = () => {
         },
         {
             name: 'Action',
-            row: (rowData) => rowData.status == 'cancelled' ?
+            row: (rowData) => rowData.status === 'cancelled' ?
                 <button disabled className='btn btn-xs primary-btn text-xs'>Cancelled</button>
                 :
-                <button onClick={() => handleCancel(rowData.tuition_id)} className='btn btn-xs bg-red-500 text-white hover:bg-red-600 text-xs'>Cancel</button>
+                (
+                    rowData.status === 'accepted' ?
+                    <button disabled className='btn btn-xs text-xs'>Cancel</button>:
+                    <button onClick={() => handleCancel(rowData.tuition_id)} className='btn btn-xs bg-red-500 text-white hover:bg-red-600 text-xs'>Cancel</button>
+                )
         },
     ];
 
