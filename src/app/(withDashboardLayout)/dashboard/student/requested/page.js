@@ -63,14 +63,17 @@ const Requested = () => {
         },
         {
             name: 'Action',
-            row: (rowData) => <div className="dropdown dropdown-end">
-                <div tabIndex={0} role="button" className="btn bg-transparent hover:bg-transparent "><SlOptionsVertical /></div>
-                <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box shadow-2xl text-xs border z-[1] w-32 ">
-                    <li><a><RiEdit2Line fontSize={"20px"} />Edit</a></li>
-                    <li onClick={() => cancelRequest(rowData.tuition_request_id)}><a>Cancel</a></li>
+            row: (rowData) => rowData.status === 'pending' ?
+                <div className="dropdown dropdown-end">
+                    <div tabIndex={0} role="button" className="btn bg-transparent hover:bg-transparent "><SlOptionsVertical /></div>
+                    <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box shadow-2xl text-xs border z-[1] w-32 ">
+                        <li><a><RiEdit2Line fontSize={"20px"} />Edit</a></li>
+                        <li onClick={() => cancelRequest(rowData.tuition_request_id)}><a>Cancel</a></li>
 
-                </ul>
-            </div>
+                    </ul>
+                </div>
+                :
+                <div className="btn bg-transparent cursor-default hover:bg-transparent m-1 text-gray-400"><SlOptionsVertical /></div>
         },
     ];
 
