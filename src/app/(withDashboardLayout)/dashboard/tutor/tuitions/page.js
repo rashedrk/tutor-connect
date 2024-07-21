@@ -71,7 +71,12 @@ const TuitionsPage = () => {
             row: (rowData) => rowData.isApplied ?
                 <button disabled className='btn btn-xs primary-btn text-xs'>Applied</button>
                 :
-                <button onClick={() => handleRequest(rowData.tuition_id)} className='btn btn-xs primary-btn text-xs'>Request</button>
+                (
+                    rowData.status === 'booked' ?
+                    <button disabled className='btn btn-xs primary-btn text-xs'>booked</button>
+                    :
+                    <button onClick={() => handleRequest(rowData.tuition_id)} className='btn btn-xs primary-btn text-xs'>Request</button>
+                )
         },
     ];
 
