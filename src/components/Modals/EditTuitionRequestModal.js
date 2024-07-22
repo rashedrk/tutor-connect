@@ -7,7 +7,7 @@ import TCSelect from "../Forms/TCSelect";
 import { useEffect, useState } from "react";
 import { selectOptions } from "@/utils/selectOptions";
 import { useParams } from "next/navigation";
-import { useRequestTutorMutation } from "@/redux/features/tuition/tuitionApi";
+import { useRequestTutorMutation, useUpdateRequestToTutorMutation } from "@/redux/features/tuition/tuitionApi";
 import TCTimePicker from "../Forms/TCTimePicker";
 import TCMultiSelect from "../Forms/TCMultiSelect";
 import { HttpStatusCode } from "axios";
@@ -15,11 +15,10 @@ import { toast } from "sonner";
 import { RiEdit2Line } from "react-icons/ri";
 
 const EditTuitionRequestModal = ({ tuitionRequest }) => {
-    const { tutorId } = useParams();
     const [districts, setDistricts] = useState([]);
     const [upozila, setUpozila] = useState([]);
     const [selectedDistrict, setSelectedDistrict] = useState("")
-    const [addRequest] = useRequestTutorMutation();
+    const [updateRequest] = useUpdateRequestToTutorMutation()
 
     const { subject, contactNo, salary, medium } = tuitionRequest;
     const { address, area, district } = tuitionRequest.address;
@@ -58,33 +57,35 @@ const EditTuitionRequestModal = ({ tuitionRequest }) => {
     const handleEdit = async (data) => {
         const toastId = toast.loading('Sending Request, please wait...')
 
-        data.fullAddress.district = selectedDistrict
+        // data.fullAddress.district = selectedDistrict
+        data.fullAddress.district = "Bogura T"
+        data.fullAddress.area = "Bogura Test"
 
-        // const fromData = {
-        //     tutorId,
-        //     data,
-        // }
+        const fromData = {
+            tuitionRequestId: tuitionRequest.tuition_request_id,
+            data,
+        }
 
-        // const res = await addRequest(fromData);
+        const res = await updateRequest(fromData);
         // console.log(res);
-        // if (res?.data?.statusCode == HttpStatusCode.Created) {
-        //     toast.success(res?.data?.message, { id: toastId, duration: 6000 });
-        //     document.getElementById('book_tutor').close()
-        // }
-        // else {
-        //     toast.error(res?.data?.message, { id: toastId, duration: 6000 });
-        // }
+        if (res?.data?.success) {
+            toast.success(res?.data?.message, { id: toastId, duration: 6000 });
+            document.getElementById('tutor_req').close()
+        }
+        else {
+            toast.error(res?.data?.message, { id: toastId, duration: 6000 });
+        }
     }
 
     return (
         <>
 
-            <li onClick={() => document.getElementById('book_tutor').showModal()}><a><RiEdit2Line fontSize={"20px"} />Edit</a></li>
-            <dialog id="book_tutor" className="modal modal-bottom sm:modal-middle">
+            <li onClick={() => document.getElementById('tutor_req').showModal()}><a><RiEdit2Line fontSize={"20px"} />Edit</a></li>
+            <dialog id="tutor_req" className="modal modal-bottom sm:modal-middle">
 
                 <div className="modal-box">
                     <h3 className="font-bold text-lg pb-5">Edit your request</h3>
-                    <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" onClick={() => document.getElementById('book_tutor').close()}>✕</button>
+                    <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" onClick={() => document.getElementById('tutor_req').close()}>✕</button>
                     <TCForm onsubmit={handleEdit} defaultValues={defaultValues}>
                         <div className='grid md:grid-cols-2 gap-3 mb-4'>
                             <TCSelect options={subjectsOptions} label="Select subject" name="subject" />
@@ -108,7 +109,7 @@ const EditTuitionRequestModal = ({ tuitionRequest }) => {
                             <TCInput placeholder="Enter offered salary" name="salary" type="number" />
                         </div>
                         <button className="btn primary-btn" type="submit" >Edit</button>
-                        <button className="btn ms-4" type="reset" onClick={() => document.getElementById('book_tutor').close()}>Cancel</button>
+                        <button className="btn ms-4" type="reset" onClick={() => document.getElementById('tutor_req').close()}>Cancel</button>
                     </TCForm>
                 </div>
             </dialog>
