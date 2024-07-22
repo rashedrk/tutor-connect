@@ -7,12 +7,13 @@ import { SlOptionsVertical } from "react-icons/sl";
 import { RiEdit2Line } from "react-icons/ri";
 import { PiUserList } from "react-icons/pi";
 import { FaRegEye } from "react-icons/fa";
+import EditPostedTuitionModal from "@/components/Modals/EditPostedTuitionModal";
 
 
 const PostedTuitions = () => {
     const { data, isLoading } = useGetMyPostedTuitionsQuery(undefined);
 
-    // console.log(data);
+    console.log(data);
 
 
 
@@ -42,6 +43,18 @@ const PostedTuitions = () => {
             row: "gender",
         },
         {
+            name: 'Duration',
+            row: (rowData) => `${rowData?.schedule?.startTime} - ${rowData?.schedule?.endTime}`,
+        },
+        {
+            name: 'Days',
+            row: (rowData) => rowData?.schedule?.days?.join(', ')
+        },
+        {
+            name: 'Address',
+            row: (rowData) => `${rowData.address.address}, ${rowData.address.area}, ${rowData.address.district}`
+        },
+        {
             name: 'Status',
             row: "status",
         },
@@ -56,7 +69,7 @@ const PostedTuitions = () => {
                             <li><Link href={`/tutor/${rowData.selected_tutor}`}><FaRegEye /> Tutor Details</Link></li>
                             </> :
                             <>
-                                <li><Link href={""}><RiEdit2Line fontSize={"20px"} /> Edit</Link></li>
+                               <EditPostedTuitionModal postedTuition={rowData}/>
                                 <li><Link href={`/dashboard/student/posted_tuitions/${rowData.tuition_id}/applied`}><PiUserList fontSize={"20px"} /> Applied Tutors</Link></li>
                             </>
                     }
