@@ -10,11 +10,13 @@ import TCTimePicker from "../Forms/TCTimePicker";
 import TCMultiSelect from "../Forms/TCMultiSelect";
 import { toast } from "sonner";
 import { RiEdit2Line } from "react-icons/ri";
+import { useUpdateTuitionMutation } from "@/redux/features/tuition/tuitionApi";
 
 const EditPostedTuitionModal = ({ postedTuition }) => {
     const [districts, setDistricts] = useState([]);
     const [upozila, setUpozila] = useState([]);
-    const [selectedDistrict, setSelectedDistrict] = useState("")
+    const [selectedDistrict, setSelectedDistrict] = useState("");
+    const [updateTuition] = useUpdateTuitionMutation()
 
     const { subject, contactNo, salary, medium } = postedTuition;
     const { address, area, district } = postedTuition.address;
@@ -58,30 +60,29 @@ const EditPostedTuitionModal = ({ postedTuition }) => {
         data.fullAddress.area = "Bogura Test"
 
         const fromData = {
-            postedTuitionId: postedTuition.tuition_request_id,
+            tuitionId: postedTuition.tuition_id,
             data,
         }
 
-        // const res = await updateRequest(fromData);
-        // // console.log(res);
-        // if (res?.data?.success) {
-        //     toast.success(res?.data?.message, { id: toastId, duration: 6000 });
-        //     document.getElementById('tutor_req').close()
-        // }
-        // else {
-        //     toast.error(res?.data?.message, { id: toastId, duration: 6000 });
-        // }
+        const res = await updateTuition(fromData);
+        if (res?.data?.success) {
+            toast.success(res?.data?.message, { id: toastId, duration: 6000 });
+            document.getElementById('tuition').close()
+        }
+        else {
+            toast.error(res?.data?.message, { id: toastId, duration: 6000 });
+        }
     }
 
     return (
         <>
 
-            <li onClick={() => document.getElementById('tutor_req').showModal()}><a><RiEdit2Line fontSize={"20px"} />Edit</a></li>
-            <dialog id="tutor_req" className="modal modal-bottom sm:modal-middle">
+            <li onClick={() => document.getElementById('tuition').showModal()}><a><RiEdit2Line fontSize={"20px"} />Edit</a></li>
+            <dialog id="tuition" className="modal modal-bottom sm:modal-middle">
 
                 <div className="modal-box">
                     <h3 className="font-bold text-lg pb-5">Edit your posted tuition</h3>
-                    <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" onClick={() => document.getElementById('tutor_req').close()}>✕</button>
+                    <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" onClick={() => document.getElementById('tuition').close()}>✕</button>
                     <TCForm onsubmit={handleEdit} defaultValues={defaultValues}>
                         <div className='grid md:grid-cols-2 gap-3 mb-4'>
                             <TCSelect options={subjectsOptions} label="Select subject" name="subject" />
@@ -105,7 +106,7 @@ const EditPostedTuitionModal = ({ postedTuition }) => {
                             <TCInput placeholder="Enter offered salary" name="salary" type="number" />
                         </div>
                         <button className="btn primary-btn" type="submit" >Edit</button>
-                        <button className="btn ms-4" type="reset" onClick={() => document.getElementById('tutor_req').close()}>Cancel</button>
+                        <button className="btn ms-4" type="reset" onClick={() => document.getElementById('tuition').close()}>Cancel</button>
                     </TCForm>
                 </div>
             </dialog>

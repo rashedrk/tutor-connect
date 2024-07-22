@@ -87,6 +87,17 @@ const tuitionApi = baseApi.injectEndpoints({
             },
             invalidatesTags: ['tuition_request']
         }),
+        updateTuition: builder.mutation({
+            query: (data) => {
+                return {
+                    url: `/tuition/update/${data.tuitionId}`,
+                    method: 'PUT',
+                    data: data.data
+                }
+            },
+            invalidatesTags: ['tuition']
+        }),
+
 
 
 
@@ -188,5 +199,6 @@ export const {
     useSelectTutorMutation,
     useGetAllRequestedStudentsQuery,
     useChangeStudentRequestStatusMutation,
-    useUpdateRequestToTutorMutation
+    useUpdateRequestToTutorMutation,
+    useUpdateTuitionMutation
 } = tuitionApi;
