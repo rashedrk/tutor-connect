@@ -5,6 +5,7 @@ import Link from "next/link";
 
 const TutorCard = ({ tutor }) => {
     const { tutor_id, profile, details, rating, experties, tutorQualification } = tutor;
+    console.log(tutor);
     return (
         <div className="card card-compact w-96 h-[28rem] bg-base-100 shadow-xl">
             <figure className="h-56">
@@ -29,7 +30,7 @@ const TutorCard = ({ tutor }) => {
                 </div>
                 <div className="card-actions justify-between items-center">
                     <div className="flex  gap-2">
-                        <span className="mt-1 font-bold text-orange-600">{rating}</span>
+                        <span className="mt-1 font-bold text-orange-600">{Number(rating).toFixed(1)}</span>
                         <Rating
                             style={{ maxWidth: 90 }}
                             value={rating || 0}
