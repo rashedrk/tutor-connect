@@ -57,9 +57,9 @@ const EditTuitionRequestModal = ({ tuitionRequest }) => {
     const handleEdit = async (data) => {
         const toastId = toast.loading('Sending Request, please wait...')
 
-        // data.fullAddress.district = selectedDistrict
-        data.fullAddress.district = "Bogura T"
-        data.fullAddress.area = "Bogura Test"
+        data.fullAddress.district = selectedDistrict
+        // data.fullAddress.district = "Bogura T"
+        // data.fullAddress.area = "Bogura Test"
 
         const fromData = {
             tuitionRequestId: tuitionRequest.tuition_request_id,
