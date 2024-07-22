@@ -31,14 +31,6 @@ const Requested = () => {
             row: "medium",
         },
         {
-            name: 'Start Time',
-            row: "schedule.startTime",
-        },
-        {
-            name: 'End Time',
-            row: "schedule.endTime",
-        },
-        {
             name: 'Contact No',
             row: "contactNo",
         },
@@ -47,16 +39,16 @@ const Requested = () => {
             row: "salary",
         },
         {
+            name: 'Duration',
+            row: (rowData) => `${rowData?.schedule?.startTime} - ${rowData?.schedule?.endTime}`,
+        },
+        {
+            name: 'Days',
+            row: (rowData) => rowData?.schedule?.days?.join(', ')
+        },
+        {
             name: 'Address',
-            row: "address.address",
-        },
-        {
-            name: 'Area',
-            row: "address.area",
-        },
-        {
-            name: 'District',
-            row: "address.district",
+            row: (rowData) => `${rowData.address.address}, ${rowData.address.area}, ${rowData.address.district}`
         },
         {
             name: 'Status',
