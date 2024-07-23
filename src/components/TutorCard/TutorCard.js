@@ -4,8 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 
 const TutorCard = ({ tutor }) => {
-    const { tutor_id, profile, details, rating, experties, tutorQualification } = tutor;
-    console.log(tutor);
+    const { tutor_id, profile, details, rating, experties, tutorQualification, fee } = tutor;
+    // console.log(tutor);
     return (
         <div className="card card-compact w-96 h-[28rem] bg-base-100 shadow-xl">
             <figure className="h-56">
@@ -22,7 +22,7 @@ const TutorCard = ({ tutor }) => {
                         <h2 className="card-title flex-grow">{profile.name}</h2>
                         <p>{tutorQualification[0].qualification?.degree}</p>
                     </div>
-                    <h1 className="font-bold text-md "><span className="text-2xl">2000</span> tk/month</h1>
+                    <h1 className="font-bold text-md "><span className="text-2xl">{fee}</span> tk/month</h1>
                 </div>
                 <p className="line-clamp-3">{details}</p>
                 <div className="card-actions my-3 ">
