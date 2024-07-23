@@ -7,7 +7,7 @@ import TCInput from '@/components/Forms/TCInput';
 import TCMultiSelect from '@/components/Forms/TCMultiSelect';
 import TCSelect from '@/components/Forms/TCSelect';
 import TCTextArea from '@/components/Forms/TCTextArea';
-import { genderOptions, subjectsOptions } from '@/constant';
+import { genderOptions, studentClassOptions, subjectsOptions } from '@/constant';
 import { useRegisterTutorMutation } from '@/redux/features/users/userApi';
 import { fileUploader } from '@/utils/fileUploader';
 import { selectOptions } from '@/utils/selectOptions';
@@ -135,6 +135,7 @@ const TutorRegister = () => {
                 <h2 className='font-semibold text-lg mb-2 mt-6'>Other Information</h2>
                 <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-2 '>
                     <TCMultiSelect options={subjectsOptions} placeholder="Select Subject" name="expertise" />
+                    <TCMultiSelect options={studentClassOptions} placeholder="Select Class" name="class" />
                     <TCInput name="yearOfExperience" placeholder="Enter Year of Experience" type="text" />
                     <TCInput name="fee" placeholder="Enter Expected Fee" type="text" />
                     <TCTextArea name="details" placeholder="Enter Your Details" />
