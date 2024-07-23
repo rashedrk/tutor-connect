@@ -17,7 +17,7 @@ const SignIn = () => {
         const toastId = toast.loading("Login in.....")
         try {
             const res = await userLogin(values);
-            console.log("login", res.data.accessToken);
+            // console.log("login", res.data.accessToken);
             if (res?.data?.accessToken) {
                 toast.success(res?.message, { id: toastId });
                 storeUserInfo({ accessToken: res?.data?.accessToken });

@@ -1,3 +1,4 @@
+import { decodedToken } from '@/utils/jwt-helpers';
 import setAccessToken from './setAccessToken';
 
 export const userLogin = async (data) => {
@@ -17,9 +18,14 @@ export const userLogin = async (data) => {
     // console.log(userInfo);
 
     if (userInfo.data.accessToken) {
-        setAccessToken(userInfo.data.accessToken, {
-            redirect: '/',
-        });
+        const user = decodedToken(userInfo.data.accessToken);
+        const path = {
+            redirect: '/'
+        };
+        if (user.role === 'admin' || user.role === 'tutor') {
+            path.redirect = '/dashboard'
+        };
+        setAccessToken(userInfo.data.accessToken, path);
     }
 
     return userInfo;
