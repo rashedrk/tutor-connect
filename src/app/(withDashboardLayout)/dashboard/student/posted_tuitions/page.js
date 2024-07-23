@@ -1,21 +1,31 @@
 'use client'
 
 import DataTable from "@/components/shared/DataTable/DataTable";
-import { useGetMyPostedTuitionsQuery } from "@/redux/features/tuition/tuitionApi";
+import { useDeleteTuitionMutation, useGetMyPostedTuitionsQuery } from "@/redux/features/tuition/tuitionApi";
 import Link from "next/link";
 import { SlOptionsVertical } from "react-icons/sl";
 import { RiEdit2Line } from "react-icons/ri";
 import { PiUserList } from "react-icons/pi";
 import { FaRegEye } from "react-icons/fa";
 import EditPostedTuitionModal from "@/components/Modals/EditPostedTuitionModal";
+import { toast } from "sonner";
 
 
 const PostedTuitions = () => {
     const { data, isLoading } = useGetMyPostedTuitionsQuery(undefined);
+    const [deleteTuition] = useDeleteTuitionMutation()
 
-    console.log(data);
+    // console.log(data);
 
-
+    const handleDelete = async(tuitionId) => {
+        const toastId = toast.loading('please wait...');
+        const res = await deleteTuition(tuitionId);
+        if (res?.data?.success) {
+            toast.success(res?.data?.message, {id: toastId});
+        } else {
+            toast.error("something went wrong", {id: toastId});
+        }
+    }
 
     const columns = [
         {
@@ -66,11 +76,14 @@ const PostedTuitions = () => {
                     {
                         rowData?.status === 'booked' ?
                             <>
-                            <li><Link href={`/tutor/${rowData?.selected_tutor}`}><FaRegEye /> Tutor Details</Link></li>
+                                <li><Link href={`/tutor/${rowData?.selected_tutor}`}><FaRegEye /> Tutor Details</Link></li>
                             </> :
                             <>
-                               <EditPostedTuitionModal postedTuition={rowData}/>
-                                <li><Link href={`/dashboard/student/posted_tuitions/${rowData?.tuition_id}/applied`}><PiUserList fontSize={"20px"} /> Applied Tutors</Link></li>
+                                <EditPostedTuitionModal postedTuition={rowData} />
+                                <li onClick={() => handleDelete(rowData.tuition_id)}><a>Delete</a></li>
+                                <li>
+                                    <Link href={`/dashboard/student/posted_tuitions/${rowData?.tuition_id}/applied`}><PiUserList fontSize={"20px"} /> Applied Tutors</Link>
+                                </li>
                             </>
                     }
                 </ul>
