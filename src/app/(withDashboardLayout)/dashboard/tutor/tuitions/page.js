@@ -55,27 +55,27 @@ const TuitionsPage = () => {
         },
         {
             name: 'Duration',
-            row: (rowData) => `${rowData.schedule.startTime} - ${rowData.schedule.endTime}`,
+            row: (rowData) => `${rowData?.schedule?.startTime} - ${rowData?.schedule?.endTime}`,
         },
 
         {
             name: 'Days',
-            row: (rowData) => rowData.schedule.days.join(', ')
+            row: (rowData) => rowData?.schedule?.days?.join(', ')
         },
         {
             name: 'Address',
-            row: (rowData) => `${rowData.address.address}, ${rowData.address.area}, ${rowData.address.district}`
+            row: (rowData) => `${rowData?.address?.address}, ${rowData?.address?.area}, ${rowData?.address?.district}`
         },
         {
             name: 'Action',
-            row: (rowData) => rowData.isApplied ?
+            row: (rowData) => rowData?.isApplied ?
                 <button disabled className='btn btn-xs primary-btn text-xs'>Applied</button>
                 :
                 (
-                    rowData.status === 'booked' ?
+                    rowData?.status === 'booked' ?
                     <button disabled className='btn btn-xs primary-btn text-xs'>booked</button>
                     :
-                    <button onClick={() => handleRequest(rowData.tuition_id)} className='btn btn-xs primary-btn text-xs'>Request</button>
+                    <button onClick={() => handleRequest(rowData?.tuition_id)} className='btn btn-xs primary-btn text-xs'>Request</button>
                 )
         },
     ];

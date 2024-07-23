@@ -63,8 +63,8 @@ const AppliedTutors = () => {
             row: (rowData) => <div className="dropdown dropdown-end">
                 <div tabIndex={0} role="button" className="btn bg-transparent hover:bg-transparent m-1"><SlOptionsVertical /></div>
                 <ul tabIndex={0} className="dropdown-content text-xs menu bg-base-100 rounded-box shadow-2xl z-[1] w-36 border p-2 ">
-                    <li><Link href={`/tutor/${rowData.tutor.tutor_id}`}><FaRegEye /> See Details</Link></li>
-                    <li onClick={() => handleSelectTutor(rowData.applied_tuition_id)}><a>Select</a></li>
+                    <li><Link href={`/tutor/${rowData?.tutor.tutor_id}`}><FaRegEye /> See Details</Link></li>
+                    <li onClick={() => handleSelectTutor(rowData?.applied_tuition_id)}><a>Select</a></li>
                 </ul>
             </div>
         },

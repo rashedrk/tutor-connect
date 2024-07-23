@@ -48,15 +48,15 @@ const StudentRequests = () => {
         },
         {
             name: 'Duration',
-            row: (rowData) => `${rowData.schedule.startTime} - ${rowData.schedule.endTime}`,
+            row: (rowData) => `${rowData?.schedule?.startTime} - ${rowData?.schedule?.endTime}`,
         },
         {
             name: 'Days',
-            row: (rowData) => rowData.schedule.days.join(', ')
+            row: (rowData) => rowData?.schedule?.days?.join(', ')
         },
         {
             name: 'Address',
-            row: (rowData) => `${rowData.address.address}, ${rowData.address.area}, ${rowData.address.district}`
+            row: (rowData) => `${rowData?.address?.address}, ${rowData?.address?.area}, ${rowData?.address?.district}`
         },
         {
             name: 'Salary',

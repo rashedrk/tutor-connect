@@ -48,7 +48,7 @@ const Requested = () => {
         },
         {
             name: 'Address',
-            row: (rowData) => `${rowData.address.address}, ${rowData.address.area}, ${rowData.address.district}`
+            row: (rowData) => `${rowData?.address?.address}, ${rowData?.address?.area}, ${rowData?.address?.district}`
         },
         {
             name: 'Status',
@@ -56,12 +56,12 @@ const Requested = () => {
         },
         {
             name: 'Action',
-            row: (rowData) => rowData.status === 'pending' ?
+            row: (rowData) => rowData?.status === 'pending' ?
                 <div className="dropdown dropdown-end">
                     <div tabIndex={0} role="button" className="btn bg-transparent hover:bg-transparent "><SlOptionsVertical /></div>
                     <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box shadow-2xl text-xs border z-[1] w-32 ">
                         <EditTuitionRequestModal tuitionRequest={rowData}/>
-                        <li onClick={() => cancelRequest(rowData.tuition_request_id)}><a>Cancel</a></li>
+                        <li onClick={() => cancelRequest(rowData?.tuition_request_id)}><a>Cancel</a></li>
 
                     </ul>
                 </div>

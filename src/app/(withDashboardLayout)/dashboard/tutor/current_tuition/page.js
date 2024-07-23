@@ -5,7 +5,7 @@ import { useGetCurrentTuitionsQuery } from "@/redux/features/tuition/tuitionApi"
 
 const TutorCurrentTuitionPage = () => {
     const { data, isLoading } = useGetCurrentTuitionsQuery(undefined);
-    console.log(data);
+    // console.log(data);
 
     const columns = [
         {
@@ -30,15 +30,15 @@ const TutorCurrentTuitionPage = () => {
         },
         {
             name: 'Duration',
-            row: (rowData) => `${rowData.schedule.startTime} - ${rowData.schedule.endTime}`,
+            row: (rowData) => `${rowData?.schedule?.startTime} - ${rowData?.schedule?.endTime}`,
         },
         {
             name: 'Days',
-            row: (rowData) => rowData.schedule.days.join(', ')
+            row: (rowData) => rowData?.schedule?.days.join(', ')
         },
         {
             name: 'Address',
-            row: (rowData) => `${rowData.address.address}, ${rowData.address.area}, ${rowData.address.district}`
+            row: (rowData) => `${rowData?.address?.address}, ${rowData?.address?.area}, ${rowData?.address?.district}`
         },
         // {
         //     name: 'Action',

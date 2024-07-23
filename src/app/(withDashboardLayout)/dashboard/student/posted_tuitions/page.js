@@ -52,7 +52,7 @@ const PostedTuitions = () => {
         },
         {
             name: 'Address',
-            row: (rowData) => `${rowData.address.address}, ${rowData.address.area}, ${rowData.address.district}`
+            row: (rowData) => `${rowData?.address?.address}, ${rowData?.address?.area}, ${rowData?.address?.district}`
         },
         {
             name: 'Status',
@@ -64,13 +64,13 @@ const PostedTuitions = () => {
                 <div tabIndex={0} role="button" className="btn bg-transparent hover:bg-transparent m-1"><SlOptionsVertical /></div>
                 <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box shadow-2xl z-[1] w-44 p-2 ">
                     {
-                        rowData.status === 'booked' ?
+                        rowData?.status === 'booked' ?
                             <>
-                            <li><Link href={`/tutor/${rowData.selected_tutor}`}><FaRegEye /> Tutor Details</Link></li>
+                            <li><Link href={`/tutor/${rowData?.selected_tutor}`}><FaRegEye /> Tutor Details</Link></li>
                             </> :
                             <>
                                <EditPostedTuitionModal postedTuition={rowData}/>
-                                <li><Link href={`/dashboard/student/posted_tuitions/${rowData.tuition_id}/applied`}><PiUserList fontSize={"20px"} /> Applied Tutors</Link></li>
+                                <li><Link href={`/dashboard/student/posted_tuitions/${rowData?.tuition_id}/applied`}><PiUserList fontSize={"20px"} /> Applied Tutors</Link></li>
                             </>
                     }
                 </ul>
