@@ -7,6 +7,7 @@ import { SlOptionsVertical } from 'react-icons/sl';
 import { FaRegEye } from "react-icons/fa";
 import Link from 'next/link';
 import { toast } from 'sonner';
+import Loader from '@/components/shared/Loader/Loader';
 
 const AppliedTutors = () => {
     const {tuitionId} = useParams();
@@ -73,7 +74,7 @@ const AppliedTutors = () => {
     return (
         <>
             {
-                isLoading ? "Loading,,," :
+                isLoading ? <Loader/> :
                     <DataTable
                         columns={columns}
                         data={data}

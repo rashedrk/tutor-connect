@@ -1,12 +1,14 @@
 'use client'
 
 import DataTable from '@/components/shared/DataTable/DataTable';
+import Loader from '@/components/shared/Loader/Loader';
 import { useGetCurrentTuitionsQuery } from '@/redux/features/tuition/tuitionApi';
+import dayjs from 'dayjs';
 import React from 'react';
 import { SlOptionsVertical } from 'react-icons/sl';
 
 const StudentCurrentTuitionPage = () => {
-    const {data, isLoading} = useGetCurrentTuitionsQuery(undefined);
+    const { data, isLoading } = useGetCurrentTuitionsQuery(undefined);
     console.log(data);
 
     const columns = [
@@ -32,7 +34,7 @@ const StudentCurrentTuitionPage = () => {
         },
         {
             name: 'Duration',
-            row: (rowData) => `${rowData?.schedule?.startTime} - ${rowData?.schedule?.endTime}`,
+            row: (rowData) => `${dayjs(rowData?.schedule?.startTime).format("hh:mm A")} - ${dayjs(rowData?.schedule?.endTime).format("hh:mm A")}`,
         },
         {
             name: 'Days',
@@ -61,7 +63,7 @@ const StudentCurrentTuitionPage = () => {
     return (
         <>
             {
-                isLoading ? "Loading,,," :
+                isLoading ? <Loader /> :
                     <DataTable
                         columns={columns}
                         data={data}

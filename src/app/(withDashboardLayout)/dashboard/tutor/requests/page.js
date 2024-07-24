@@ -1,7 +1,9 @@
 'use client'
 
 import DataTable from "@/components/shared/DataTable/DataTable";
+import Loader from "@/components/shared/Loader/Loader";
 import { useChangeStudentRequestStatusMutation, useGetAllRequestedStudentsQuery } from "@/redux/features/tuition/tuitionApi";
+import dayjs from "dayjs";
 import { SlOptionsVertical } from "react-icons/sl";
 import { toast } from "sonner";
 
@@ -48,7 +50,7 @@ const StudentRequests = () => {
         },
         {
             name: 'Duration',
-            row: (rowData) => `${rowData?.schedule?.startTime} - ${rowData?.schedule?.endTime}`,
+            row: (rowData) => `${dayjs(rowData?.schedule?.startTime).format("hh:mm A")} - ${dayjs(rowData?.schedule?.endTime).format("hh:mm A")}`,
         },
         {
             name: 'Days',
@@ -85,7 +87,7 @@ const StudentRequests = () => {
     return (
         <>
             {
-                isLoading ? "Loading,,," :
+                isLoading ? <Loader/> :
                     <DataTable
                         columns={columns}
                         data={data}

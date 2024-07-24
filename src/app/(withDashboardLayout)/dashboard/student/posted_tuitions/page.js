@@ -9,6 +9,8 @@ import { PiUserList } from "react-icons/pi";
 import { FaRegEye } from "react-icons/fa";
 import EditPostedTuitionModal from "@/components/Modals/EditPostedTuitionModal";
 import { toast } from "sonner";
+import Loader from "@/components/shared/Loader/Loader";
+import dayjs from "dayjs";
 
 
 const PostedTuitions = () => {
@@ -54,7 +56,7 @@ const PostedTuitions = () => {
         },
         {
             name: 'Duration',
-            row: (rowData) => `${rowData?.schedule?.startTime} - ${rowData?.schedule?.endTime}`,
+            row: (rowData) => `${dayjs(rowData?.schedule?.startTime).format("hh:mm A")} - ${dayjs(rowData?.schedule?.endTime).format("hh:mm A")}`,
         },
         {
             name: 'Days',
@@ -94,7 +96,7 @@ const PostedTuitions = () => {
     return (
         <>
             {
-                isLoading ? "Loading,,," :
+                isLoading ? <Loader/> :
                     <DataTable
                         columns={columns}
                         data={data}

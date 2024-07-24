@@ -1,6 +1,8 @@
 'use client'
 import DataTable from '@/components/shared/DataTable/DataTable';
+import Loader from '@/components/shared/Loader/Loader';
 import { useCancelAppliedTuitionMutation, useGetMyAppliedTuitionsQuery } from '@/redux/features/tuition/tuitionApi';
+import dayjs from 'dayjs';
 import React from 'react';
 import { toast } from 'sonner';
 
@@ -32,7 +34,7 @@ const AppliedTuitionPage = () => {
         },
         {
             name: 'Duration',
-            row: (rowData) => `${rowData?.tuition?.schedule?.startTime} - ${rowData?.tuition?.schedule?.endTime}`,
+            row: (rowData) => `${dayjs(rowData?.tuition?.schedule?.startTime).format("hh:mm A")} - ${dayjs(rowData?.tuition?.schedule?.endTime).format("hh:mm A")}`,
         },
 
         {
@@ -50,34 +52,34 @@ const AppliedTuitionPage = () => {
                 :
                 (
                     rowData?.status === 'accepted' ?
-                    <button disabled className='btn btn-xs text-xs'>Cancel</button>:
-                    <button onClick={() => handleCancel(rowData?.tuition_id)} className='btn btn-xs bg-red-500 text-white hover:bg-red-600 text-xs'>Cancel</button>
+                        <button disabled className='btn btn-xs text-xs'>Cancel</button> :
+                        <button onClick={() => handleCancel(rowData?.tuition_id)} className='btn btn-xs bg-red-500 text-white hover:bg-red-600 text-xs'>Cancel</button>
                 )
         },
     ];
 
-    const handleCancel =async (tuitionId) => {
+    const handleCancel = async (tuitionId) => {
         toast.loading('Cancelling...')
         const res = await cancelApplication(tuitionId);
         console.log(res);
         if (res.data.success) {
             toast.success('Application cancelled');
         }
-        else{
+        else {
             toast.error('Application cancel request failed');
         }
     }
 
     return (
         <>
-        {
-            isLoading ? "Loading,,," :
-                <DataTable
-                    columns={columns}
-                    data={data}
-                />
-        }
-    </>
+            {
+                isLoading ? <Loader /> :
+                    <DataTable
+                        columns={columns}
+                        data={data}
+                    />
+            }
+        </>
     );
 };
 

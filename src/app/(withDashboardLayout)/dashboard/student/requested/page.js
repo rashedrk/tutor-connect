@@ -2,7 +2,9 @@
 'use client'
 import EditTuitionRequestModal from "@/components/Modals/EditTuitionRequestModal";
 import DataTable from "@/components/shared/DataTable/DataTable";
+import Loader from "@/components/shared/Loader/Loader";
 import { useCancelTuitionRequestMutation, useGetMyTuitionRequestQuery } from "@/redux/features/tuition/tuitionApi";
+import dayjs from "dayjs";
 import Link from "next/link";
 import { RiEdit2Line } from "react-icons/ri";
 import { SlOptionsVertical } from "react-icons/sl";
@@ -40,7 +42,7 @@ const Requested = () => {
         },
         {
             name: 'Duration',
-            row: (rowData) => `${rowData?.schedule?.startTime} - ${rowData?.schedule?.endTime}`,
+            row: (rowData) => `${dayjs(rowData?.schedule?.startTime).format("hh:mm A")} - ${dayjs(rowData?.schedule?.endTime).format("hh:mm A")}`,
         },
         {
             name: 'Days',
@@ -73,7 +75,7 @@ const Requested = () => {
     return (
         <>
             {
-                isLoading ? "Loading,,," :
+                isLoading ? <Loader/> :
                     <DataTable
                         columns={columns}
                         data={data}
