@@ -13,10 +13,18 @@ const tuitionApi = baseApi.injectEndpoints({
             },
         }),
         getMyPostedTuitions: builder.query({
-            query: () => {
+            query: (args) => {
+                const params = new URLSearchParams();
+
+                if (args) {
+                    args.forEach((item) => {
+                        params.append(item.name, item.value );
+                    });
+                }
                 return {
                     url: '/tuition/posted',
-                    method: 'GET'
+                    method: 'GET',
+                    params: params,
                 }
             },
             transformResponse: (response) => {
@@ -48,10 +56,18 @@ const tuitionApi = baseApi.injectEndpoints({
         }),
         //get the tuitions / tutors list that student requested for tuition
         getMyTuitionRequest: builder.query({
-            query: () => {
+            query: (args) => {
+                const params = new URLSearchParams();
+
+                if (args) {
+                    args.forEach((item) => {
+                        params.append(item.name, item.value );
+                    });
+                }
                 return {
                     url: `/tuition/requested`,
-                    method: 'GET'
+                    method: 'GET',
+                    params: params,
                 }
             },
             transformResponse: (response) => {
@@ -153,10 +169,18 @@ const tuitionApi = baseApi.injectEndpoints({
             invalidatesTags: ['all_tuition', 'tuition', 'applied_tuitions']
         }),
         getMyAppliedTuitions: builder.query({
-            query: () => {
+            query: (args) => {
+                const params = new URLSearchParams();
+
+                if (args) {
+                    args.forEach((item) => {
+                        params.append(item.name, item.value );
+                    });
+                }
                 return {
                     url: `/tuition/applied`,
-                    method: 'GET'
+                    method: 'GET',
+                    params: params,
                 }
             },
             transformResponse: (response) => {
@@ -174,10 +198,18 @@ const tuitionApi = baseApi.injectEndpoints({
             invalidatesTags: ['applied_tuitions']
         }),
         getAllRequestedStudents: builder.query({
-            query: () => {
+            query: (args) => {
+                const params = new URLSearchParams();
+
+                if (args) {
+                    args.forEach((item) => {
+                        params.append(item.name, item.value );
+                    });
+                }
                 return {
                     url: `/tuition/request`,
-                    method: 'GET'
+                    method: 'GET',
+                    params: params,
                 }
             },
             transformResponse: (response) => {
