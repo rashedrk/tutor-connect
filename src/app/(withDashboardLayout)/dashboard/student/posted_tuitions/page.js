@@ -11,6 +11,7 @@ import EditPostedTuitionModal from "@/components/Modals/EditPostedTuitionModal";
 import { toast } from "sonner";
 import Loader from "@/components/shared/Loader/Loader";
 import dayjs from "dayjs";
+import { useState } from "react";
 
 
 const PostedTuitions = () => {

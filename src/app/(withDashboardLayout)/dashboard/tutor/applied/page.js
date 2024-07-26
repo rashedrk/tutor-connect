@@ -3,7 +3,7 @@ import DataTable from '@/components/shared/DataTable/DataTable';
 import Loader from '@/components/shared/Loader/Loader';
 import { useCancelAppliedTuitionMutation, useGetMyAppliedTuitionsQuery } from '@/redux/features/tuition/tuitionApi';
 import dayjs from 'dayjs';
-import React from 'react';
+import React, { useState } from 'react';
 import { toast } from 'sonner';
 
 const AppliedTuitionPage = () => {
