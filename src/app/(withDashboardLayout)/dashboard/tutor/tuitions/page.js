@@ -4,15 +4,17 @@ import DataTable from '@/components/shared/DataTable/DataTable';
 import Loader from '@/components/shared/Loader/Loader';
 import { useApplyToTuitionMutation, useGetAllTuitionsQuery } from '@/redux/features/tuition/tuitionApi';
 import dayjs from 'dayjs';
-import React from 'react';
+import React, { useState } from 'react';
 import { SlOptionsVertical } from 'react-icons/sl';
 import { toast } from 'sonner';
 
 const TuitionsPage = () => {
 
-    //TODO: make time only 
+    const [page, setPage] = useState(1);
 
-    const { data, isLoading } = useGetAllTuitionsQuery(undefined);
+    const { data, isLoading } = useGetAllTuitionsQuery([
+        { name: 'page', value: page },
+    ]);
     const [applyToTuition] = useApplyToTuitionMutation()
 
     // console.log(data);
@@ -89,6 +91,7 @@ const TuitionsPage = () => {
                     <DataTable
                         columns={columns}
                         data={data}
+                        onPageChange={setPage}
                     />
             }
         </>

@@ -124,10 +124,18 @@ const tuitionApi = baseApi.injectEndpoints({
 
         //tutor roles api
         getAllTuitions: builder.query({
-            query: () => {
+            query: (args) => {
+                const params = new URLSearchParams();
+
+                if (args) {
+                    args.forEach((item) => {
+                        params.append(item.name, item.value );
+                    });
+                }
                 return {
                     url: `/tuition`,
-                    method: 'GET'
+                    method: 'GET',
+                    params: params,
                 }
             },
             transformResponse: (response) => {
