@@ -12,6 +12,7 @@ import { toast } from "sonner";
 import Loader from "@/components/shared/Loader/Loader";
 import dayjs from "dayjs";
 import { useState } from "react";
+import { capitalize } from "lodash";
 
 
 const PostedTuitions = () => {
@@ -72,7 +73,10 @@ const PostedTuitions = () => {
         },
         {
             name: 'Status',
-            row: "status",
+            row: (rowData) => rowData.status === 'available' ?
+            <div className="badge badge-info  text-white text-xs">{capitalize(rowData.status)}</div>
+            :
+            <div className="badge  badge-success text-white text-xs">{capitalize(rowData.status)}</div>
         },
         {
             name: 'Action',

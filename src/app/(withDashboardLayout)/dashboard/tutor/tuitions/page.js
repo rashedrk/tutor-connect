@@ -4,6 +4,7 @@ import DataTable from '@/components/shared/DataTable/DataTable';
 import Loader from '@/components/shared/Loader/Loader';
 import { useApplyToTuitionMutation, useGetAllTuitionsQuery } from '@/redux/features/tuition/tuitionApi';
 import dayjs from 'dayjs';
+import { capitalize } from 'lodash';
 import React, { useState } from 'react';
 import { SlOptionsVertical } from 'react-icons/sl';
 import { toast } from 'sonner';
@@ -51,7 +52,11 @@ const TuitionsPage = () => {
         },
         {
             name: 'Status',
-            row: "status",
+            row: (rowData) => rowData.status === 'available' ?
+                <div className="badge badge-success text-white text-xs">{capitalize(rowData.status)}</div>
+                :
+                <div className="badge badge-error text-white text-xs">{capitalize(rowData.status)}</div>
+            
         },
         {
             name: 'Gender',
@@ -77,9 +82,9 @@ const TuitionsPage = () => {
                 :
                 (
                     rowData?.status === 'booked' ?
-                    <button disabled className='btn btn-xs primary-btn text-xs'>booked</button>
-                    :
-                    <button onClick={() => handleRequest(rowData?.tuition_id)} className='btn btn-xs primary-btn text-xs'>Request</button>
+                        <button disabled className='btn btn-xs primary-btn text-xs'>booked</button>
+                        :
+                        <button onClick={() => handleRequest(rowData?.tuition_id)} className='btn btn-xs primary-btn text-xs'>Request</button>
                 )
         },
     ];
@@ -87,7 +92,7 @@ const TuitionsPage = () => {
     return (
         <>
             {
-                isLoading ? <Loader/> :
+                isLoading ? <Loader /> :
                     <DataTable
                         columns={columns}
                         data={data.data}

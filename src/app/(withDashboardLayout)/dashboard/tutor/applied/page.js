@@ -3,6 +3,7 @@ import DataTable from '@/components/shared/DataTable/DataTable';
 import Loader from '@/components/shared/Loader/Loader';
 import { useCancelAppliedTuitionMutation, useGetMyAppliedTuitionsQuery } from '@/redux/features/tuition/tuitionApi';
 import dayjs from 'dayjs';
+import { capitalize } from 'lodash';
 import React, { useState } from 'react';
 import { toast } from 'sonner';
 
@@ -33,7 +34,14 @@ const AppliedTuitionPage = () => {
         },
         {
             name: 'Status',
-            row: "status",
+            row: (rowData) => rowData.status === 'accepted' ?
+            <div className="badge badge-success text-white text-xs">{capitalize(rowData.status)}</div>
+            :
+            (
+                rowData.status === 'pending' ? <div className="badge badge-warning text-white text-xs">{capitalize(rowData.status)}</div>
+                :
+                <div className="badge badge-error text-white text-xs">{capitalize(rowData.status)}</div>
+            )
         },
         {
             name: 'Duration',

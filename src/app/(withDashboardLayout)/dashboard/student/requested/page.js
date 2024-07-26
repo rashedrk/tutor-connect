@@ -5,6 +5,7 @@ import DataTable from "@/components/shared/DataTable/DataTable";
 import Loader from "@/components/shared/Loader/Loader";
 import { useCancelTuitionRequestMutation, useGetMyTuitionRequestQuery } from "@/redux/features/tuition/tuitionApi";
 import dayjs from "dayjs";
+import { capitalize } from "lodash";
 import Link from "next/link";
 import { useState } from "react";
 import { RiEdit2Line } from "react-icons/ri";
@@ -58,7 +59,14 @@ const Requested = () => {
         },
         {
             name: 'Status',
-            row: "status",
+            row: (rowData) => rowData.status === 'accepted' ?
+            <div className="badge badge-success text-white text-xs">{capitalize(rowData.status)}</div>
+            :
+            (
+                rowData.status === 'pending' ? <div className="badge badge-warning text-white text-xs">{capitalize(rowData.status)}</div>
+                :
+                <div className="badge badge-error text-white text-xs">{capitalize(rowData.status)}</div>
+            )
         },
         {
             name: 'Action',

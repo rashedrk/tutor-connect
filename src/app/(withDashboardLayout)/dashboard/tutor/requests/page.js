@@ -4,6 +4,7 @@ import DataTable from "@/components/shared/DataTable/DataTable";
 import Loader from "@/components/shared/Loader/Loader";
 import { useChangeStudentRequestStatusMutation, useGetAllRequestedStudentsQuery } from "@/redux/features/tuition/tuitionApi";
 import dayjs from "dayjs";
+import { capitalize } from "lodash";
 import { useState } from "react";
 import { SlOptionsVertical } from "react-icons/sl";
 import { toast } from "sonner";
@@ -70,7 +71,14 @@ const StudentRequests = () => {
         },
         {
             name: 'Status',
-            row: "status",
+            row: (rowData) => rowData.status === 'accepted' ?
+                <div className="badge badge-success text-white text-xs">{capitalize(rowData.status)}</div>
+                :
+                (
+                    rowData.status === 'pending' ? <div className="badge badge-warning text-white text-xs">{capitalize(rowData.status)}</div>
+                        :
+                        <div className="badge badge-error text-white text-xs">{capitalize(rowData.status)}</div>
+                )
         },
         {
             name: 'Action',
@@ -91,7 +99,7 @@ const StudentRequests = () => {
     return (
         <>
             {
-                isLoading ? <Loader/> :
+                isLoading ? <Loader /> :
                     <DataTable
                         columns={columns}
                         data={data.data}
