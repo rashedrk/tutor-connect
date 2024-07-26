@@ -9,7 +9,7 @@ import { SlOptionsVertical } from 'react-icons/sl';
 
 const StudentCurrentTuitionPage = () => {
     const { data, isLoading } = useGetCurrentTuitionsQuery(undefined);
-    console.log(data);
+    // console.log(data);
 
     const columns = [
         {
@@ -66,7 +66,7 @@ const StudentCurrentTuitionPage = () => {
                 isLoading ? <Loader /> :
                     <DataTable
                         columns={columns}
-                        data={data}
+                        data={data.data}
                     />
             }
         </>

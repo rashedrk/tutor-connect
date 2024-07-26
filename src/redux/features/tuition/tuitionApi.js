@@ -11,6 +11,7 @@ const tuitionApi = baseApi.injectEndpoints({
                     data
                 }
             },
+            invalidatesTags: ["tuition"]
         }),
         getMyPostedTuitions: builder.query({
             query: (args) => {
@@ -18,7 +19,7 @@ const tuitionApi = baseApi.injectEndpoints({
 
                 if (args) {
                     args.forEach((item) => {
-                        params.append(item.name, item.value );
+                        params.append(item.name, item.value);
                     });
                 }
                 return {
@@ -28,7 +29,10 @@ const tuitionApi = baseApi.injectEndpoints({
                 }
             },
             transformResponse: (response) => {
-                return response.data;
+                return {
+                    data: response.data,
+                    meta: response?.meta,
+                };
             },
             providesTags: ['tuition']
         }),
@@ -40,7 +44,10 @@ const tuitionApi = baseApi.injectEndpoints({
                 }
             },
             transformResponse: (response) => {
-                return response.data;
+                return {
+                    data: response.data,
+                    meta: response?.meta,
+                };
             },
             providesTags: ['applied_tutors']
         }),
@@ -61,7 +68,7 @@ const tuitionApi = baseApi.injectEndpoints({
 
                 if (args) {
                     args.forEach((item) => {
-                        params.append(item.name, item.value );
+                        params.append(item.name, item.value);
                     });
                 }
                 return {
@@ -71,7 +78,10 @@ const tuitionApi = baseApi.injectEndpoints({
                 }
             },
             transformResponse: (response) => {
-                return response.data;
+                return {
+                    data: response.data,
+                    meta: response?.meta,
+                };
             },
             providesTags: ['tuition_request']
         }),
@@ -91,7 +101,7 @@ const tuitionApi = baseApi.injectEndpoints({
                     method: 'POST',
                 }
             },
-            invalidatesTags: ['tuition_request']
+            invalidatesTags: ['tuition_request', 'tuition', 'current_tuition']
         }),
         updateRequestToTutor: builder.mutation({
             query: (data) => {
@@ -134,8 +144,12 @@ const tuitionApi = baseApi.injectEndpoints({
                 }
             },
             transformResponse: (response) => {
-                return response.data;
+                return {
+                    data: response.data,
+                    meta: response?.meta,
+                };
             },
+            providesTags: ['current_tuition']
         }),
 
         //tutor roles api
@@ -145,7 +159,7 @@ const tuitionApi = baseApi.injectEndpoints({
 
                 if (args) {
                     args.forEach((item) => {
-                        params.append(item.name, item.value );
+                        params.append(item.name, item.value);
                     });
                 }
                 return {
@@ -155,7 +169,10 @@ const tuitionApi = baseApi.injectEndpoints({
                 }
             },
             transformResponse: (response) => {
-                return response.data;
+                return {
+                    data: response.data,
+                    meta: response?.meta,
+                };
             },
             providesTags: ['all_tuition']
         }),
@@ -174,7 +191,7 @@ const tuitionApi = baseApi.injectEndpoints({
 
                 if (args) {
                     args.forEach((item) => {
-                        params.append(item.name, item.value );
+                        params.append(item.name, item.value);
                     });
                 }
                 return {
@@ -184,7 +201,10 @@ const tuitionApi = baseApi.injectEndpoints({
                 }
             },
             transformResponse: (response) => {
-                return response.data;
+                return {
+                    data: response.data,
+                    meta: response?.meta,
+                };
             },
             providesTags: ['applied_tuitions']
         }),
@@ -203,7 +223,7 @@ const tuitionApi = baseApi.injectEndpoints({
 
                 if (args) {
                     args.forEach((item) => {
-                        params.append(item.name, item.value );
+                        params.append(item.name, item.value);
                     });
                 }
                 return {
@@ -213,7 +233,10 @@ const tuitionApi = baseApi.injectEndpoints({
                 }
             },
             transformResponse: (response) => {
-                return response.data;
+                return {
+                    data: response.data,
+                    meta: response?.meta,
+                };
             },
             providesTags: ['requested_students']
         }),

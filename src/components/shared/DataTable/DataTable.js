@@ -4,8 +4,8 @@ import 'react-responsive-pagination/themes/classic.css';
 import './dataTable.css';
 
 
-const DataTable = ({ columns, data, onPageChange }) => {
-    const totalPages = Math.ceil(data?.meta?.total / data?.meta?.limit);
+const DataTable = ({ columns, data, meta, onPageChange }) => {
+    const totalPages = Math.ceil(meta?.total / meta?.limit);
 
     return (
         <>
@@ -19,7 +19,7 @@ const DataTable = ({ columns, data, onPageChange }) => {
                         </tr>
                     </thead>
                     <tbody>
-                        {data?.data?.map((dt, index) => (
+                        {data?.map((dt, index) => (
                             <tr key={index}>
                                 {columns.map(col => (
                                     <td key={col.name}>
@@ -32,10 +32,10 @@ const DataTable = ({ columns, data, onPageChange }) => {
                 </table>
             </div>
             {
-                data?.meta &&
+                meta &&
                 <div className="flex justify-start">
                     <ResponsivePagination
-                        current={data.meta.page}
+                        current={meta.page}
                         total={totalPages}
                         onPageChange={onPageChange}
                         maxWidth={20}

@@ -103,7 +103,8 @@ const PostedTuitions = () => {
                 isLoading ? <Loader/> :
                     <DataTable
                         columns={columns}
-                        data={data}
+                        data={data.data}
+                        meta={data?.meta}
                         onPageChange={setPage}
                     />
             }

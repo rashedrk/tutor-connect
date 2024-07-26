@@ -68,7 +68,7 @@ const TutorCurrentTuitionPage = () => {
                 isLoading ? <Loader/> :
                     <DataTable
                         columns={columns}
-                        data={data}
+                        data={data.data}
                     />
             }
         </>
