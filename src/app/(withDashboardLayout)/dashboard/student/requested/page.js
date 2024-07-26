@@ -12,7 +12,7 @@ import { SlOptionsVertical } from "react-icons/sl";
 const Requested = () => {
     const { data, isLoading } = useGetMyTuitionRequestQuery(undefined);
     const [cancelRequest] = useCancelTuitionRequestMutation()
-    // console.log(data);
+    console.log(data);
 
 
     const columns = [

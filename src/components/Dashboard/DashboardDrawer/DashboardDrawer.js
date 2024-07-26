@@ -45,14 +45,14 @@ const DashboardDrawer = ({ children }) => {
 
                     <div className="flex justify-between items-center w-full">
                         <div >
-                            <h4 className=" font-semibold">Welcome to TutorConnet Dashboard!</h4> 
+                            <h4 className=" font-semibold text-[#004E7C]">Welcome to TutorConnet Dashboard!</h4> 
                             <p className="text-xs text-gray-600">{dayjs().format('dddd, MMMM D, YYYY')}</p>
                         </div>
                         {
                             userInfo?.role &&
                             <div className="flex gap-3 items-center ">
-                                <button className="btn btn-ghost btn-circle">
-                                    <div className="indicator me-10">
+                                <button className="btn btn-ghost btn-circle me-10">
+                                    <div className="indicator ">
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             className="h-5 w-5"
@@ -65,7 +65,7 @@ const DashboardDrawer = ({ children }) => {
                                                 strokeWidth="2"
                                                 d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
                                         </svg>
-                                        <span className="badge badge-xs badge-secondary  indicator-item"></span>
+                                        <span className="badge badge-xs bg-[#004E7C]  indicator-item"></span>
                                     </div>
                                 </button>
                                 <div className="dropdown dropdown-end">
@@ -118,11 +118,11 @@ const DashboardDrawer = ({ children }) => {
             <div className="drawer-side">
                 <label htmlFor="my-drawer-3" aria-label="close sidebar" className="drawer-overlay"></label>
                 <div className="md:flex justify-center   hidden border-e">
-                    <Link href="/" className="btn btn-ghost hover:bg-transparent normal-case  font-[800] text-xl ">Tutor<span className="text-[#00A5A7]">Connect</span></Link>
+                    <Link href="/" className="btn btn-ghost hover:bg-transparent normal-case  font-[800] text-xl text-[#004E7C] ">Tutor<span className="text-[#00A5A7]">Connect</span></Link>
                 </div>
                 <ul className="menu bg-white min-h-full w-56 p-4 border-e">
                     <div className="flex justify-center mb-3 md:hidden border-b">
-                        <Link href="/" className="btn btn-ghost hover:bg-transparent normal-case  font-[800] text-xl ">Tutor<span className="text-[#00A5A7]">Connect</span></Link>
+                        <Link href="/" className="btn btn-ghost hover:bg-transparent normal-case  font-[800] text-xl text-[#004E7C]">Tutor<span className="text-[#00A5A7]">Connect</span></Link>
                     </div>
                     {/* Sidebar content here */}
                     {
