@@ -14,7 +14,10 @@ import dayjs from "dayjs";
 
 
 const PostedTuitions = () => {
-    const { data, isLoading } = useGetMyPostedTuitionsQuery(undefined);
+    const [page, setPage] = useState(1);
+    const { data, isLoading } = useGetMyPostedTuitionsQuery([
+        { name: 'page', value: page },
+    ]);
     const [deleteTuition] = useDeleteTuitionMutation()
 
     // console.log(data);
@@ -100,6 +103,7 @@ const PostedTuitions = () => {
                     <DataTable
                         columns={columns}
                         data={data}
+                        onPageChange={setPage}
                     />
             }
         </>

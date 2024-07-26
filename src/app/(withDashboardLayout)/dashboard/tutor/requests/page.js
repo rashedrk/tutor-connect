@@ -8,7 +8,10 @@ import { SlOptionsVertical } from "react-icons/sl";
 import { toast } from "sonner";
 
 const StudentRequests = () => {
-    const { data, isLoading } = useGetAllRequestedStudentsQuery(undefined);
+    const [page, setPage] = useState(1);
+    const { data, isLoading } = useGetAllRequestedStudentsQuery([
+        { name: 'page', value: page },
+    ]);
     const [changeStatus] = useChangeStudentRequestStatusMutation()
     // console.log(data);
 
@@ -91,6 +94,7 @@ const StudentRequests = () => {
                     <DataTable
                         columns={columns}
                         data={data}
+                        onPageChange={setPage}
                     />
             }
         </>

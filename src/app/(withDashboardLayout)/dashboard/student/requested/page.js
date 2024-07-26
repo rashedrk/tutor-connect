@@ -10,9 +10,12 @@ import { RiEdit2Line } from "react-icons/ri";
 import { SlOptionsVertical } from "react-icons/sl";
 
 const Requested = () => {
-    const { data, isLoading } = useGetMyTuitionRequestQuery(undefined);
+    const [page, setPage] = useState(1);
+    const { data, isLoading } = useGetMyTuitionRequestQuery([
+        { name: 'page', value: page },
+    ]);
     const [cancelRequest] = useCancelTuitionRequestMutation()
-    console.log(data);
+    // console.log(data);
 
 
     const columns = [
@@ -79,6 +82,7 @@ const Requested = () => {
                     <DataTable
                         columns={columns}
                         data={data}
+                        onPageChange={setPage}
                     />
             }
         </>

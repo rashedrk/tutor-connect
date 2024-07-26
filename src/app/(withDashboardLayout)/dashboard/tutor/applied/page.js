@@ -7,7 +7,10 @@ import React from 'react';
 import { toast } from 'sonner';
 
 const AppliedTuitionPage = () => {
-    const { data, isLoading } = useGetMyAppliedTuitionsQuery(undefined);
+    const [page, setPage] = useState(1);
+    const { data, isLoading } = useGetMyAppliedTuitionsQuery([
+        { name: 'page', value: page },
+    ]);
     const [cancelApplication] = useCancelAppliedTuitionMutation()
     // console.log(data);
 
@@ -77,6 +80,7 @@ const AppliedTuitionPage = () => {
                     <DataTable
                         columns={columns}
                         data={data}
+                        onPageChange={setPage}
                     />
             }
         </>
