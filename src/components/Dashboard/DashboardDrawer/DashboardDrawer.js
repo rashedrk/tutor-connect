@@ -120,7 +120,7 @@ const DashboardDrawer = ({ children }) => {
                 <div className="md:flex justify-center   hidden border-e">
                     <Link href="/" className="btn btn-ghost hover:bg-transparent normal-case  font-[800] text-xl ">Tutor<span className="text-[#00A5A7]">Connect</span></Link>
                 </div>
-                <ul className="menu bg-white min-h-full w-52 p-4 border-e">
+                <ul className="menu bg-white min-h-full w-56 p-4 border-e">
                     <div className="flex justify-center mb-3 md:hidden border-b">
                         <Link href="/" className="btn btn-ghost hover:bg-transparent normal-case  font-[800] text-xl ">Tutor<span className="text-[#00A5A7]">Connect</span></Link>
                     </div>
