@@ -13,6 +13,7 @@ import Loader from "@/components/shared/Loader/Loader";
 import dayjs from "dayjs";
 import { useState } from "react";
 import { capitalize } from "lodash";
+import { MdDeleteOutline } from "react-icons/md";
 
 
 const PostedTuitions = () => {
@@ -90,7 +91,7 @@ const PostedTuitions = () => {
                             </> :
                             <>
                                 <EditPostedTuitionModal postedTuition={rowData} />
-                                <li onClick={() => handleDelete(rowData.tuition_id)}><a>Delete</a></li>
+                                <li onClick={() => handleDelete(rowData.tuition_id)}><a><MdDeleteOutline fontSize={"20px"} /> Delete</a></li>
                                 <li>
                                     <Link href={`/dashboard/student/posted_tuitions/${rowData?.tuition_id}/applied`}><PiUserList fontSize={"20px"} /> Applied Tutors</Link>
                                 </li>

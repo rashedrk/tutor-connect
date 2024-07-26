@@ -6,6 +6,8 @@ import { useChangeStudentRequestStatusMutation, useGetAllRequestedStudentsQuery 
 import dayjs from "dayjs";
 import { capitalize } from "lodash";
 import { useState } from "react";
+import { ImCancelCircle } from "react-icons/im";
+import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 import { SlOptionsVertical } from "react-icons/sl";
 import { toast } from "sonner";
 
@@ -87,8 +89,8 @@ const StudentRequests = () => {
                     <div tabIndex={0} role="button" className="btn bg-transparent hover:bg-transparent m-1"><SlOptionsVertical /></div>
                     <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box shadow-2xl z-[1] w-44 p-2 ">
 
-                        <li onClick={() => handleStatusChange(rowData.tuition_request_id, 'accepted')}><a>Accept</a></li>
-                        <li onClick={() => handleStatusChange(rowData.tuition_request_id, 'rejected')}><a>Reject</a></li>
+                        <li onClick={() => handleStatusChange(rowData.tuition_request_id, 'accepted')}><a><IoMdCheckmarkCircleOutline fontSize={"15px"} /> Accept</a></li>
+                        <li onClick={() => handleStatusChange(rowData.tuition_request_id, 'rejected')}><a><ImCancelCircle fontSize={"15px"}/> Reject</a></li>
 
                     </ul>
                 </div> :

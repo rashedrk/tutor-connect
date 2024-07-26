@@ -6,10 +6,9 @@ import Loader from "@/components/shared/Loader/Loader";
 import { useCancelTuitionRequestMutation, useGetMyTuitionRequestQuery } from "@/redux/features/tuition/tuitionApi";
 import dayjs from "dayjs";
 import { capitalize } from "lodash";
-import Link from "next/link";
 import { useState } from "react";
-import { RiEdit2Line } from "react-icons/ri";
 import { SlOptionsVertical } from "react-icons/sl";
+import { ImCancelCircle } from "react-icons/im";
 
 const Requested = () => {
     const [page, setPage] = useState(1);
@@ -75,7 +74,7 @@ const Requested = () => {
                     <div tabIndex={0} role="button" className="btn bg-transparent hover:bg-transparent "><SlOptionsVertical /></div>
                     <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box shadow-2xl text-xs border z-[1] w-32 ">
                         <EditTuitionRequestModal tuitionRequest={rowData}/>
-                        <li onClick={() => cancelRequest(rowData?.tuition_request_id)}><a>Cancel</a></li>
+                        <li onClick={() => cancelRequest(rowData?.tuition_request_id)}><a><ImCancelCircle fontSize={"17px"}/> Cancel</a></li>
 
                     </ul>
                 </div>
