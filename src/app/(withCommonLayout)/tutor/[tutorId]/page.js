@@ -3,7 +3,7 @@ import Image from "next/image";
 
 const TutorDetails = async ({ params }) => {
     const { tutorId } = params;
-    const res = await fetch(`http://localhost:5000/api/v1/tutor/${tutorId}`, { cache: "no-store" });
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}/tutor/${tutorId}`, { cache: "no-store" });
     const tutor = await res.json();
 
     const { details, experties, yearOfExperience, fee, tutorQualification } = tutor?.data;

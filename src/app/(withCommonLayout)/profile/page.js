@@ -8,7 +8,7 @@ import Image from "next/image";
 
 const ProfilePage = () => {
     const { data, isLoading } = useGetMyProfileQuery(undefined);
-    console.log(data);
+    // console.log(data);
     return (
         <>
             {

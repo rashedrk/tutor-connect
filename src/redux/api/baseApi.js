@@ -7,6 +7,6 @@ import { createApi } from "@reduxjs/toolkit/query/react";
 export const baseApi = createApi({
     reducerPath: "api",
     tagTypes: ['tuition', 'applied_tutors', 'tuition_request', 'all_tuition', 'applied_tuitions', 'requested_students', 'current_tuition'],
-    baseQuery: axiosBaseQuery({ baseUrl: "http://localhost:5000/api/v1" }),
+    baseQuery: axiosBaseQuery({ baseUrl: process.env.NEXT_PUBLIC_BACKEND_API_URL }),
     endpoints: () => ({}),
 });

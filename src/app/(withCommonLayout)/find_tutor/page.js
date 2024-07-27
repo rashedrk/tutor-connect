@@ -13,7 +13,7 @@ const FindTutorPage = () => {
     useEffect(() => {
         if (filter !== null) {
             const queryParams = constructQueryParams(filter);
-            fetch(`http://localhost:5000/api/v1/tutor?${queryParams}`)
+            fetch(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}/tutor?${queryParams}`)
                 .then(res => res.json())
                 .then(data => {
                     setTutors(data.data)
