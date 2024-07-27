@@ -10,9 +10,7 @@ const userApi = baseApi.injectEndpoints({
                 }
             },
             transformResponse: (response) => {
-                return {
-                    data: response.data,
-                }
+                return response.data
             }
         }),
         registerTutor: builder.mutation({
