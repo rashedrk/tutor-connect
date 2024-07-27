@@ -7,8 +7,9 @@ import TutorCard from "@/components/TutorCard/TutorCard";
 
 const FeaturedTutors = async() => {
 
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}/v1/tutor`, {cache: "no-store"});
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}/tutor`, {cache: "no-store"});
     const tutors = await res.json();
+
 
 
     return (
@@ -21,7 +22,7 @@ const FeaturedTutors = async() => {
                 {/* <Fade triggerOnce direction="left" cascade duration={600} damping={0.2}> */}
                     {
                         tutors?.data?.slice(0,6).map(tutor => <TutorCard
-                            key={tutor.tutor_id}
+                            key={tutor?.tutor_id}
                             tutor={tutor}
                         >
 
