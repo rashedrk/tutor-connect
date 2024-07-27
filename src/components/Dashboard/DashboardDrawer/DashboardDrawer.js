@@ -90,9 +90,9 @@ const DashboardDrawer = ({ children }) => {
                                             </Link>
                                         </li>
                                         <li>
-                                            <a>
+                                            <Link href="/profile">
                                                 <FaRegUserCircle /> Profile
-                                            </a>
+                                            </Link>
                                         </li>
                                         <li><a onClick={() => logoutUser(router)}><IoIosLogOut /> Logout</a></li>
                                     </ul>
