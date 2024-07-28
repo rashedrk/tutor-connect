@@ -27,20 +27,27 @@ const ProfilePage = () => {
                             <div className="card-body">
                                 <h2 className="card-title">{data?.profile?.name}</h2>
                                 <div className="text-sm text-gray-500">
-                                    <p>{data?.tutorQualification[0]?.qualification.degree}</p>
+                                    {
+                                        data?.role === 'tutor' && <p>{data?.tutorQualification[0]?.qualification.degree}</p>
+                                    }
                                     <p>{`${data?.profile?.presentAddress?.address}, ${data?.profile?.presentAddress?.area}, ${data?.profile?.presentAddress?.district}`}</p>
                                 </div>
                             </div>
                         </div>
 
-                        <div className="card bg-base-100 w-3/4 border border-solid ">
-                            <div className="card-body">
-                                <h2 className="card-title ">Details</h2>
-                                <div className=" text-gray-500">
-                                    <p>{capitalize(data?.details)}</p>
+                        {/* Description  */}
+                        {
+                            data?.role === 'tutor' &&
+                            < div className="card bg-base-100 w-3/4 border border-solid ">
+                                <div className="card-body">
+                                    <h2 className="card-title ">Details</h2>
+                                    <div className=" text-gray-500">
+                                        <p>{capitalize(data?.details)}</p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+
+                        }
 
                         {/* personal Info  */}
                         <div className="card bg-base-100 w-3/4 border border-solid ">
@@ -114,61 +121,66 @@ const ProfilePage = () => {
                             </div>
                         </div>
 
-                        {/* Qualification  */}
-                        <div className="card bg-base-100 w-3/4 border border-solid ">
-                            <div className="card-body">
-                                <h2 className="card-title mb-3">Academic Information</h2>
-                                {
-                                    data?.tutorQualification?.map((tQ, index) => <div
-                                        key={index}
-                                        className="text-gray-500 grid grid-cols-4 gap-10">
-                                        <div className="mb-3">
-                                            <p>Degree</p>
-                                            <p className="font-semibold mt-1">{capitalize(tQ?.qualification?.degree)}</p>
-                                        </div>
-                                        <div className="mb-3 col-span-2">
-                                            <p>Institution</p>
-                                            <p className="font-semibold mt-1">{capitalize(tQ?.qualification?.institution)}</p>
-                                        </div>
-                                        <div className="mb-3">
-                                            <p>Passing Year</p>
-                                            <p className="font-semibold mt-1">{tQ?.qualification?.year}</p>
-                                        </div>
-                                    </div>)
-                                }
-                            </div>
-                        </div>
-
-                        {/* Others  */}
-                        <div className="card bg-base-100 w-3/4 border border-solid ">
-                            <div className="card-body">
-                                <h2 className="card-title mb-3">Others</h2>
-                                <div className="text-gray-500 grid grid-cols-2">
-                                    <div className="mb-3">
-                                        <p>Expertise</p>
-                                        <p className="font-semibold mt-1">{data?.experties?.map(ex => capitalize(ex)).join(', ')}</p>
-                                    </div>
-                                    <div className="mb-3">
-                                        <p>Experience</p>
-                                        <p className="font-semibold mt-1">{data?.yearOfExperience} years</p>
-                                    </div>
-
-                                    <div className="mb-3">
-                                        <p>Class</p>
-                                        <p className="font-semibold mt-1">{data?.class.join(', ')}</p>
-                                    </div>
-                                    <div className="mb-3">
-                                        <p>Medium</p>
-                                        <p className="font-semibold mt-1">{data?.medium.join(', ')}</p>
-                                    </div>
-                                    <div className="mb-3">
-                                        <p>Fee</p>
-                                        <p className="font-semibold mt-1">{data?.fee} TK/Month</p>
+                        {
+                            data?.role === 'tutor' &&
+                            <>
+                                {/* Qualification  */}
+                                <div className="card bg-base-100 w-3/4 border border-solid ">
+                                    <div className="card-body">
+                                        <h2 className="card-title mb-3">Academic Information</h2>
+                                        {
+                                            data?.tutorQualification?.map((tQ, index) => <div
+                                                key={index}
+                                                className="text-gray-500 grid grid-cols-4 gap-10">
+                                                <div className="mb-3">
+                                                    <p>Degree</p>
+                                                    <p className="font-semibold mt-1">{capitalize(tQ?.qualification?.degree)}</p>
+                                                </div>
+                                                <div className="mb-3 col-span-2">
+                                                    <p>Institution</p>
+                                                    <p className="font-semibold mt-1">{capitalize(tQ?.qualification?.institution)}</p>
+                                                </div>
+                                                <div className="mb-3">
+                                                    <p>Passing Year</p>
+                                                    <p className="font-semibold mt-1">{tQ?.qualification?.year}</p>
+                                                </div>
+                                            </div>)
+                                        }
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
+
+                                {/* Others  */}
+                                <div className="card bg-base-100 w-3/4 border border-solid ">
+                                    <div className="card-body">
+                                        <h2 className="card-title mb-3">Others</h2>
+                                        <div className="text-gray-500 grid grid-cols-2">
+                                            <div className="mb-3">
+                                                <p>Expertise</p>
+                                                <p className="font-semibold mt-1">{data?.experties?.map(ex => capitalize(ex)).join(', ')}</p>
+                                            </div>
+                                            <div className="mb-3">
+                                                <p>Experience</p>
+                                                <p className="font-semibold mt-1">{data?.yearOfExperience} years</p>
+                                            </div>
+
+                                            <div className="mb-3">
+                                                <p>Class</p>
+                                                <p className="font-semibold mt-1">{data?.class.join(', ')}</p>
+                                            </div>
+                                            <div className="mb-3">
+                                                <p>Medium</p>
+                                                <p className="font-semibold mt-1">{data?.medium.join(', ')}</p>
+                                            </div>
+                                            <div className="mb-3">
+                                                <p>Fee</p>
+                                                <p className="font-semibold mt-1">{data?.fee} TK/Month</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </>
+                        }
+                    </div >
             }
         </>
     );
