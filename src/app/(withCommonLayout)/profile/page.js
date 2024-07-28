@@ -1,12 +1,18 @@
 'use client'
+import EditAddress from "@/components/Modals/EditProfileModals/editAddress";
+import EditDetails from "@/components/Modals/EditProfileModals/editDetails";
+import EditOthersInfo from "@/components/Modals/EditProfileModals/editOtherInfo";
+import EditPersonalInfo from "@/components/Modals/EditProfileModals/editPersonalInfo";
 import Loader from "@/components/shared/Loader/Loader";
-import SectionTitle from "@/components/shared/SectionTitle/SectionTitle";
 import { useGetMyProfileQuery } from "@/redux/features/users/userApi";
 import dayjs from "dayjs";
 import { capitalize } from "lodash";
 import Image from "next/image";
+import { CiEdit } from "react-icons/ci";
 
 const ProfilePage = () => {
+
+
     const { data, isLoading } = useGetMyProfileQuery(undefined);
     // console.log(data);
     return (
@@ -40,7 +46,10 @@ const ProfilePage = () => {
                             data?.role === 'tutor' &&
                             < div className="card bg-base-100 w-3/4 border border-solid ">
                                 <div className="card-body">
-                                    <h2 className="card-title ">Details</h2>
+                                    <div className="flex justify-between items-center">
+                                        <h2 className="card-title ">Details</h2>
+                                        <EditDetails details={data.details} userId={data.user_id} />
+                                    </div>
                                     <div className=" text-gray-500">
                                         <p>{capitalize(data?.details)}</p>
                                     </div>
@@ -52,7 +61,10 @@ const ProfilePage = () => {
                         {/* personal Info  */}
                         <div className="card bg-base-100 w-3/4 border border-solid ">
                             <div className="card-body">
-                                <h2 className="card-title mb-3">Personal Information</h2>
+                                <div className="flex justify-between items-center">
+                                    <h2 className="card-title mb-3">Personal Information</h2>
+                                    <EditPersonalInfo info={data} />
+                                </div>
                                 <div className="text-gray-500 grid grid-cols-2">
                                     <div className="mb-3">
                                         <p>Name</p>
@@ -101,7 +113,10 @@ const ProfilePage = () => {
                                         </div>
                                     </div>
                                     <div>
-                                        <h2 className="card-title mb-5">Permanent Address</h2>
+                                        <div className="flex justify-between items-center">
+                                            <h2 className="card-title mb-5">Permanent Address</h2>
+                                            <EditAddress info={data} />
+                                        </div>
                                         <div className="text-gray-500">
                                             <div className="mb-3">
                                                 <p>Address</p>
@@ -127,7 +142,11 @@ const ProfilePage = () => {
                                 {/* Qualification  */}
                                 <div className="card bg-base-100 w-3/4 border border-solid ">
                                     <div className="card-body">
-                                        <h2 className="card-title mb-3">Academic Information</h2>
+                                        <div className="flex justify-between items-center">
+
+                                            <h2 className="card-title mb-3">Academic Information</h2>
+                                            <button className="btn btn-sm bg-inherit hover:bg-inherit text-gray-600 border-2"><CiEdit className="text-xl" /> Edit</button>
+                                        </div>
                                         {
                                             data?.tutorQualification?.map((tQ, index) => <div
                                                 key={index}
@@ -152,7 +171,11 @@ const ProfilePage = () => {
                                 {/* Others  */}
                                 <div className="card bg-base-100 w-3/4 border border-solid ">
                                     <div className="card-body">
-                                        <h2 className="card-title mb-3">Others</h2>
+                                        <div className="flex justify-between items-center">
+
+                                            <h2 className="card-title mb-3">Others</h2>
+                                            <EditOthersInfo info={data}/>
+                                        </div>
                                         <div className="text-gray-500 grid grid-cols-2">
                                             <div className="mb-3">
                                                 <p>Expertise</p>
