@@ -8,17 +8,24 @@ import TCSelect from "@/components/Forms/TCSelect";
 
 import { useEffect, useState } from "react";
 import { selectOptions } from "@/utils/selectOptions";
+import { lowerCase } from "lodash";
 
 const EditAddress = ({ info }) => {
 
     const [districts, setDistricts] = useState([]);
     const [presentArea, setPresentArea] = useState([]);
     const [permanentArea, setPermanentArea] = useState([]);
-    const [selectedPresentDistrict, setSelectedPresentDistrict] = useState("");
-    const [selectedPermanentDistrict, setSelectedPermanentDistrict] = useState("");
+    const [selectedPresentDistrict, setSelectedPresentDistrict] = useState(info?.profile?.presentAddress?.district);
+    const [selectedPermanentDistrict, setSelectedPermanentDistrict] = useState(info?.profile?.permanentAddress?.district);
+
+    
 
     const defaultValues = {
-        
+        "presentAddress.address": info?.profile?.presentAddress?.address,
+        "presentAddress.area": lowerCase(info?.profile?.presentAddress?.area),
+
+        "permanentAddress.address": info?.profile?.permanentAddress?.address,
+        "permanentAddress.area": lowerCase(info?.profile?.permanentAddress?.area),
     }
 
     useEffect(() => {

@@ -1,4 +1,5 @@
 'use client'
+import EditAcademicInfo from "@/components/Modals/EditProfileModals/editAcademicInfo";
 import EditAddress from "@/components/Modals/EditProfileModals/editAddress";
 import EditDetails from "@/components/Modals/EditProfileModals/editDetails";
 import EditOthersInfo from "@/components/Modals/EditProfileModals/editOtherInfo";
@@ -145,7 +146,7 @@ const ProfilePage = () => {
                                         <div className="flex justify-between items-center">
 
                                             <h2 className="card-title mb-3">Academic Information</h2>
-                                            <button className="btn btn-sm bg-inherit hover:bg-inherit text-gray-600 border-2"><CiEdit className="text-xl" /> Edit</button>
+                                            <EditAcademicInfo info={data} />
                                         </div>
                                         {
                                             data?.tutorQualification?.map((tQ, index) => <div
@@ -174,7 +175,7 @@ const ProfilePage = () => {
                                         <div className="flex justify-between items-center">
 
                                             <h2 className="card-title mb-3">Others</h2>
-                                            <EditOthersInfo info={data}/>
+                                            <EditOthersInfo info={data} />
                                         </div>
                                         <div className="text-gray-500 grid grid-cols-2">
                                             <div className="mb-3">

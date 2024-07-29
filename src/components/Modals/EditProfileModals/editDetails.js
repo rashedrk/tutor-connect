@@ -41,7 +41,7 @@ const EditDetails = ({ details, userId }) => {
                     <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" onClick={() => document.getElementById('details').close()}>✕</button>
                     <TCForm onsubmit={handleEdit} defaultValues={defaultValues}>
                         <div className='mb-4 '>
-                            <TCTextArea name="details" placeholder="Enter Your Details" />
+                            <TCTextArea name="details" placeholder="Enter Your Details" className="h-64" />
                         </div>
                         <button className="btn primary-btn" type="submit" >Edit</button>
                         <button className="btn ms-4" type="reset" onClick={() => document.getElementById('details').close()}>Cancel</button>

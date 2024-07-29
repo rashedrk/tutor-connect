@@ -12,7 +12,7 @@ const EditPersonalInfo = ({ info }) => {
 
     const defaultValues = {
         name: info.profile.name,
-        gender: info.gender,
+        gender: info.profile.gender,
         email: info.email,
         contactNo: info.profile.contactNo,
         dateOfBirth: new Date(info.profile.dateOfBirth)
