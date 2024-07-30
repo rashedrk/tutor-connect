@@ -68,9 +68,9 @@ const BookTutorModal = () => {
                     <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" onClick={() => document.getElementById('book_tutor').close()}>✕</button>
                     <TCForm onsubmit={handleBookingSubmit}>
                         <div className='grid md:grid-cols-2 gap-3 mb-4'>
-                            <TCSelect options={subjectsOptions} label="Select subject" name="subject" />
-                            <TCSelect options={studentClassOptions} label="Select Class" name="class" />
-                            <TCSelect options={mediumOptions} label="Select Medium" name="medium" />
+                            <TCSelect options={subjectsOptions} placeholder="Select subject" name="subject" />
+                            <TCSelect options={studentClassOptions} placeholder="Select Class" name="class" />
+                            <TCSelect options={mediumOptions} placeholder="Select Medium" name="medium" />
                             <TCInput name="fullAddress.address" placeholder="Enter your Address" type="text" />
 
                             <select name="fullAddress.district" value={selectedDistrict} onChange={handleSelect} className="select select-bordered w-full">
@@ -79,7 +79,7 @@ const BookTutorModal = () => {
                                     districts?.map(district => <option value={district.district} key={district.district}>{district.district}</option>)
                                 }
                             </select>
-                            <TCSelect disabled={!upozila} options={selectOptions(upozila?.upazillas)} label="Select Area" name="fullAddress.area" />
+                            <TCSelect disabled={!upozila} options={selectOptions(upozila?.upazillas)} placeholder="Select Area" name="fullAddress.area" />
 
                             <TCTimePicker name="schedule.startTime" placeholder="Start Time" />
                             <TCTimePicker name="schedule.endTime" placeholder="End Time" />

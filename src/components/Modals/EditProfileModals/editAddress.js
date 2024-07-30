@@ -21,7 +21,7 @@ const EditAddress = ({ info }) => {
 
     const [updateAddress] = useUpdateAddressMutation()
 
-    
+
 
     const defaultValues = {
         "presentAddress.address": info?.profile?.presentAddress?.address,
@@ -97,25 +97,35 @@ const EditAddress = ({ info }) => {
                     <TCForm onsubmit={handleEdit} defaultValues={defaultValues}>
                         <p>Present Address</p>
                         <div className='grid md:grid-cols-2 gap-3 mb-4 '>
-                            <TCInput name="presentAddress.address" placeholder="Enter Your Address" type="text" />
-                            <select name='presentAddress.district' value={selectedPresentDistrict} onChange={handlePresentSelect} className="select select-bordered w-full">
-                                <option disabled selected value="">Select District</option>
-                                {
-                                    districts?.map(district => <option value={district.district} key={district.district}>{district.district}</option>)
-                                }
-                            </select>
-                            <TCSelect disabled={!presentArea} options={selectOptions(presentArea?.upazillas)} label="Select Area" name="presentAddress.area" />
+                            <TCInput label="Address" name="presentAddress.address" placeholder="Enter Your Address" type="text" />
+                            <label className="form-control w-full">
+                                <div className="label">
+                                    <span className="label-text">District</span>
+                                </div>
+                                <select name='presentAddress.district' value={selectedPresentDistrict} onChange={handlePresentSelect} className="select select-bordered w-full">
+                                    <option disabled selected value="">Select District</option>
+                                    {
+                                        districts?.map(district => <option value={district.district} key={district.district}>{district.district}</option>)
+                                    }
+                                </select>
+                            </label>
+                            <TCSelect label="Area" disabled={!presentArea} options={selectOptions(presentArea?.upazillas)} placeholder="Select Area" name="presentAddress.area" />
                         </div>
                         <p>Permanent Address</p>
                         <div className='grid md:grid-cols-2 gap-3 mb-4 '>
-                            <TCInput name="permanentAddress.address" placeholder="Enter Your Address" type="text" />
-                            <select name='permanentAddress.district' value={selectedPermanentDistrict} onChange={handlePermanentSelect} className="select select-bordered w-full ">
-                                <option disabled selected value="">Select District</option>
-                                {
-                                    districts?.map(district => <option value={district.district} key={district.district}>{district.district}</option>)
-                                }
-                            </select>
-                            <TCSelect disabled={!permanentArea} options={selectOptions(permanentArea?.upazillas)} label="Select Area" name="permanentAddress.area" />
+                            <TCInput label="Address" name="permanentAddress.address" placeholder="Enter Your Address" type="text" />
+                            <label className="form-control w-full">
+                                <div className="label">
+                                    <span className="label-text">District</span>
+                                </div>
+                                <select name='permanentAddress.district' value={selectedPermanentDistrict} onChange={handlePermanentSelect} className="select select-bordered w-full ">
+                                    <option disabled selected value="">Select District</option>
+                                    {
+                                        districts?.map(district => <option value={district.district} key={district.district}>{district.district}</option>)
+                                    }
+                                </select>
+                            </label>
+                            <TCSelect label="Area" disabled={!permanentArea} options={selectOptions(permanentArea?.upazillas)} placeholder="Select Area" name="permanentAddress.area" />
                         </div>
                         <button className="btn primary-btn" type="submit" >Edit</button>
                         <button className="btn ms-4" type="reset" onClick={() => document.getElementById('address').close()}>Cancel</button>

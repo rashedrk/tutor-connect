@@ -94,7 +94,7 @@ const TutorRegister = () => {
                     <TCInput name="name" placeholder="Enter Your Name" type="text" />
                     <TCInput name="email" placeholder="Enter Your Email" type="email" />
                     <TCInput name="password" placeholder="Enter Your Password" type="password" />
-                    <TCSelect name="gender" label="Gender" options={genderOptions} />
+                    <TCSelect name="gender" placeholder="Gender" options={genderOptions} />
                     <TCDatePicker name="dateOfBirth" placeholder="Date of Birth" />
                     <TCInput name="contactNo" placeholder="Enter Your Contact No" type="text" />
                 </div>
@@ -108,7 +108,7 @@ const TutorRegister = () => {
                             districts?.map(district => <option value={district.district} key={district.district}>{district.district}</option>)
                         }
                     </select>
-                    <TCSelect disabled={!presentArea} options={selectOptions(presentArea?.upazillas)} label="Select Area" name="presentAddress.area" />
+                    <TCSelect disabled={!presentArea} options={selectOptions(presentArea?.upazillas)} placeholder="Select Area" name="presentAddress.area" />
                 </div>
 
 
@@ -121,7 +121,7 @@ const TutorRegister = () => {
                             districts?.map(district => <option value={district.district} key={district.district}>{district.district}</option>)
                         }
                     </select>
-                    <TCSelect disabled={!permanentArea} options={selectOptions(permanentArea?.upazillas)} label="Select Area" name="permanentAddress.area" />
+                    <TCSelect disabled={!permanentArea} options={selectOptions(permanentArea?.upazillas)} placeholder="Select Area" name="permanentAddress.area" />
                 </div>
 
                 <h2 className='font-semibold text-lg mb-2 mt-6'>Qualification</h2>

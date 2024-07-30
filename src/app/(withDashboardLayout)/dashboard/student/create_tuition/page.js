@@ -65,9 +65,9 @@ const CreateTuition = () => {
         <>
             <TCForm onsubmit={submitHandler}>
                 <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-2 mb-2'>
-                    <TCSelect name="class" options={studentClassOptions} label="Select Your Class" />
-                    <TCSelect name="subject" options={subjectsOptions} label="Select Subject" />
-                    <TCSelect name="medium" options={mediumOptions} label="Select Your Medium" />
+                    <TCSelect name="class" options={studentClassOptions} placeholder="Select Your Class" />
+                    <TCSelect name="subject" options={subjectsOptions} placeholder="Select Subject" />
+                    <TCSelect name="medium" options={mediumOptions} placeholder="Select Your Medium" />
                     <TCInput name="fullAddress.address" placeholder="Enter your Address" />
                     <select name='fullAddress.district' value={selectedDistrict} onChange={handleSelect} className="select select-bordered w-full">
                         <option disabled selected value="">Select District</option>
@@ -75,8 +75,8 @@ const CreateTuition = () => {
                             districts?.map(district => <option value={district.district} key={district.district}>{district.district}</option>)
                         }
                     </select>
-                    <TCSelect disabled={!area} options={selectOptions(area?.upazillas)} label="Select Area" name="fullAddress.area" />
-                    <TCSelect name="gender" options={genderOptions} label="Gender" />
+                    <TCSelect disabled={!area} options={selectOptions(area?.upazillas)} placeholder="Select Area" name="fullAddress.area" />
+                    <TCSelect name="gender" options={genderOptions} placeholder="Gender" />
                     <TCInput name="contactNo" placeholder="Enter your Contact No" />
                     <TCInput name="salary" placeholder="Enter Offered Salary" />
                     <TCMultiSelect options={daysOptions} name="schedule.days" placeholder="Select days" />

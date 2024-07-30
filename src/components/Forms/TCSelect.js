@@ -1,6 +1,6 @@
 import { Controller, useFormContext } from "react-hook-form";
 
-const TCSelect = ({ name, label, options, disabled = false, className }) => {
+const TCSelect = ({ name, label, options, disabled = false, className, placeholder }) => {
     const { control } = useFormContext();
 
     return (
@@ -8,12 +8,19 @@ const TCSelect = ({ name, label, options, disabled = false, className }) => {
             control={control}
             name={name}
             render={({ field }) => (
-                <select disabled={disabled} {...field} className={`select select-bordered w-full  ${className}`}>
-                    <option disabled selected>{label}</option>
+                <label className="form-control w-full">
                     {
-                        options?.map(option => <option key={option.label} value={option.value}>{option.label}</option>)
+                        label && <div className="label">
+                            <span className="label-text">{label}</span>
+                        </div>
                     }
-                </select>
+                    <select disabled={disabled} {...field} className={`select select-bordered w-full  ${className}`}>
+                        <option disabled selected>{placeholder}</option>
+                        {
+                            options?.map(option => <option key={option.label} value={option.value}>{option.label}</option>)
+                        }
+                    </select>
+                </label>
             )}
         />
     );

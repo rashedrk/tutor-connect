@@ -46,12 +46,14 @@ const EditOthersInfo = ({ info }) => {
                     <h3 className="font-bold text-lg pb-5">Edit your others info</h3>
                     <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" onClick={() => document.getElementById('others_info').close()}>✕</button>
                     <TCForm onsubmit={handleEdit} defaultValues={defaultValues}>
-                        <div className='grid md:grid-cols-2 gap-3 mb-4 '>
-                            <TCMultiSelect options={subjectsOptions} placeholder="Select Subject" name="experties" />
-                            <TCInput name="yearOfExperience" placeholder="Enter Year of Experience" type="text" />
-                            <TCMultiSelect options={studentClassOptions} placeholder="Select Class" name="class" />
-                            <TCMultiSelect options={mediumOptions} placeholder="Select Medium" name="medium" />
-                            <TCInput name="fee" placeholder="Enter Expected Fee" type="text" />
+                        <div className='grid grid-cols-1 gap-3 mb-4 '>
+                            <TCMultiSelect label="Experties" options={subjectsOptions} placeholder="Select Subject" name="experties" />
+                            <TCMultiSelect label="Class" options={studentClassOptions} placeholder="Select Class" name="class" />
+                            <TCMultiSelect label="Medium" options={mediumOptions} placeholder="Select Medium" name="medium" />
+                            <div className="grid md:grid-cols-2 gap-3">
+                                <TCInput label="Experience" name="yearOfExperience" placeholder="Enter Year of Experience" type="text" />
+                                <TCInput label="Fee" name="fee" placeholder="Enter Expected Fee" type="text" />
+                            </div>
                         </div>
                         <button className="btn primary-btn" type="submit" >Edit</button>
                         <button className="btn ms-4" type="reset" onClick={() => document.getElementById('others_info').close()}>Cancel</button>

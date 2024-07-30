@@ -52,11 +52,11 @@ const SearchTutor = ({setFilter}) => {
                                     districts?.map(district => <option value={district.district} key={district.district}>{district.district}</option>)
                                 }
                             </select>
-                            <TCSelect disabled={!upozila} options={selectOptions(upozila?.upazillas)} label="Select Area" name="upozila" className="rounded-full" />
-                            <TCSelect options={studentClassOptions} label="Select Class" name="class" className="rounded-full"/>
-                            <TCSelect options={mediumOptions} label="Select Medium" name="medium" className="rounded-full"/>
-                            <TCSelect options={subjectsOptions} label="Select subject" name="experties" className="rounded-full"/>
-                            <TCSelect options={genderOptions} label="Select Gender" name="gender" className="rounded-full"/>
+                            <TCSelect disabled={!upozila} options={selectOptions(upozila?.upazillas)} placeholder="Select Area" name="upozila" className="rounded-full" />
+                            <TCSelect options={studentClassOptions} placeholder="Select Class" name="class" className="rounded-full"/>
+                            <TCSelect options={mediumOptions} placeholder="Select Medium" name="medium" className="rounded-full"/>
+                            <TCSelect options={subjectsOptions} placeholder="Select subject" name="experties" className="rounded-full"/>
+                            <TCSelect options={genderOptions} placeholder="Select Gender" name="gender" className="rounded-full"/>
                         </div>
                         <button type='submit' className="btn primary-btn min-w-full rounded-full">Search Tutor</button>
                     </TCForm>

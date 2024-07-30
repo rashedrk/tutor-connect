@@ -54,9 +54,9 @@ const EditAcademicInfo = ({ info }) => {
                                             className="hidden"
                                             value={qualification.qualification_id}
                                         />
-                                        <TCInput name={`tutorQualification[${index}].degree`} placeholder="Enter Your Degree" type="text" />
-                                        <TCInput name={`tutorQualification[${index}].year`} placeholder="Enter passing year" type="text" />
-                                        <TCInput name={`tutorQualification[${index}].institution`} placeholder="Enter institution name" type="text" />
+                                        <TCInput label="Degree" name={`tutorQualification[${index}].degree`} placeholder="Enter Your Degree" type="text" />
+                                        <TCInput label="Institution" name={`tutorQualification[${index}].institution`} placeholder="Enter institution name" type="text" />
+                                        <TCInput label="Passing Year" name={`tutorQualification[${index}].year`} placeholder="Enter passing year" type="text" />
 
                                     </>
                                 ))

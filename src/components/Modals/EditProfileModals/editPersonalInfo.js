@@ -47,11 +47,11 @@ const EditPersonalInfo = ({ info }) => {
                     <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" onClick={() => document.getElementById('personal_info').close()}>✕</button>
                     <TCForm onsubmit={handleEdit} defaultValues={defaultValues}>
                         <div className='grid md:grid-cols-2 gap-3 mb-4 '>
-                            <TCInput name="name" placeholder="Enter Your Name" type="text" />
+                            <TCInput label="Name" name="name" placeholder="Enter Your Name" type="text" />
                             <TCSelect name="gender" label="Gender" options={genderOptions} />
-                            <TCInput name="email" placeholder="Enter Your Email" type="email" />
-                            <TCInput name="contactNo" placeholder="Enter Your Contact No" type="text" />
-                            <TCDatePicker name="dateOfBirth" placeholder="Date of Birth" />
+                            <TCInput label="Email" name="email" placeholder="Enter Your Email" type="email" />
+                            <TCInput label="Contact No" name="contactNo" placeholder="Enter Your Contact No" type="text" />
+                            <TCDatePicker label="Date Of Birth"  name="dateOfBirth" placeholder="Date of Birth" />
                         </div>
                         <button className="btn primary-btn" type="submit" >Edit</button>
                         <button className="btn ms-4" type="reset" onClick={() => document.getElementById('personal_info').close()}>Cancel</button>

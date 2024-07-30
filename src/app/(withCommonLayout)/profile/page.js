@@ -19,19 +19,19 @@ const ProfilePage = () => {
         <>
             {
                 isLoading ? <Loader /> :
-                    <div className="mx-10 flex flex-col gap-5 justify-end items-center my-4 ">
+                    <div className="lg:mx-10 flex flex-col gap-5 justify-end items-center my-4 ">
 
                         {/* profile picture  */}
-                        <div className="card flex-row items-center justify-center bg-base-100 w-3/4 border border-solid px-10">
+                        <div className="card lg:flex-row items-center justify-center bg-base-100 w-[85%] md:w-3/4   border border-solid lg:px-10">
                             <div>
-                                <div className="avatar">
+                                <div className="avatar pt-5">
                                     <div className="w-24 rounded-full">
                                         <Image src={data?.profile?.profileImage} height={500} width={500} alt="profile_image" className="rounded-full" />
                                     </div>
                                 </div>
                             </div>
-                            <div className="card-body">
-                                <h2 className="card-title">{data?.profile?.name}</h2>
+                            <div className="card-body text-center md:text-left pt-5 md:pt-9">
+                                <h2 className="card-title justify-center md:justify-start ">{data?.profile?.name}</h2>
                                 <div className="text-sm text-gray-500">
                                     {
                                         data?.role === 'tutor' && <p>{data?.tutorQualification[0]?.qualification.degree}</p>
@@ -44,7 +44,7 @@ const ProfilePage = () => {
                         {/* Description  */}
                         {
                             data?.role === 'tutor' &&
-                            < div className="card bg-base-100 w-3/4 border border-solid ">
+                            < div className="card bg-base-100 w-[85%] md:w-3/4  border border-solid ">
                                 <div className="card-body">
                                     <div className="flex justify-between items-center">
                                         <h2 className="card-title ">Details</h2>
@@ -59,13 +59,13 @@ const ProfilePage = () => {
                         }
 
                         {/* personal Info  */}
-                        <div className="card bg-base-100 w-3/4 border border-solid ">
+                        <div className="card bg-base-100 w-[85%] md:w-3/4  border border-solid ">
                             <div className="card-body">
                                 <div className="flex justify-between items-center">
                                     <h2 className="card-title mb-3">Personal Information</h2>
                                     <EditPersonalInfo info={data} />
                                 </div>
-                                <div className="text-gray-500 grid grid-cols-2">
+                                <div className="text-gray-500 md:grid grid-cols-2">
                                     <div className="mb-3">
                                         <p>Name</p>
                                         <p className="font-semibold mt-1">{capitalize(data?.profile?.name)}</p>
@@ -92,11 +92,18 @@ const ProfilePage = () => {
 
                         {/* Address  */}
 
-                        <div className="card bg-base-100 w-3/4 border border-solid ">
+                        <div className="card bg-base-100 w-[85%] md:w-3/4  border border-solid ">
                             <div className="card-body">
-                                <div className="grid grid-cols-2">
+                                <div className="grid md:grid-cols-2">
                                     <div>
-                                        <h2 className="card-title mb-5">Present Address</h2>
+                                        <div className="flex justify-between items-center md:hidden">
+                                            <h2 className="card-title mb-5">Address</h2>
+                                            <div>
+                                                <EditAddress info={data} />
+                                            </div>
+                                        </div>
+                                        <h2 className="md:card-title text-lg mb-1 md:mb-5">Present Address</h2>
+
                                         <div className="text-gray-500">
                                             <div className="mb-3">
                                                 <p>Address</p>
@@ -114,8 +121,10 @@ const ProfilePage = () => {
                                     </div>
                                     <div>
                                         <div className="flex justify-between items-center">
-                                            <h2 className="card-title mb-5">Permanent Address</h2>
-                                            <EditAddress info={data} />
+                                            <h2 className="md:card-title text-lg mb-1 md:mb-5">Permanent Address</h2>
+                                            <div className="hidden md:block">
+                                                <EditAddress info={data} />
+                                            </div>
                                         </div>
                                         <div className="text-gray-500">
                                             <div className="mb-3">
@@ -140,7 +149,7 @@ const ProfilePage = () => {
                             data?.role === 'tutor' &&
                             <>
                                 {/* Qualification  */}
-                                <div className="card bg-base-100 w-3/4 border border-solid ">
+                                <div className="card bg-base-100 w-[85%] md:w-3/4  border border-solid ">
                                     <div className="card-body">
                                         <div className="flex justify-between items-center">
 
@@ -150,7 +159,7 @@ const ProfilePage = () => {
                                         {
                                             data?.tutorQualification?.map((tQ, index) => <div
                                                 key={index}
-                                                className="text-gray-500 grid grid-cols-4 gap-10">
+                                                className="text-gray-500 md:grid grid-cols-4 gap-10">
                                                 <div className="mb-3">
                                                     <p>Degree</p>
                                                     <p className="font-semibold mt-1">{tQ?.qualification?.degree}</p>
@@ -169,14 +178,14 @@ const ProfilePage = () => {
                                 </div>
 
                                 {/* Others  */}
-                                <div className="card bg-base-100 w-3/4 border border-solid ">
+                                <div className="card bg-base-100 w-[85%] md:w-3/4  border border-solid ">
                                     <div className="card-body">
                                         <div className="flex justify-between items-center">
 
                                             <h2 className="card-title mb-3">Others</h2>
                                             <EditOthersInfo info={data} />
                                         </div>
-                                        <div className="text-gray-500 grid grid-cols-2">
+                                        <div className="text-gray-500 grid md:grid-cols-2">
                                             <div className="mb-3">
                                                 <p>Expertise</p>
                                                 <p className="font-semibold mt-1">{data?.experties?.map(ex => capitalize(ex)).join(', ')}</p>
