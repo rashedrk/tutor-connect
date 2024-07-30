@@ -179,7 +179,7 @@ const tuitionApi = baseApi.injectEndpoints({
         applyToTuition: builder.mutation({
             query: (tuitionId) => {
                 return {
-                    url: `/tuition//apply/${tuitionId}`,
+                    url: `/tuition/apply/${tuitionId}`,
                     method: 'POST',
                 }
             },
