@@ -9,6 +9,7 @@ import TCSelect from "@/components/Forms/TCSelect";
 import { useEffect, useState } from "react";
 import { selectOptions } from "@/utils/selectOptions";
 import { lowerCase } from "lodash";
+import { useUpdateAddressMutation } from "@/redux/features/profile/profileApi";
 
 const EditAddress = ({ info }) => {
 
@@ -17,6 +18,8 @@ const EditAddress = ({ info }) => {
     const [permanentArea, setPermanentArea] = useState([]);
     const [selectedPresentDistrict, setSelectedPresentDistrict] = useState(info?.profile?.presentAddress?.district);
     const [selectedPermanentDistrict, setSelectedPermanentDistrict] = useState(info?.profile?.permanentAddress?.district);
+
+    const [updateAddress] = useUpdateAddressMutation()
 
     
 
@@ -57,22 +60,30 @@ const EditAddress = ({ info }) => {
 
 
     const handleEdit = async (data) => {
-        // const toastId = toast.loading('Sending Request, please wait...')
-        // const fromData = {
-        //     addressId: postedaddress.address_id,
-        //     data,
-        // }
+        const toastId = toast.loading('Sending Request, please wait...')
+        const fromData = {
+            presentAddress: {
+                address: data.presentAddress.address,
+                area: data.presentAddress.area,
+                district: selectedPresentDistrict,
+            },
+            permanentAddress: {
+                address: data.permanentAddress.address,
+                area: data.permanentAddress.area,
+                district: selectedPermanentDistrict,
+            }
+        }
 
-        // const res = await updateaddress(fromData);
-        // if (res?.data?.success) {
-        //     toast.success(res?.data?.message, { id: toastId, duration: 6000 });
-        //     document.getElementById('address').close()
-        // }
-        // else {
-        //     toast.error(res?.data?.message, { id: toastId, duration: 6000 });
-        // }
+        const res = await updateAddress(fromData);
+        if (res?.data?.success) {
+            toast.success(res?.data?.message, { id: toastId, duration: 6000 });
+            document.getElementById('address').close()
+        }
+        else {
+            toast.error(res?.data?.message, { id: toastId, duration: 6000 });
+        }
 
-        console.log(data);
+        // console.log(fromData);
     }
 
     return (
