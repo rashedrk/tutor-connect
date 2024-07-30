@@ -6,9 +6,11 @@ import TCForm from "@/components/Forms/TCForm";
 import TCInput from "@/components/Forms/TCInput";
 import TCMultiSelect from "@/components/Forms/TCMultiSelect";
 import { mediumOptions, studentClassOptions, subjectsOptions } from "@/constant";
+import { useUpdateOthersInfoMutation } from "@/redux/features/profile/profileApi";
 
 
 const EditOthersInfo = ({ info }) => {
+    const [updateOthersInfo] = useUpdateOthersInfoMutation()
 
     const defaultValues = {
         experties: info.experties,
@@ -20,22 +22,19 @@ const EditOthersInfo = ({ info }) => {
 
 
     const handleEdit = async (data) => {
-        // const toastId = toast.loading('Sending Request, please wait...')
-        // const fromData = {
-        //     others_infoId: postedothers_info.others_info_id,
-        //     data,
-        // }
+        const toastId = toast.loading('Sending Request, please wait...')
 
-        // const res = await updateothers_info(fromData);
-        // if (res?.data?.success) {
-        //     toast.success(res?.data?.message, { id: toastId, duration: 6000 });
-        //     document.getElementById('others_info').close()
-        // }
-        // else {
-        //     toast.error(res?.data?.message, { id: toastId, duration: 6000 });
-        // }
 
-        console.log(data);
+        const res = await updateOthersInfo(data);
+        if (res?.data?.success) {
+            toast.success(res?.data?.message, { id: toastId, duration: 6000 });
+            document.getElementById('others_info').close()
+        }
+        else {
+            toast.error(res?.data?.message, { id: toastId, duration: 6000 });
+        }
+
+        // console.log(data);
     }
 
     return (
