@@ -7,8 +7,10 @@ import TCInput from "@/components/Forms/TCInput";
 import TCSelect from "@/components/Forms/TCSelect";
 import TCDatePicker from "@/components/Forms/TCDatePicker";
 import { genderOptions } from "@/constant";
+import { useUpdatePersonalInfoMutation } from "@/redux/features/profile/profileApi";
 
 const EditPersonalInfo = ({ info }) => {
+    const [updatePersonalInfo] = useUpdatePersonalInfoMutation()
 
     const defaultValues = {
         name: info.profile.name,
@@ -20,22 +22,19 @@ const EditPersonalInfo = ({ info }) => {
 
 
     const handleEdit = async (data) => {
-        // const toastId = toast.loading('Sending Request, please wait...')
-        // const fromData = {
-        //     personal_infoId: postedpersonal_info.personal_info_id,
-        //     data,
-        // }
+        const toastId = toast.loading('Sending Request, please wait...')
 
-        // const res = await updatepersonal_info(fromData);
-        // if (res?.data?.success) {
-        //     toast.success(res?.data?.message, { id: toastId, duration: 6000 });
-        //     document.getElementById('personal_info').close()
-        // }
-        // else {
-        //     toast.error(res?.data?.message, { id: toastId, duration: 6000 });
-        // }
 
-        console.log(data);
+        const res = await updatePersonalInfo(data);
+        if (res?.data?.success) {
+            toast.success(res?.data?.message, { id: toastId, duration: 6000 });
+            document.getElementById('personal_info').close()
+        }
+        else {
+            toast.error(res?.data?.message, { id: toastId, duration: 6000 });
+        }
+
+        // console.log(res);
     }
 
     return (
