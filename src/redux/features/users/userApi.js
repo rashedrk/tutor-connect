@@ -2,17 +2,6 @@ import { baseApi } from "@/redux/api/baseApi";
 
 const userApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
-        getMyProfile: builder.query({
-            query: () => {
-                return {
-                    url: '/user/profile',
-                    method: 'GET'
-                }
-            },
-            transformResponse: (response) => {
-                return response.data
-            }
-        }),
         registerTutor: builder.mutation({
             query: (data) => {
                 return {
@@ -35,4 +24,4 @@ const userApi = baseApi.injectEndpoints({
 
 });
 
-export const { useGetMyProfileQuery, useRegisterTutorMutation, useRegisterStudentMutation } = userApi;
+export const { useRegisterTutorMutation, useRegisterStudentMutation } = userApi;

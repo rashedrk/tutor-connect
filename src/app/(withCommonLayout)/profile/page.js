@@ -5,11 +5,10 @@ import EditDetails from "@/components/Modals/EditProfileModals/editDetails";
 import EditOthersInfo from "@/components/Modals/EditProfileModals/editOtherInfo";
 import EditPersonalInfo from "@/components/Modals/EditProfileModals/editPersonalInfo";
 import Loader from "@/components/shared/Loader/Loader";
-import { useGetMyProfileQuery } from "@/redux/features/users/userApi";
+import { useGetMyProfileQuery } from "@/redux/features/profile/profileApi";
 import dayjs from "dayjs";
 import { capitalize } from "lodash";
 import Image from "next/image";
-import { CiEdit } from "react-icons/ci";
 
 const ProfilePage = () => {
 

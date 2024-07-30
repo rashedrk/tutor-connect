@@ -9,7 +9,6 @@ import { MdOutlineDashboard } from "react-icons/md";
 import { IoIosLogOut } from "react-icons/io";
 import './navbar.css'
 import Image from "next/image";
-import { useGetMyProfileQuery } from "@/redux/features/users/userApi";
 
 const Navbar = () => {
     const pathname = usePathname();
