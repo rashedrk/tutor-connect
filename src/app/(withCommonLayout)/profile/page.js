@@ -48,7 +48,7 @@ const ProfilePage = () => {
                                 <div className="card-body">
                                     <div className="flex justify-between items-center">
                                         <h2 className="card-title ">Details</h2>
-                                        <EditDetails details={data.details} userId={data.user_id} />
+                                        <EditDetails details={data.details} />
                                     </div>
                                     <div className=" text-gray-500">
                                         <p>{capitalize(data?.details)}</p>

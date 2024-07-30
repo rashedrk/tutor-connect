@@ -4,8 +4,11 @@ import { toast } from "sonner";
 import TCTextArea from "@/components/Forms/TCTextArea";
 import { CiEdit } from "react-icons/ci";
 import TCForm from "@/components/Forms/TCForm";
+import { useUpdateDetailsMutation } from "@/redux/features/profile/profileApi";
 
-const EditDetails = ({ details, userId }) => {
+const EditDetails = ({ details}) => {
+
+    const [updateDetails] = useUpdateDetailsMutation()
 
     const defaultValues = {
         details
@@ -13,22 +16,19 @@ const EditDetails = ({ details, userId }) => {
 
 
     const handleEdit = async (data) => {
-        // const toastId = toast.loading('Sending Request, please wait...')
-        // const fromData = {
-        //     detailsId: posteddetails.details_id,
-        //     data,
-        // }
+        const toastId = toast.loading('Sending Request, please wait...')
+        
 
-        // const res = await updatedetails(fromData);
-        // if (res?.data?.success) {
-        //     toast.success(res?.data?.message, { id: toastId, duration: 6000 });
-        //     document.getElementById('details').close()
-        // }
-        // else {
-        //     toast.error(res?.data?.message, { id: toastId, duration: 6000 });
-        // }
+        const res = await updateDetails(data);
+        if (res?.data?.success) {
+            toast.success(res?.data?.message, { id: toastId, duration: 6000 });
+            document.getElementById('details').close()
+        }
+        else {
+            toast.error(res?.data?.message, { id: toastId, duration: 6000 });
+        }
 
-        console.log(data);
+        // console.log(res);
     }
 
     return (
