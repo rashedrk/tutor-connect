@@ -153,11 +153,11 @@ const ProfilePage = () => {
                                                 className="text-gray-500 grid grid-cols-4 gap-10">
                                                 <div className="mb-3">
                                                     <p>Degree</p>
-                                                    <p className="font-semibold mt-1">{capitalize(tQ?.qualification?.degree)}</p>
+                                                    <p className="font-semibold mt-1">{tQ?.qualification?.degree}</p>
                                                 </div>
                                                 <div className="mb-3 col-span-2">
                                                     <p>Institution</p>
-                                                    <p className="font-semibold mt-1">{capitalize(tQ?.qualification?.institution)}</p>
+                                                    <p className="font-semibold mt-1">{tQ?.qualification?.institution}</p>
                                                 </div>
                                                 <div className="mb-3">
                                                     <p>Passing Year</p>

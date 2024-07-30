@@ -4,11 +4,11 @@ import { toast } from "sonner";
 import { CiEdit } from "react-icons/ci";
 import TCForm from "@/components/Forms/TCForm";
 import TCInput from "@/components/Forms/TCInput";
-import TCSelect from "@/components/Forms/TCSelect";
-import TCDatePicker from "@/components/Forms/TCDatePicker";
-import { genderOptions } from "@/constant";
+import { useUpdateAcademicInfoMutation } from "@/redux/features/profile/profileApi";
 
 const EditAcademicInfo = ({ info }) => {
+
+    const [updateAcademicInfo] = useUpdateAcademicInfoMutation()
 
     const defaultValues = {
         tutorQualification: info?.tutorQualification?.map((q) => ({
@@ -21,22 +21,18 @@ const EditAcademicInfo = ({ info }) => {
 
 
     const handleEdit = async (data) => {
-        // const toastId = toast.loading('Sending Request, please wait...')
-        // const fromData = {
-        //     academic_infoId: postedacademic_info.academic_info_id,
-        //     data,
-        // }
+        const toastId = toast.loading('Sending Request, please wait...')
 
-        // const res = await updateacademic_info(fromData);
-        // if (res?.data?.success) {
-        //     toast.success(res?.data?.message, { id: toastId, duration: 6000 });
-        //     document.getElementById('academic_info').close()
-        // }
-        // else {
-        //     toast.error(res?.data?.message, { id: toastId, duration: 6000 });
-        // }
+        const res = await updateAcademicInfo(data);
+        if (res?.data?.success) {
+            toast.success(res?.data?.message, { id: toastId, duration: 6000 });
+            document.getElementById('academic_info').close()
+        }
+        else {
+            toast.error(res?.data?.message, { id: toastId, duration: 6000 });
+        }
 
-        console.log(data);
+        // console.log(data);
     }
 
     return (
