@@ -12,6 +12,18 @@
     background-color: #008E90;
 }
 
+.secondary-btn {
+    /* background-color: #004E7C; */
+    background: transparent;
+    color: #004E7C;
+    border: 1px solid #004E7C;
+}
+
+.secondary-btn:hover {
+    background-color: #004E7C;
+    color: white;
+}
+
 
 .customFileInput {
     display: none;
