@@ -51,7 +51,7 @@ const DashboardDrawer = ({ children }) => {
                         {
                             userInfo?.role &&
                             <div className="flex gap-3 items-center ">
-                                <button className="btn btn-ghost btn-circle me-10">
+                                <button className="btn btn-ghost btn-circle me-5">
                                     <div className="indicator ">
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
