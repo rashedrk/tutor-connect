@@ -46,7 +46,7 @@ const SearchTutor = ({setFilter}) => {
                 <div className='md:w-[45%] p-9 bg-[#0a202c] bg-opacity-50 rounded-xl'>
                     <TCForm onsubmit={submitHandler}>
                         <div className='grid md:grid-cols-2 gap-5 mb-4'>
-                            <select name='district' value={selectedDistrict} onChange={handleSelect} className="select select-bordered w-full max-w-xs rounded-full">
+                            <select name='district' value={selectedDistrict} onChange={handleSelect} className="select select-bordered w-full  rounded-full">
                                 <option disabled selected value="">Select District</option>
                                 {
                                     districts?.map(district => <option value={district.district} key={district.district}>{district.district}</option>)
