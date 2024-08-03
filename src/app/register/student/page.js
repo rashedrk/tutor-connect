@@ -9,6 +9,7 @@ import { genderOptions } from '@/constant';
 import { useRegisterStudentMutation } from '@/redux/features/users/userApi';
 import { fileUploader } from '@/utils/fileUploader';
 import { selectOptions } from '@/utils/selectOptions';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import { toast } from 'sonner';
@@ -51,7 +52,7 @@ const StudentRegister = () => {
     }, [selectedPermanentDistrict]);
 
 
-    const handleSubmit = async(data) => {
+    const handleSubmit = async (data) => {
         const toastId = toast.loading("Creating! Please wait....");
         data.presentAddress.district = selectedPresentDistrict;
         data.permanentAddress.district = selectedPermanentDistrict;
@@ -79,46 +80,51 @@ const StudentRegister = () => {
     }
     return (
         <div className='py-10 px-10 lg:mx-10'>
-        <TCForm onsubmit={handleSubmit}>
-            <h2 className='font-semibold text-lg mb-2'>Personal Information</h2>
-            <TCFileUpload name="profileImage" label="Upload Profile Picture" className="mb-3" />
-            <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-2 '>
-                <TCInput name="name" placeholder="Enter Your Name" type="text" />
-                <TCInput name="email" placeholder="Enter Your Email" type="email" />
-                <TCInput name="password" placeholder="Enter Your Password" type="password" />
-                <TCSelect name="gender" placeholder="Gender" options={genderOptions} />
-                <TCDatePicker name="dateOfBirth" placeholder="Date of Birth" />
-                <TCInput name="contactNo" placeholder="Enter Your Contact No" type="text" />
+            <TCForm onsubmit={handleSubmit}>
+                <h2 className='font-semibold text-lg mb-2'>Personal Information</h2>
+                <TCFileUpload name="profileImage" label="Upload Profile Picture" className="mb-3" />
+                <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-2 '>
+                    <TCInput name="name" placeholder="Enter Your Name" type="text" />
+                    <TCInput name="email" placeholder="Enter Your Email" type="email" />
+                    <TCInput name="password" placeholder="Enter Your Password" type="password" />
+                    <TCSelect name="gender" placeholder="Gender" options={genderOptions} />
+                    <TCDatePicker name="dateOfBirth" placeholder="Date of Birth" />
+                    <TCInput name="contactNo" placeholder="Enter Your Contact No" type="text" />
+                </div>
+
+                <h2 className='font-semibold text-lg mb-2 mt-6'>Present Address</h2>
+                <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-2 '>
+                    <TCInput name="presentAddress.address" placeholder="Enter Your Address" type="text" />
+                    <select name='presentAddress.district' value={selectedPresentDistrict} onChange={handlePresentSelect} className="select select-bordered w-full">
+                        <option disabled selected value="">Select District</option>
+                        {
+                            districts?.map(district => <option value={district.district} key={district.district}>{district.district}</option>)
+                        }
+                    </select>
+                    <TCSelect disabled={!presentArea} options={selectOptions(presentArea?.upazillas)} placeholder="Select Area" name="presentAddress.area" />
+                </div>
+
+
+                <h2 className='font-semibold text-lg mb-2 mt-6'>Permanent Address</h2>
+                <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-2 '>
+                    <TCInput name="permanentAddress.address" placeholder="Enter Your Address" type="text" />
+                    <select name='permanentAddress.district' value={selectedPermanentDistrict} onChange={handlePermanentSelect} className="select select-bordered w-full ">
+                        <option disabled selected value="">Select District</option>
+                        {
+                            districts?.map(district => <option value={district.district} key={district.district}>{district.district}</option>)
+                        }
+                    </select>
+                    <TCSelect disabled={!permanentArea} options={selectOptions(permanentArea?.upazillas)} placeholder="Select Area" name="permanentAddress.area" />
+                </div>
+
+                <button className='btn primary-btn mt-4' type='submit'>Register</button>
+            </TCForm>
+            <div className='mt-3 flex gap-2 text-sm mb-3'>
+                <p>Already have an account?</p>
+                <Link href='/sign_in' className='link'>Sign in</Link>
             </div>
-
-            <h2 className='font-semibold text-lg mb-2 mt-6'>Present Address</h2>
-            <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-2 '>
-                <TCInput name="presentAddress.address" placeholder="Enter Your Address" type="text" />
-                <select name='presentAddress.district' value={selectedPresentDistrict} onChange={handlePresentSelect} className="select select-bordered w-full">
-                    <option disabled selected value="">Select District</option>
-                    {
-                        districts?.map(district => <option value={district.district} key={district.district}>{district.district}</option>)
-                    }
-                </select>
-                <TCSelect disabled={!presentArea} options={selectOptions(presentArea?.upazillas)} placeholder="Select Area" name="presentAddress.area" />
-            </div>
-
-
-            <h2 className='font-semibold text-lg mb-2 mt-6'>Permanent Address</h2>
-            <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-2 '>
-                <TCInput name="permanentAddress.address" placeholder="Enter Your Address" type="text" />
-                <select name='permanentAddress.district' value={selectedPermanentDistrict} onChange={handlePermanentSelect} className="select select-bordered w-full ">
-                    <option disabled selected value="">Select District</option>
-                    {
-                        districts?.map(district => <option value={district.district} key={district.district}>{district.district}</option>)
-                    }
-                </select>
-                <TCSelect disabled={!permanentArea} options={selectOptions(permanentArea?.upazillas)} placeholder="Select Area" name="permanentAddress.area" />
-            </div>
-
-            <button className='btn primary-btn mt-4' type='submit'>Register</button>
-        </TCForm>
-    </div>
+            <Link href='/' className='link text-sm '>Back to Home</Link>
+        </div>
     );
 };
 

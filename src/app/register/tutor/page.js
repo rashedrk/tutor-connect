@@ -11,6 +11,7 @@ import { genderOptions, studentClassOptions, subjectsOptions } from '@/constant'
 import { useRegisterTutorMutation } from '@/redux/features/users/userApi';
 import { fileUploader } from '@/utils/fileUploader';
 import { selectOptions } from '@/utils/selectOptions';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import { toast } from 'sonner';
@@ -143,6 +144,11 @@ const TutorRegister = () => {
 
                 <button className='btn primary-btn mt-4' type='submit'>Register</button>
             </TCForm>
+            <div className='mt-3 flex gap-2 text-sm mb-3'>
+                <p>Already have an account?</p>
+                <Link href='/sign_in' className='link'>Sign in</Link>
+            </div>
+            <Link href='/' className='link text-sm '>Back to Home</Link>
         </div>
     );
 };
