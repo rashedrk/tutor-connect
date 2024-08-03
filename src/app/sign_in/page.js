@@ -10,6 +10,9 @@ import { storeUserInfo } from '@/services/auth.services';
 import { userLogin } from '@/services/actions/userLogin';
 import { toast } from 'sonner';
 import Link from 'next/link';
+import { MdLogin } from 'react-icons/md';
+import { RiAdminLine, RiLockPasswordLine } from 'react-icons/ri';
+import TryDemo from '@/components/Modals/TryDemo';
 
 const SignIn = () => {
 
@@ -47,8 +50,11 @@ const SignIn = () => {
                         <TCForm onsubmit={handleLogin}>
                             <TCInput type="email" name="email" placeholder="Enter your email" className="mb-4" />
                             <TCInput type="password" name="password" placeholder="Enter your Password" />
-                            <button className='btn primary-btn mt-4'>Login</button>
+                            <button className='btn primary-btn mt-4 w-full'><MdLogin className='text-xl' />Login </button>
                         </TCForm>
+
+                        <div className="divider text-sm my-3">OR</div>
+                        <TryDemo handleLogin={handleLogin}/>
                         <div className='mt-2 flex gap-2'>
                             <p>Dont have an account?</p>
                             <Link href="/register" className='link'>Register</Link>

@@ -9,8 +9,6 @@ const commonPrivateRoutes = ['/dashboard', '/profile'];
 const roleBasedPrivateRoutes = {
     student: [/^\/dashboard\/student/],
     tutor: [/^\/dashboard\/tutor/],
-    admin: [/^\/dashboard\/admin/],
-    super_admin: [/^\/dashboard\/super-admin/],
 };
 
 export function middleware(request) {
@@ -62,10 +60,8 @@ export function middleware(request) {
 
 export const config = {
     matcher: [
-        '/dashboard',
-        '/dashboard/tutor/:path*',
-        '/dashboard/student/:path*',
-        '/dashboard/admin/:path*',
-        '/dashboard/super-admin/:path*',
+        '/dashboard/tutor/:page*',
+        '/dashboard/student/:page*',
+        '/profile'
     ],
 };
