@@ -1,6 +1,16 @@
-import DashboardDrawer from "@/components/Dashboard/DashboardDrawer/DashboardDrawer";
+'use client'
 
-const DashboardLayout = ({children}) => {
+import DashboardDrawer from "@/components/Dashboard/DashboardDrawer/DashboardDrawer";
+import { isLoggedIn } from "@/services/auth.services";
+import { useRouter } from "next/navigation";
+
+const DashboardLayout = ({ children }) => {
+    const router = useRouter();
+    
+    if (!isLoggedIn()) {
+        return router.push('/sign_in');
+    }
+
     return (
         <>
             <DashboardDrawer>{children}</DashboardDrawer>
