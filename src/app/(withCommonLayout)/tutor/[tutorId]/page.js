@@ -23,11 +23,11 @@ const TutorDetails = async ({ params }) => {
 
     return (
         <>
-            <div className="grid grid-cols-4 mx-20 my-5 gap-10">
+            <div className="grid grid-cols-1 justify-center md:grid-cols-4 mx-5 md:mx-20 my-5 md:gap-10 gap-2">
                 <div >
                     <Image src={profileImage} alt="" width={500} height={500} />
                 </div>
-                <div className="col-span-3">
+                <div className="col-span-3 py-8 md:py-0">
                     <div className="flex justify-right items-center gap-3 mb-1">
                         <h1 className="font-bold text-2xl text-gray-600">{name}</h1>
                         <div className="text-gray-500 text-xs flex items-center gap-1">
@@ -55,45 +55,53 @@ const TutorDetails = async ({ params }) => {
                             <p className="mt-1 text-gray-600 font-semibold">{fee} BDT/Month</p>
                         </div>
                     </div>
-                    <div className="mt-3">
+                    <div className="mt-3 ">
                         <BookTutorModal />
                     </div>
 
                 </div>
-                <div >
-                    {/* Education  */}
-                    <h6 className="uppercase  text-xs font-semibold text-gray-400 mb-3">
-                        Education
-                    </h6>
-                    <div className="mb-8">
-                        {tutorQualification?.map(({ qualification }) => <div
-                            key={qualification?.qualification_id}
-                            className="mb-3"
-                        >
-                            <h5 className="font-semibold text-base text-gray-600">{qualification.degree}</h5>
-                            <p className="text-sm">{qualification.institution}</p>
-                            <p className="text-xs">({qualification.year})</p>
-                        </div>)}
-                    </div>
+                <div>
+                    <div className="grid grid-cols-3 md:grid-cols-1 ">
+                        {/* Education  */}
+                        <div>
+                            <h6 className="uppercase  text-xs font-semibold text-gray-400 mb-3">
+                                Education
+                            </h6>
+                            <div className="mb-8">
+                                {tutorQualification?.map(({ qualification }) => <div
+                                    key={qualification?.qualification_id}
+                                    className="mb-3"
+                                >
+                                    <h5 className="font-semibold text-base text-gray-600">{qualification.degree}</h5>
+                                    <p className="text-sm">{qualification.institution}</p>
+                                    <p className="text-xs">({qualification.year})</p>
+                                </div>)}
+                            </div>
+                        </div>
 
-                    {/* Expertise  */}
-                    <h6 className="uppercase  text-xs font-semibold text-gray-400 mb-3">
-                        Expertise Subjects
-                    </h6>
-                    <div className="mb-8">
-                        {experties.map(exp => <p
-                            key={exp}
-                            className="font-semibold text-base text-gray-600"
-                        >
-                            {capitalize(exp)}
-                        </p>)}
-                    </div>
+                        {/* Expertise  */}
+                        <div>
+                            <h6 className="uppercase  text-xs font-semibold text-gray-400 mb-3">
+                                Expertise Subjects
+                            </h6>
+                            <div className="mb-8">
+                                {experties.map(exp => <p
+                                    key={exp}
+                                    className="font-semibold text-base text-gray-600"
+                                >
+                                    {capitalize(exp)}
+                                </p>)}
+                            </div>
+                        </div>
 
-                    {/* Year of Experience  */}
-                    <h6 className="uppercase  text-xs font-semibold text-gray-400 mb-3">
-                        Year of Experience
-                    </h6>
-                    <p className="text-gray-600 mb-8">{yearOfExperience} years</p>
+                        {/* Year of Experience  */}
+                        <div>
+                            <h6 className="uppercase  text-xs font-semibold text-gray-400 mb-3">
+                                Year of Experience
+                            </h6>
+                            <p className="text-gray-600 mb-8">{yearOfExperience} years</p>
+                        </div>
+                    </div>
                 </div>
                 <div className="col-span-3">
                     {/* Details  */}
@@ -105,7 +113,7 @@ const TutorDetails = async ({ params }) => {
                     <h6 className="uppercase  text-xs font-semibold text-gray-400 mb-3">
                         Contact Information
                     </h6>
-                    <div className="font-semibold mb-8 grid grid-cols-2 text-gray-600">
+                    <div className="font-semibold mb-8 grid md:grid-cols-2 text-gray-600">
                         <div className="grid grid-cols-2 gap-y-3">
                             <h4>Phone:</h4>
                             <p className="text-[#008E90]">{contactNo}</p>
@@ -121,7 +129,7 @@ const TutorDetails = async ({ params }) => {
                     <h6 className="uppercase  text-xs font-semibold text-gray-400 mb-3">
                         Basic Information
                     </h6>
-                    <div className="font-semibold mb-8 grid grid-cols-2 text-gray-600">
+                    <div className="font-semibold mb-8 grid md:grid-cols-2 text-gray-600">
                         <div className="grid grid-cols-2 gap-y-3">
                             <h4>Birthday:</h4>
                             <p >{dayjs(dateOfBirth).format("DD MMM YYYY")}</p>
