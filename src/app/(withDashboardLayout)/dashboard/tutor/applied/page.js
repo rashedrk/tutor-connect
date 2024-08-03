@@ -35,13 +35,13 @@ const AppliedTuitionPage = () => {
         {
             name: 'Status',
             row: (rowData) => rowData.status === 'accepted' ?
-            <div className="badge badge-success text-white text-xs">{capitalize(rowData.status)}</div>
-            :
-            (
-                rowData.status === 'pending' ? <div className="badge badge-warning text-white text-xs">{capitalize(rowData.status)}</div>
+                <div className="badge badge-success text-white text-xs">{capitalize(rowData.status)}</div>
                 :
-                <div className="badge badge-error text-white text-xs">{capitalize(rowData.status)}</div>
-            )
+                (
+                    rowData.status === 'pending' ? <div className="badge badge-warning text-white text-xs">{capitalize(rowData.status)}</div>
+                        :
+                        <div className="badge badge-error text-white text-xs">{capitalize(rowData.status)}</div>
+                )
         },
         {
             name: 'Duration',
@@ -58,26 +58,23 @@ const AppliedTuitionPage = () => {
         },
         {
             name: 'Action',
-            row: (rowData) => rowData?.status === 'cancelled' ?
-                <button disabled className='btn btn-xs primary-btn text-xs'>Cancelled</button>
-                :
-                (
-                    rowData?.status === 'accepted' ?
+            row: (rowData) => 
+                    rowData?.status === 'accepted' || rowData?.status === 'cancelled' ?
                         <button disabled className='btn btn-xs text-xs'>Cancel</button> :
-                        <button onClick={() => handleCancel(rowData?.tuition_id)} className='btn btn-xs bg-red-500 text-white hover:bg-red-600 text-xs'>Cancel</button>
-                )
+                        <button onClick={() => handleCancel(rowData?.applied_tuition_id)} className='btn btn-xs bg-red-500 text-white hover:bg-red-600 text-xs'>Cancel</button>
+                
         },
     ];
 
     const handleCancel = async (tuitionId) => {
-        toast.loading('Cancelling...')
+        const toastId = toast.loading('Cancelling...')
         const res = await cancelApplication(tuitionId);
         console.log(res);
-        if (res.data.success) {
-            toast.success('Application cancelled');
+        if (res?.data?.success) {
+            toast.success('Application cancelled', { id: toastId });
         }
         else {
-            toast.error('Application cancel request failed');
+            toast.error('Application cancel request failed', { id: toastId });
         }
     }
 

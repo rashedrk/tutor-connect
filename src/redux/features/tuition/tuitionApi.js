@@ -211,7 +211,7 @@ const tuitionApi = baseApi.injectEndpoints({
         cancelAppliedTuition: builder.mutation({
             query: (appliedTuitionId) => {
                 return {
-                    url: `/application/cancel/${appliedTuitionId}`,
+                    url: `/tuition/application/cancel/${appliedTuitionId}`,
                     method: 'PUT',
                 }
             },
@@ -250,7 +250,7 @@ const tuitionApi = baseApi.injectEndpoints({
                     }
                 }
             },
-            invalidatesTags: ['requested_students']
+            invalidatesTags: ['requested_students', 'current_tuition']
         }),
     })
 
