@@ -11,9 +11,9 @@ import { userLogin } from '@/services/actions/userLogin';
 import { toast } from 'sonner';
 import Link from 'next/link';
 import { MdLogin } from 'react-icons/md';
-import { RiAdminLine, RiLockPasswordLine } from 'react-icons/ri';
 import TryDemo from '@/components/Modals/TryDemo';
-import RegisterModal from '@/components/Modals/registerModal';
+import RegisterModal from '@/components/Modals/RegisterModal';
+
 
 const SignIn = () => {
 
