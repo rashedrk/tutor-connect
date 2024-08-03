@@ -2,6 +2,7 @@ import { Toaster } from 'sonner'
 import './globals.css'
 import { Inter } from 'next/font/google'
 import Providers from '@/lib/providers/Providers'
+import '@smastrom/react-rating/style.css'
 
 
 const inter = Inter({ subsets: ['latin'] })

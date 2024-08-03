@@ -60,7 +60,7 @@ const BookTutorModal = () => {
 
     return (
         <>
-            <button className="btn primary-btn mt-2" onClick={() => document.getElementById('book_tutor').showModal()}>Book Now</button>
+            <button className="btn primary-btn mt-2 btn-sm" onClick={() => document.getElementById('book_tutor').showModal()}>Book Now</button>
             <dialog id="book_tutor" className="modal modal-bottom sm:modal-middle">
 
                 <div className="modal-box">
