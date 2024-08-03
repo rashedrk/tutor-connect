@@ -55,10 +55,11 @@ const SignIn = () => {
 
                         <div className="divider text-sm my-3">OR</div>
                         <TryDemo handleLogin={handleLogin}/>
-                        <div className='mt-2 flex gap-2'>
+                        <div className='mt-3 flex gap-2 text-sm mb-3'>
                             <p>Dont have an account?</p>
                             <Link href="/register" className='link'>Register</Link>
                         </div>
+                        <Link href='/' className='link text-sm '>Back to Home</Link>
                     </div>
                 </Fade>
             </div>
