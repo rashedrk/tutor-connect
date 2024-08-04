@@ -61,7 +61,7 @@ const TutorDetails = async ({ params }) => {
 
                 </div>
                 <div>
-                    <div className="grid grid-cols-3 md:grid-cols-1 ">
+                    <div className="grid grid-cols-2 md:grid-cols-1 ">
                         {/* Education  */}
                         <div>
                             <h6 className="uppercase  text-xs font-semibold text-gray-400 mb-3">
