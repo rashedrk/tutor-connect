@@ -46,7 +46,7 @@ const SignIn = () => {
                     className=" rounded-lg "
                 />
                 <Fade direction='right' triggerOnce>
-                    <div className='shadow-xl p-10 rounded-md w-96'>
+                    <div className='shadow-xl p-10 rounded-md w-80 md:w-96'>
                         <h2 className="text-4xl font-bold uppercase text-center mb-5">Login<span className="text-[#004E7C]"> Here !</span></h2>
                         <TCForm onsubmit={handleLogin}>
                             <TCInput type="email" name="email" placeholder="Enter your email" className="mb-4" />
