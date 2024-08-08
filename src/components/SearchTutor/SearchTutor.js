@@ -5,7 +5,7 @@ import TCSelect from '../Forms/TCSelect';
 import { genderOptions, mediumOptions, studentClassOptions, subjectsOptions } from '@/constant';
 import { selectOptions } from '@/utils/selectOptions';
 
-const SearchTutor = ({setFilter}) => {
+const SearchTutor = () => {
     const [districts, setDistricts] = useState([]);
     const [upozila, setUpozila] = useState([]);
     const [selectedDistrict, setSelectedDistrict] = useState("")
@@ -32,7 +32,8 @@ const SearchTutor = ({setFilter}) => {
             ...data
         };
 
-        setFilter(fromData);
+        console.log(fromData);
+        
     }
 
     return (

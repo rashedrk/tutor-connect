@@ -1,7 +1,7 @@
 
-const HeroSection = () => {
+const SubscribeUs = () => {
     return (
-        <div className="hero min-h-screen" style={{ backgroundImage: 'url(https://i.ibb.co/gyRJdck/pexels-keira-burton-6146978-1.jpg)' }}>
+        <div className="hero min-h-[70vh] my-12" style={{ backgroundImage: 'url(https://i.ibb.co/gyRJdck/pexels-keira-burton-6146978-1.jpg)' }}>
             <div className="hero-overlay bg-opacity-60"></div>
             <div className="hero-content text-center text-white drop-shadow-md">
                 <div className="max-w-2xl">
@@ -20,4 +20,4 @@ const HeroSection = () => {
     );
 };
 
-export default HeroSection;
+export default SubscribeUs;
