@@ -28,11 +28,11 @@ const Navbar = () => {
                 <Link href='/register/tutor'>Become a Tutor</Link>
             </li>
         }
-        <li className={pathname == "/blogs" ? "font-semibold text-[#00A5A7] underline" : ""}>
-            <Link href='/blogs'>Blogs</Link>
-        </li>
         <li className={pathname == "/about_us" ? "font-semibold text-[#00A5A7] underline" : ""}>
             <Link href='/about_us'>About Us</Link>
+        </li>
+        <li className={pathname == "/contact_us" ? "font-semibold text-[#00A5A7] underline" : ""}>
+            <Link href='/contact_us'>Contact</Link>
         </li>
     </>
     return (

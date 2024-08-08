@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
 import { FaFacebookF, FaInstagram, FaRegPaperPlane, FaTwitter } from 'react-icons/fa';
 
@@ -19,11 +20,11 @@ const Footer = () => {
                     </aside>
                     <nav className='text-sm' >
                         <header className="footer-title">Quick Links</header>
-                        <a className="link link-hover">Home</a>
-                        <a className="link link-hover">Blog</a>
-                        <a className="link link-hover">About</a>
-                        <a className="link link-hover">Find tutor</a>
-                        <a className="link link-hover">Contact</a>
+                        <Link href="/" className="link link-hover">Home</Link>
+                        <Link href="/blog" className="link link-hover">Blog</Link>
+                        <Link href="/about_us" className="link link-hover">About</Link>
+                        <Link href="/find_tutor" className="link link-hover">Find tutor</Link>
+                        <Link href="/contact_us" className="link link-hover">Contact</Link>
                     </nav>
                     <nav>
                         <header className="footer-title">Contact Us</header>
