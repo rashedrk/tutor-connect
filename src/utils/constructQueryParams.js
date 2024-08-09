@@ -1,9 +1,9 @@
 export const constructQueryParams = (filter) => {
-    const params = new URLSearchParams();
-    for (const key in filter) {
-        if (filter[key]) {
-            params.append(key, filter[key]);
-        }
-    }
-    return params.toString();
+
+    return Object.entries(filter)
+        .filter(([key, value]) => value !== undefined && value !== null && value !== '')
+        .map(([key, value]) => ({
+            name: key,
+            value: value
+        }));;
 };

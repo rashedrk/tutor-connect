@@ -10,12 +10,31 @@ import { IoIosArrowForward } from "react-icons/io";
 import ResponsivePagination from 'react-responsive-pagination';
 import 'react-responsive-pagination/themes/classic.css';
 import './pagination.css'
+import { constructQueryParams } from "@/utils/constructQueryParams";
+import { useSearchParams } from "next/navigation";
+import { lowerCase } from "lodash";
+import NoDataFound from "@/components/shared/NoDataFound/NoDataFound";
 
 const AllTutorsPage = () => {
+    const searchParams = useSearchParams()
+    const [filter, setFilter] = useState({});
     const [page, setPage] = useState(1);
+    const queryParams = constructQueryParams(filter);
+    const defaultValues = {
+        district: searchParams.get('district'),
+        upozila: lowerCase(searchParams.get('upozila')),
+        class: searchParams.get('class'),
+        medium: searchParams.get('medium'),
+        experties: searchParams.get('experties'),
+        gender: searchParams.get('gender'),
+    }
+    const filterParams = constructQueryParams(defaultValues);
     const { data: tutors, isLoading } = useGetAllTutorsQuery([
         { name: 'page', value: page },
+        ...(queryParams || []),
+        ...(filterParams || [])
     ]);
+
     const meta = tutors?.meta;
     const totalPages = Math.ceil(meta?.total / meta?.limit);
 
@@ -35,8 +54,10 @@ const AllTutorsPage = () => {
                     <div className="drawer-content flex flex-col items-center  justify-center mx-2 mb-3">
                         {/* Page content here */}
                         {
-
+                            tutors?.data?.length > 0 ?
                             tutors?.data?.map(tutor => <AllTutorCard key={tutor.tutor_id} tutor={tutor} />)
+                            :
+                            <NoDataFound/>
                         }
                         <div className="self-start md:ms-10 mt-3">
                             <ResponsivePagination
@@ -57,7 +78,7 @@ const AllTutorsPage = () => {
                         <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
                         <ul className="menu  text-base-content min-h-full w-80 p-4 bg-white">
                             {/* Sidebar content here */}
-                            <TutorFilter />
+                            <TutorFilter setFilter={setFilter} defaultValues={defaultValues} />
                         </ul>
                     </div>
                 </div>

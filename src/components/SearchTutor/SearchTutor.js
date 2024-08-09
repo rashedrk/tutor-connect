@@ -4,8 +4,10 @@ import TCForm from '../Forms/TCForm';
 import TCSelect from '../Forms/TCSelect';
 import { genderOptions, mediumOptions, studentClassOptions, subjectsOptions } from '@/constant';
 import { selectOptions } from '@/utils/selectOptions';
+import { useRouter } from 'next/navigation';
 
 const SearchTutor = () => {
+    const router = useRouter();
     const [districts, setDistricts] = useState([]);
     const [upozila, setUpozila] = useState([]);
     const [selectedDistrict, setSelectedDistrict] = useState("")
@@ -32,8 +34,17 @@ const SearchTutor = () => {
             ...data
         };
 
-        console.log(fromData);
-        
+        // Construct query parameters
+        const queryParams = new URLSearchParams();
+        Object.entries(fromData).forEach(([key, value]) => {
+            if (value !== undefined && value !== '') {
+                queryParams.append(key, value);
+            }
+        });
+
+        //sending data as query parameters
+        const url = `/all_tutors?${queryParams.toString()}`;
+        router.push(url);
     }
 
     return (
@@ -54,10 +65,10 @@ const SearchTutor = () => {
                                 }
                             </select>
                             <TCSelect disabled={!upozila} options={selectOptions(upozila?.upazillas)} placeholder="Select Area" name="upozila" className="rounded-full" />
-                            <TCSelect options={studentClassOptions} placeholder="Select Class" name="class" className="rounded-full"/>
-                            <TCSelect options={mediumOptions} placeholder="Select Medium" name="medium" className="rounded-full"/>
-                            <TCSelect options={subjectsOptions} placeholder="Select subject" name="experties" className="rounded-full"/>
-                            <TCSelect options={genderOptions} placeholder="Select Gender" name="gender" className="rounded-full"/>
+                            <TCSelect options={studentClassOptions} placeholder="Select Class" name="class" className="rounded-full" />
+                            <TCSelect options={mediumOptions} placeholder="Select Medium" name="medium" className="rounded-full" />
+                            <TCSelect options={subjectsOptions} placeholder="Select subject" name="experties" className="rounded-full" />
+                            <TCSelect options={genderOptions} placeholder="Select Gender" name="gender" className="rounded-full" />
                         </div>
                         <button type='submit' className="btn primary-btn min-w-full rounded-full">Search Tutor</button>
                     </TCForm>

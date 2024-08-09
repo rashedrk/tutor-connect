@@ -4,13 +4,15 @@ import TCSelect from "../Forms/TCSelect";
 import TCForm from "../Forms/TCForm";
 import { useEffect, useState } from "react";
 import { selectOptions } from "@/utils/selectOptions";
-import TCMultiSelect from "../Forms/TCMultiSelect";
 import TCInput from "../Forms/TCInput";
+import { lowerCase } from "lodash";
 
-const TutorFilter = () => {
+const TutorFilter = ({ setFilter, defaultValues }) => {
     const [districts, setDistricts] = useState([]);
     const [upozila, setUpozila] = useState([]);
-    const [selectedDistrict, setSelectedDistrict] = useState("")
+    console.log(defaultValues.district);
+    
+    const [selectedDistrict, setSelectedDistrict] = useState(defaultValues.district)
 
     useEffect(() => {
         fetch('https://bdapis.com/api/v1.2/districts')
@@ -30,23 +32,31 @@ const TutorFilter = () => {
 
 
     const handleSubmit = (values) => {
-        console.log(values);
+        const fromData = {
+            district: selectedDistrict,
+            ...values
+        };
+
+        setFilter(fromData);
+
+        console.log(fromData);
+
 
     }
     return (
         <div className="shadow-sm">
-            <TCForm onsubmit={handleSubmit}>
+            <TCForm onsubmit={handleSubmit} defaultValues={defaultValues}>
                 <div className="mb-4 space-y-3">
                     <h2 className="text-lg font-semibold mb-2">Education</h2>
                     <TCSelect options={studentClassOptions} name="class" placeholder="Choose Class" className="select-md" />
-                    <TCSelect options={subjectsOptions} name="subject" placeholder="Choose Subject" className="select-md"  />
+                    <TCSelect options={subjectsOptions} name="experties" placeholder="Choose Subject" className="select-md" />
                 </div>
                 <div className="mb-4 space-y-3">
                     <h2 className="text-lg font-semibold mb-2">Price Range</h2>
                     <div className="flex gap-1 justify-center items-center">
-                        <TCInput name="minPrice" type="number" placeholder="Min Price"/>
+                        <TCInput name="minPrice" type="number" placeholder="Min Price" />
                         -
-                        <TCInput name="maxPrice" type="number" placeholder="Max Price"/>
+                        <TCInput name="maxPrice" type="number" placeholder="Max Price" />
                     </div>
                 </div>
                 <div className="mb-4 space-y-3">
@@ -61,9 +71,11 @@ const TutorFilter = () => {
                 </div>
                 <div className="mb-4 space-y-3">
                     <h2 className="text-lg font-semibold ">Miscellaneous</h2>
-                    <TCMultiSelect name="gender" options={genderOptions} placeholder="Choose gender"/>
-                    <TCMultiSelect name="medium" options={mediumOptions} placeholder="Choose Medium"/>
+                    <TCSelect name="gender" options={genderOptions} placeholder="Choose gender" />
+                    <TCSelect name="medium" options={mediumOptions} placeholder="Choose Medium" />
                 </div>
+
+                <button type="submit" className="btn primary-btn">Apply Filters</button>
             </TCForm>
         </div>
     );
