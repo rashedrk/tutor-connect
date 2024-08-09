@@ -1,0 +1,11 @@
+  
+  .page-item .page-link {
+    color: #00A5A7;
+  }
+  
+  .page-item.active .page-link {
+    font-weight: 700;
+    color: #ffffff;
+    background-color: #00A5A7 ;
+    border: none;
+  }

@@ -20,8 +20,8 @@ const Navbar = () => {
         <li className={pathname == "/" ? "font-semibold text-[#00A5A7] underline" : ""}>
             <Link href="/">Home</Link>
         </li>
-        <li className={pathname == "/find_tutor" ? "font-semibold text-[#00A5A7] underline" : ""}>
-            <Link href='/find_tutor'>Find a Tutor</Link>
+        <li className={pathname == "/all_tutors" ? "font-semibold text-[#00A5A7] underline" : ""}>
+            <Link href='/all_tutors'>Tutors</Link>
         </li>
         {
             !userInfo && <li>

@@ -23,7 +23,7 @@ const Footer = () => {
                         <Link href="/" className="link link-hover">Home</Link>
                         <Link href="/blog" className="link link-hover">Blog</Link>
                         <Link href="/about_us" className="link link-hover">About</Link>
-                        <Link href="/find_tutor" className="link link-hover">Find tutor</Link>
+                        <Link href="/all_tutors" className="link link-hover">All tutors</Link>
                         <Link href="/contact_us" className="link link-hover">Contact</Link>
                     </nav>
                     <nav>

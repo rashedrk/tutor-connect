@@ -20,8 +20,32 @@ const userApi = baseApi.injectEndpoints({
                 }
             }
         }),
+
+        getAllTutors: builder.query({
+            query: (args) => {
+                const params = new URLSearchParams();
+
+                if (args) {
+                    args.forEach((item) => {
+                        params.append(item.name, item.value);
+                    });
+                }
+                return {
+                    url: '/tutor',
+                    method: 'GET',
+                    params: params,
+                }
+            },
+            transformResponse: (response) => {
+                return {
+                    data: response.data,
+                    meta: response?.meta,
+                };
+            },
+            providesTags: ['tutors']
+        }),
     })
 
 });
 
-export const { useRegisterTutorMutation, useRegisterStudentMutation } = userApi;
+export const { useRegisterTutorMutation, useRegisterStudentMutation, useGetAllTutorsQuery } = userApi;
