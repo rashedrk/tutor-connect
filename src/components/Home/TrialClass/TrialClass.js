@@ -2,6 +2,7 @@
 
 import { Fade } from "react-awesome-reveal";
 import Image from "next/image";
+import Link from "next/link";
 
 const TrialClass = () => {
     return (
@@ -21,7 +22,7 @@ const TrialClass = () => {
                         <h1 className="text-5xl font-bold text-[#004E7C]">Request A Class</h1>
                         <h2 className="mt-4 text-5xl font-semibold">For FREE Trail</h2>
                         <p className="py-6">Experience the power of personalized learning with our free trial class. Choose your preferred subject, select a convenient time slot, and let our dedicated tutors guide you through a one-on-one session tailored to your learning goals.</p>
-                        <button className="btn primary-btn">search tutor</button>
+                        <Link href='all_tutors' className="btn primary-btn">search tutor</Link>
                     </div>
                 </Fade>
             </div>

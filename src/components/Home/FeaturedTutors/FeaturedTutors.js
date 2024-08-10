@@ -33,7 +33,7 @@ const FeaturedTutors = async () => {
                 {/* </Fade> */}
             </div>
             <div className="text-center pb-5">
-                <Link href="/tutors" className="secondary-btn btn">See All Tutors <FaArrowRight /></Link>
+                <Link href="/all_tutors" className="secondary-btn btn">See All Tutors <FaArrowRight /></Link>
             </div>
         </div>
     );
