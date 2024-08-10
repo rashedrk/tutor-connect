@@ -25,13 +25,13 @@ const PostedTuitions = () => {
 
     // console.log(data);
 
-    const handleDelete = async(tuitionId) => {
+    const handleDelete = async (tuitionId) => {
         const toastId = toast.loading('please wait...');
         const res = await deleteTuition(tuitionId);
         if (res?.data?.success) {
-            toast.success(res?.data?.message, {id: toastId});
+            toast.success(res?.data?.message, { id: toastId });
         } else {
-            toast.error("something went wrong", {id: toastId});
+            toast.error("something went wrong", { id: toastId });
         }
     }
 
@@ -75,9 +75,9 @@ const PostedTuitions = () => {
         {
             name: 'Status',
             row: (rowData) => rowData.status === 'available' ?
-            <div className="badge badge-info  text-white text-xs">{capitalize(rowData.status)}</div>
-            :
-            <div className="badge  badge-success text-white text-xs">{capitalize(rowData.status)}</div>
+                <div className="badge badge-info  text-white text-xs">{capitalize(rowData.status)}</div>
+                :
+                <div className="badge  badge-success text-white text-xs">{capitalize(rowData.status)}</div>
         },
         {
             name: 'Action',
@@ -87,7 +87,7 @@ const PostedTuitions = () => {
                     {
                         rowData?.status === 'booked' ?
                             <>
-                                <li><Link href={`/tutor/${rowData?.selected_tutor}`}><FaRegEye /> Tutor Details</Link></li>
+                                <li><Link href={{ pathname: `/tutor/${rowData?.selected_tutor}`, query: { details: true } }}><FaRegEye /> Tutor Details</Link></li>
                             </> :
                             <>
                                 <EditPostedTuitionModal postedTuition={rowData} />
@@ -105,7 +105,7 @@ const PostedTuitions = () => {
     return (
         <>
             {
-                isLoading ? <Loader/> :
+                isLoading ? <Loader /> :
                     <DataTable
                         columns={columns}
                         data={data.data}

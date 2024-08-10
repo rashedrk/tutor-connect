@@ -6,7 +6,7 @@ import TCInput from "../Forms/TCInput";
 import TCSelect from "../Forms/TCSelect";
 import { useEffect, useState } from "react";
 import { selectOptions } from "@/utils/selectOptions";
-import { useParams } from "next/navigation";
+import { useParams, useSearchParams } from "next/navigation";
 import { useRequestTutorMutation } from "@/redux/features/tuition/tuitionApi";
 import TCTimePicker from "../Forms/TCTimePicker";
 import TCMultiSelect from "../Forms/TCMultiSelect";
@@ -16,10 +16,14 @@ import useUserInfo from "@/hooks/useUserInfo";
 
 const BookTutorModal = () => {
     const { tutorId } = useParams();
+    const searchParams = useSearchParams();
     const [districts, setDistricts] = useState([]);
     const [upozila, setUpozila] = useState([]);
     const [selectedDistrict, setSelectedDistrict] = useState("")
     const userInfo = useUserInfo();
+
+    const details = searchParams.get("details");
+
 
     const [addRequest] = useRequestTutorMutation()
 
@@ -63,12 +67,15 @@ const BookTutorModal = () => {
     return (
         <>
             {
-                userInfo?.role === 'student' ?
-                    <button className="btn primary-btn mt-2 btn-sm" onClick={() => document.getElementById('book_tutor').showModal()}>Book Now</button>
-                    :
-                    <div className="tooltip" data-tip="You must login as student">
-                        <button className="btn primary-btn mt-2 btn-sm" disabled>Book Now</button>
-                    </div>
+                !details ? (
+                    userInfo?.role === 'student' ?
+                        <button className="btn primary-btn mt-2 btn-sm" onClick={() => document.getElementById('book_tutor').showModal()}>Book Now</button>
+                        :
+                        <div className="tooltip" data-tip="You must login as student">
+                            <button className="btn primary-btn mt-2 btn-sm" disabled>Book Now</button>
+                        </div>
+                )
+                    : ''
             }
             <dialog id="book_tutor" className="modal modal-bottom sm:modal-middle">
 

@@ -8,25 +8,26 @@ import { FaRegEye } from "react-icons/fa";
 import Link from 'next/link';
 import { toast } from 'sonner';
 import Loader from '@/components/shared/Loader/Loader';
+import { FaCheck } from 'react-icons/fa6';
 
 const AppliedTutors = () => {
-    const {tuitionId} = useParams();
+    const { tuitionId } = useParams();
     const router = useRouter();
 
-    const {data, isLoading} = useGetAppliedTutorsQuery({tuitionId});
+    const { data, isLoading } = useGetAppliedTutorsQuery({ tuitionId });
     const [selectTutor] = useSelectTutorMutation();
 
     // console.log(data);
 
-    const handleSelectTutor = async(appliedTuitionId) => {
+    const handleSelectTutor = async (appliedTuitionId) => {
         const toastId = toast.loading("Please wait...")
         const res = await selectTutor(appliedTuitionId);
         // console.log(res);
         if (res?.data?.success) {
-            toast.success(res?.data?.message, {id: toastId});
+            toast.success(res?.data?.message, { id: toastId });
             router.push('/dashboard/student/posted_tuitions')
         } else {
-            toast.error('something went wrong', {id: toastId})
+            toast.error('something went wrong', { id: toastId })
         }
     }
 
@@ -64,8 +65,8 @@ const AppliedTutors = () => {
             row: (rowData) => <div className="dropdown dropdown-end">
                 <div tabIndex={0} role="button" className="btn bg-transparent hover:bg-transparent m-1"><SlOptionsVertical /></div>
                 <ul tabIndex={0} className="dropdown-content text-xs menu bg-base-100 rounded-box shadow-2xl z-[1] w-36 border p-2 ">
-                    <li><Link href={`/tutor/${rowData?.tutor.tutor_id}`}><FaRegEye /> See Details</Link></li>
-                    <li onClick={() => handleSelectTutor(rowData?.applied_tuition_id)}><a>Select</a></li>
+                    <li><Link href={{ pathname: `/tutor/${rowData?.tutor.tutor_id}`, query: { details: true } }} ><FaRegEye /> See Details</Link></li>
+                    <li onClick={() => handleSelectTutor(rowData?.applied_tuition_id)}><a><FaCheck />Select</a></li>
                 </ul>
             </div>
         },
@@ -74,7 +75,7 @@ const AppliedTutors = () => {
     return (
         <>
             {
-                isLoading ? <Loader/> :
+                isLoading ? <Loader /> :
                     <DataTable
                         columns={columns}
                         data={data.data}
