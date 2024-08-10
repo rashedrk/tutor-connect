@@ -2,11 +2,12 @@ import { capitalize } from "lodash";
 import Image from "next/image";
 import Link from "next/link";
 import { CiLocationOn } from "react-icons/ci";
-import { FaHeart, FaRegHeart } from "react-icons/fa";
 import { FaStar } from "react-icons/fa6";
 import { MdOutlineVerified } from "react-icons/md";
+import AddToSave from "./AddToSave";
 const AllTutorCard = ({ tutor }) => {
     const { tutor_id, profile, details, rating, experties, tutorQualification, fee } = tutor;
+
     return (
         <div className="card bg-base-100 md:w-[90%] w-full shadow-sm mb-3 rounded hover:shadow-lg">
             <div className="card-body p-3 md:p-8 text-gray-500">
@@ -61,14 +62,7 @@ const AllTutorCard = ({ tutor }) => {
                     </div>
                 </div>
                 <div className="card-actions justify-between items-center border-t mt-4 pt-4">
-                    <div className="flex justify-center items-center gap-1">
-                        <label className="swap">
-                            <input type="checkbox" />
-                            <FaRegHeart className="swap-off" />
-                            <FaHeart className="swap-on text-red-600" />
-                        </label>
-                        Add to Save
-                    </div>
+                   <AddToSave tutorId={tutor_id}/>
                     <Link href={`/tutor/${tutor_id}`} className="btn primary-btn btn-sm rounded">View Full Details</Link>
                 </div>
             </div>
