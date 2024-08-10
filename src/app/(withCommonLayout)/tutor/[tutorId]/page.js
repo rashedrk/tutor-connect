@@ -56,7 +56,7 @@ const TutorDetails = async ({ params }) => {
                         </div>
                     </div>
                     <div className="mt-3 ">
-                        <BookTutorModal />
+                                <BookTutorModal />
                     </div>
 
                 </div>

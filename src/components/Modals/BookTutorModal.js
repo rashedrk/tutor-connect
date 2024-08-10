@@ -12,12 +12,14 @@ import TCTimePicker from "../Forms/TCTimePicker";
 import TCMultiSelect from "../Forms/TCMultiSelect";
 import { HttpStatusCode } from "axios";
 import { toast } from "sonner";
+import useUserInfo from "@/hooks/useUserInfo";
 
 const BookTutorModal = () => {
     const { tutorId } = useParams();
     const [districts, setDistricts] = useState([]);
     const [upozila, setUpozila] = useState([]);
     const [selectedDistrict, setSelectedDistrict] = useState("")
+    const userInfo = useUserInfo();
 
     const [addRequest] = useRequestTutorMutation()
 
@@ -60,7 +62,14 @@ const BookTutorModal = () => {
 
     return (
         <>
-            <button className="btn primary-btn mt-2 btn-sm" onClick={() => document.getElementById('book_tutor').showModal()}>Book Now</button>
+            {
+                userInfo?.role === 'student' ?
+                    <button className="btn primary-btn mt-2 btn-sm" onClick={() => document.getElementById('book_tutor').showModal()}>Book Now</button>
+                    :
+                    <div className="tooltip" data-tip="You must login as student">
+                        <button className="btn primary-btn mt-2 btn-sm" disabled>Book Now</button>
+                    </div>
+            }
             <dialog id="book_tutor" className="modal modal-bottom sm:modal-middle">
 
                 <div className="modal-box">
