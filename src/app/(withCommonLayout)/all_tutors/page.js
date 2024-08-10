@@ -14,12 +14,15 @@ import { constructQueryParams } from "@/utils/constructQueryParams";
 import { useSearchParams } from "next/navigation";
 import { lowerCase } from "lodash";
 import NoDataFound from "@/components/shared/NoDataFound/NoDataFound";
+import TCForm from "@/components/Forms/TCForm";
+import TCInput from "@/components/Forms/TCInput";
 
 const AllTutorsPage = () => {
-    const searchParams = useSearchParams()
     const [filter, setFilter] = useState({});
     const [page, setPage] = useState(1);
+    const [search, setSearch] = useState('')
     const queryParams = constructQueryParams(filter);
+    const searchParams = useSearchParams();
     const defaultValues = {
         district: searchParams.get('district'),
         upozila: lowerCase(searchParams.get('upozila')),
@@ -31,6 +34,7 @@ const AllTutorsPage = () => {
     const filterParams = constructQueryParams(defaultValues);
     const { data: tutors, isLoading } = useGetAllTutorsQuery([
         { name: 'page', value: page },
+        { name: 'searchTerm', value: search },
         ...(queryParams || []),
         ...(filterParams || [])
     ]);
@@ -38,14 +42,21 @@ const AllTutorsPage = () => {
     const meta = tutors?.meta;
     const totalPages = Math.ceil(meta?.total / meta?.limit);
 
+    const handleSearch = (values) => {
+        setSearch(values.search);
+        
+    }
+
     return (
         isLoading ? <Loader /> :
             <div className="bg-[#F2F4F7] relative">
                 <div className="py-5 flex justify-center md:justify-end lg:mx-14 mx-5">
-                    <div className="join ">
-                        <input className="input input-bordered join-item lg:w-96 " placeholder="Search for tutor" />
-                        <button className="btn primary-btn join-item "> <FaSearch /> Search </button>
-                    </div>
+                    <TCForm onsubmit={handleSearch}>
+                        <div className="join ">
+                            <TCInput className="input input-bordered join-item lg:w-96 " placeholder="Search for tutor" name="search"/>
+                            <button className="btn primary-btn join-item "> <FaSearch /> Search </button>
+                        </div>
+                    </TCForm>
 
                 </div>
                 <div className="drawer lg:drawer-open ">
@@ -55,9 +66,9 @@ const AllTutorsPage = () => {
                         {/* Page content here */}
                         {
                             tutors?.data?.length > 0 ?
-                            tutors?.data?.map(tutor => <AllTutorCard key={tutor.tutor_id} tutor={tutor} />)
-                            :
-                            <NoDataFound/>
+                                tutors?.data?.map(tutor => <AllTutorCard key={tutor.tutor_id} tutor={tutor} />)
+                                :
+                                <NoDataFound />
                         }
                         <div className="self-start md:ms-10 mt-3">
                             <ResponsivePagination
