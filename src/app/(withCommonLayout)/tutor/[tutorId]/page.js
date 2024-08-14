@@ -1,11 +1,12 @@
 import BookTutorModal from "@/components/Modals/BookTutorModal";
+import ReviewCard from "@/components/ReviewCard/ReviewCard";
 import { Rating, Star } from "@smastrom/react-rating";
 import dayjs from "dayjs";
 import { capitalize } from "lodash";
 import Image from "next/image";
 import { CiLocationOn } from "react-icons/ci";
 
-const ratingStyles = {
+export const ratingStyles = {
     itemShapes: Star,
     activeFillColor: '#00A5A7',
     inactiveFillColor: '#E0E0E0',
@@ -139,6 +140,12 @@ const TutorDetails = async ({ params }) => {
                     </div>
                 </div>
             </div>
+
+            <ReviewCard/>
+            <ReviewCard/>
+            <ReviewCard/>
+            <ReviewCard/>
+            <ReviewCard/>
         </>
     );
 };
