@@ -11,7 +11,7 @@ const SubscribeUs = () => {
                         <p className="mb-5">Discover the perfect tutor for your needs, harnessing expertise across a variety of subjects. Dive into a world of personalized learning, where success is just a click away</p>
                     <div>
                         <input type="text" placeholder="your@email.com" className="input rounded-full text-black  input-md w-full max-w-md" />
-                        <a className="bg-[#00A5A7] hover:bg-[#008E90] text-white py-3 px-5 rounded-full border-none absolute right-4 md:right-28">Subscribe us</a>
+                        <a className="bg-[#00A5A7] hover:bg-[#008E90] text-white py-3 px-5 rounded-full border-none absolute right-4 md:right-28 cursor-pointer">Subscribe us</a>
                     </div>
 
                 </div>
