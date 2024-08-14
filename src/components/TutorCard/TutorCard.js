@@ -43,7 +43,7 @@ const TutorCard = ({ tutor }) => {
                             readOnly
                         />
                     </div>
-                    <Link href={`/tutor/${tutor_id}`} className="btn primary-btn">see more</Link>
+                    <Link href={`/tutor/${tutor_id}`} className="btn primary-btn btn-sm h-11">see more</Link>
                 </div>
             </div>
         </div>
