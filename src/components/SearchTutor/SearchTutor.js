@@ -49,7 +49,7 @@ const SearchTutor = () => {
 
     return (
         <div className='bg-no-repeat bg-cover' style={{ backgroundImage: 'url(https://i.ibb.co/R4kczMf/pexels-andrea-piacquadio-3769995.jpg)', }}>
-            <div className='bg-[#0d2c3d] bg-opacity-60 min-h-screen md:flex items-center justify-center gap-12 w-full p-3'>
+            <div className='bg-[#0d2c3d] bg-opacity-60 min-h-[90vh] md:flex items-center justify-center gap-12 w-full p-3'>
                 <div className='text-white drop-shadow-lg mb-5 md:mb-0'>
                     <h1 className='font-bold text-6xl'>Find The</h1>
                     <h2 className='font-bold text-5xl my-6 border-b-2 border-b-orange-400'>Perfect Tutor for</h2>
