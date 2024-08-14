@@ -1,4 +1,5 @@
 import { Rating } from "@smastrom/react-rating";
+import { capitalize } from "lodash";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -21,11 +22,17 @@ const TutorCard = ({ tutor }) => {
                         <h2 className="card-title flex-grow">{profile.name}</h2>
                         <p>{tutorQualification[0].qualification?.degree}</p>
                     </div>
-                    <h1 className="font-bold text-md "><span className="text-2xl">{fee}</span> tk/month</h1>
+                    <h1 className="font-bold text-lg">৳{fee}/month</h1>
                 </div>
-                <p className="line-clamp-3">{details}</p>
-                <div className="card-actions my-3 ">
-                    {experties.map((sub, index) => <div key={index} className="badge badge-outline">{sub}</div>)}
+                <p className="line-clamp-2">{details}</p>
+                <div className="card-actions my-1 ">
+                    <div className="flex gap-5">
+                        {experties.map((sub, index) =>
+                            <div key={index} className="bg-[#F2F4F7] px-5 py-2 text-gray-800 font-light rounded">
+                                {capitalize(sub)}
+                            </div>
+                        )}
+                    </div>
                 </div>
                 <div className="card-actions justify-between items-center">
                     <div className="flex  gap-2">
