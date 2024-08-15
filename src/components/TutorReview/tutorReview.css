@@ -1,0 +1,41 @@
+/* Customizing Pagination Dots */
+
+
+.swiper-pagination-bullet-active {
+    background-color: #00A5A7;
+    /* Change the color of the active dot */
+    opacity: 1;
+}
+
+/* Customizing Navigation Arrows */
+.swiper-button-prev,
+.swiper-button-next {
+    color: #00A5A7;
+    /* Change the color of the navigation arrows */
+    font-size: 20px;
+}
+
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+    color: #00A5A7;
+    /* Change the color on hover */
+}
+
+/* Optional: Adjust the position or background of navigation arrows */
+.swiper-button-prev {
+    left: 0;
+    
+    /* Adjust the left position */
+}
+
+.swiper-button-next {
+    right: 0;
+    /* Adjust the right position */
+}
+
+.swiper-wrapper{
+    /* padding: 10px; */
+    padding-left: 8px;
+    padding-right: 8px;
+    margin-bottom: 30px;
+}

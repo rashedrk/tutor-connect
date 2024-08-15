@@ -1,5 +1,5 @@
 import BookTutorModal from "@/components/Modals/BookTutorModal";
-import ReviewCard from "@/components/ReviewCard/ReviewCard";
+import TutorReview from "@/components/TutorReview/TutorReview";
 import { Rating, Star } from "@smastrom/react-rating";
 import dayjs from "dayjs";
 import { capitalize } from "lodash";
@@ -24,7 +24,7 @@ const TutorDetails = async ({ params }) => {
 
     return (
         <>
-            <div className="grid grid-cols-1 justify-center md:grid-cols-4 mx-5 md:mx-20 my-5 md:gap-10 gap-2">
+            <div className="grid grid-cols-1 justify-center md:grid-cols-4 mx-5 md:mx-20 mt-5 md:gap-10 gap-2">
                 <div >
                     <Image src={profileImage} alt="" width={500} height={500} />
                 </div>
@@ -57,7 +57,7 @@ const TutorDetails = async ({ params }) => {
                         </div>
                     </div>
                     <div className="mt-3 ">
-                                <BookTutorModal />
+                        <BookTutorModal />
                     </div>
 
                 </div>
@@ -140,12 +140,10 @@ const TutorDetails = async ({ params }) => {
                     </div>
                 </div>
             </div>
+            <div className="mx-5 md:mx-10 mb-5">
+                <TutorReview />
+            </div>
 
-            <ReviewCard/>
-            <ReviewCard/>
-            <ReviewCard/>
-            <ReviewCard/>
-            <ReviewCard/>
         </>
     );
 };
