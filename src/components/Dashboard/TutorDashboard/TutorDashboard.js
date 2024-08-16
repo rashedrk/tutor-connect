@@ -3,6 +3,9 @@
 import CountUp from 'react-countup';
 import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import UpcomingTuitionCard from '../UpcomingTuitionCard/UpcomingTuitionCard';
+import { FaChalkboardTeacher } from 'react-icons/fa';
+import { FaRegClock } from 'react-icons/fa6';
+import { LiaUserClockSolid } from "react-icons/lia";
 
 const TutorDashboard = () => {
     const data = [
@@ -37,11 +40,12 @@ const TutorDashboard = () => {
     ];
 
     return (
-        <>
-            <div className="grid grid-cols-3 gap-5 w-full">
+        <div className='md:mx-8'>
+            <div className="grid grid-cols-3 gap-10 w-full">
                 <div className="card card-compact  bg-base-100 shadow rounded-md">
                     <div className="card-body justify-center items-center">
-                        <h2 className="card-title text-[#00A5A7]">
+                        <h2 className="card-title text-[#00A5A7] flex items-center justify-center">
+                        <FaChalkboardTeacher className='text-2xl' />
                             <CountUp
                                 start={2}
                                 end={10}
@@ -54,7 +58,9 @@ const TutorDashboard = () => {
                 </div>
                 <div className="card card-compact  bg-base-100  shadow rounded-md">
                     <div className="card-body justify-center items-center">
-                        <h2 className="card-title text-[#00A5A7]">
+                        <h2 className="card-title text-[#00A5A7] flex items-center justify-center">
+                        <LiaUserClockSolid className='text-2xl' />
+                        
                             <CountUp
                                 start={1}
                                 end={5}
@@ -66,8 +72,9 @@ const TutorDashboard = () => {
                     </div>
                 </div>
                 <div className="card card-compact  bg-base-100   shadow rounded-md">
-                    <div className="card-body justify-center items-center">
-                        <h2 className="card-title text-[#00A5A7]">
+                    <div className="card-body justify-center items-center ">
+                        <h2 className="card-title text-[#00A5A7] flex items-center justify-center">
+                        <FaRegClock className='text-2xl' />
                             <CountUp
                                 start={30}
                                 end={48}
@@ -107,7 +114,7 @@ const TutorDashboard = () => {
 
                 </div>
             </div>
-        </>
+        </div>
     );
 };
 
