@@ -1,13 +1,16 @@
-import Image from 'next/image';
-import dashboardBg from '@/assets/svg/dashboard.svg'
+'use client'
 import TutorDashboard from '@/components/Dashboard/TutorDashboard/TutorDashboard';
+import Loader from '@/components/shared/Loader/Loader';
+import { useGetDashboardOverviewQuery } from '@/redux/features/dashboard/dashboardApi';
 
 const DashboardHome = () => {
+    const { data, isLoading } = useGetDashboardOverviewQuery(undefined);
+    
+    
     return (
-        // <div className='flex justify-center items-center'>
-           <TutorDashboard/>
-            /* <Image src={dashboardBg} alt='Welcome to Dashboard' width={500} height={500} /> */
-        // </div>
+        isLoading ? <Loader /> :
+            <TutorDashboard data = {data?.data} />
+
     );
 };
 

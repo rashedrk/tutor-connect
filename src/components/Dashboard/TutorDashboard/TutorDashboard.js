@@ -7,37 +7,9 @@ import { FaChalkboardTeacher } from 'react-icons/fa';
 import { FaRegClock } from 'react-icons/fa6';
 import { LiaUserClockSolid } from "react-icons/lia";
 
-const TutorDashboard = () => {
-    const data = [
-        {
-            name: 'Sat',
-            uv: 10,
-        },
-        {
-            name: 'Sun',
-            uv: 5,
-        },
-        {
-            name: 'Mon',
-            uv: 7,
-        },
-        {
-            name: 'Tue',
-            uv: 6,
-        },
-        {
-            name: 'Wed',
-            uv: 10,
-        },
-        {
-            name: 'Thu',
-            uv: 8,
-        },
-        {
-            name: 'Fri',
-            uv: 2,
-        },
-    ];
+const TutorDashboard = ({data}) => {
+   const {overview, tuitionByDay , upcomingTuition} = data;
+   const {activeTuitions, pendingRequests, totalHours} = overview;
 
     return (
         <div className='md:mx-8'>
@@ -48,7 +20,7 @@ const TutorDashboard = () => {
                         <FaChalkboardTeacher className='text-2xl' />
                             <CountUp
                                 start={2}
-                                end={10}
+                                end={activeTuitions}
                                 duration={2}
                                 enableScrollSpy
                             />
@@ -63,7 +35,7 @@ const TutorDashboard = () => {
                         
                             <CountUp
                                 start={1}
-                                end={5}
+                                end={pendingRequests}
                                 duration={2}
                                 enableScrollSpy
                             />
@@ -76,8 +48,8 @@ const TutorDashboard = () => {
                         <h2 className="card-title text-[#00A5A7] flex items-center justify-center">
                         <FaRegClock className='text-2xl' />
                             <CountUp
-                                start={30}
-                                end={48}
+                                start={5}
+                                end={totalHours}
                                 duration={2}
                                 enableScrollSpy
                             />
@@ -88,13 +60,13 @@ const TutorDashboard = () => {
             </div>
 
             <div className='grid md:grid-cols-3 gap-10 justify-center items-start '>
-                <div className="mt-10 h-80 pb-12 pe-10  bg-white shadow rounded-md col-span-2" >
-                    <h6 className='text-center text-gray-500 font-semibold pt-6'>Tuition per Day</h6>
+                <div className="mt-10 h-80 pb-16 pe-10  bg-white shadow rounded-md col-span-2" >
+                    <h6 className='text-center text-gray-500 font-semibold pt-6 pb-4'>Tuition per Day</h6>
                     <ResponsiveContainer >
                         <BarChart
                             width={500}
                             height={300}
-                            data={data}
+                            data={tuitionByDay}
 
                         >
                             {/* <CartesianGrid strokeDasharray="3 3" /> */}
@@ -102,16 +74,19 @@ const TutorDashboard = () => {
                             <YAxis />
                             <Tooltip />
                             <Legend />
-                            <Bar dataKey="uv" fill="#00A5A7" />
+                            <Bar dataKey="tuitions" fill="#00A5A7" />
                         </BarChart>
                     </ResponsiveContainer>
                 </div>
                 <div className=''>
                     <h6 className='text-center text-gray-500 font-semibold py-4 '>Upcoming Tuitions</h6>
-                    <UpcomingTuitionCard />
-                    <UpcomingTuitionCard />
-                    <UpcomingTuitionCard />
 
+                    {
+                        upcomingTuition?.length > 0 ? 
+                        upcomingTuition.map((tuition, index) => <UpcomingTuitionCard key={index} tuition={tuition}  />)
+                        :
+                        <h6 className='text-center text-xs text-gray-500 font-semibold py-4 '>No tuitions Today</h6>
+                    }
                 </div>
             </div>
         </div>
