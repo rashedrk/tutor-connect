@@ -1,9 +1,11 @@
 import dayjs from 'dayjs';
+import { capitalize } from 'lodash';
 import React from 'react';
 import { FiClock } from "react-icons/fi";
 import { IoLocationOutline } from 'react-icons/io5';
 
 const UpcomingTuitionCard = ({ tuition }) => {
+    
     return (
         <div className='bg-white shadow rounded-md py-4 px-5 mb-3'>
             <h6 className='font-semibold text-sm text-[#00A5A7]'>{tuition?.student?.name || tuition?.tutor?.profile?.name || tuition?.selectedTutor?.profile?.name}</h6>
@@ -13,7 +15,7 @@ const UpcomingTuitionCard = ({ tuition }) => {
                 }
             </p>
             <p className='text-xs text-gray-500 flex justify-start items-center gap-1'>
-                <IoLocationOutline /> Sathmatha, Bogura Sadar
+                <IoLocationOutline /> {`${capitalize(tuition?.address?.address)}, ${capitalize(tuition?.address?.area)}`}
             </p>
         </div>
     );

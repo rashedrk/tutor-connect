@@ -13,7 +13,7 @@ const TutorDashboard = ({data}) => {
 
     return (
         <div className='md:mx-8'>
-            <div className="grid grid-cols-3 gap-10 w-full">
+            <div className="grid grid-cols-3 gap-2 md:gap-10 w-full">
                 <div className="card card-compact  bg-base-100 shadow rounded-md">
                     <div className="card-body justify-center items-center">
                         <h2 className="card-title text-[#00A5A7] flex items-center justify-center">
@@ -59,8 +59,8 @@ const TutorDashboard = ({data}) => {
                 </div>
             </div>
 
-            <div className='grid md:grid-cols-3 gap-10 justify-center items-start '>
-                <div className="mt-10 h-80 pb-16 pe-10  bg-white shadow rounded-md col-span-2" >
+            <div className='grid md:grid-cols-3 gap-2 md:gap-10 justify-center items-start w-full'>
+                <div className="mt-10 h-80 pb-16 pe-10  bg-white shadow rounded-md md:col-span-2 w-full mx-2" >
                     <h6 className='text-center text-gray-500 font-semibold pt-6 pb-4'>Tuition per Day</h6>
                     <ResponsiveContainer >
                         <BarChart
