@@ -4,14 +4,15 @@ import Loader from '@/components/shared/Loader/Loader';
 import { useGetDashboardOverviewQuery } from '@/redux/features/dashboard/dashboardApi';
 
 const DashboardHome = () => {
-    const { data, isLoading } = useGetDashboardOverviewQuery(undefined);
+    const { data, isLoading, error } = useGetDashboardOverviewQuery(undefined);
     
+    // Handle loading state
+    if (isLoading) return <Loader />;
     
-    return (
-        isLoading ? <Loader /> :
-            <TutorDashboard data = {data?.data} />
-
-    );
+    // Handle error or missing data state
+    if (error || !data) return <div>Error loading dashboard data</div>;
+    
+    return <TutorDashboard data={data?.data || {}} />;
 };
 
 export default DashboardHome;

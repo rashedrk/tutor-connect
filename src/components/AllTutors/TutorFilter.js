@@ -5,30 +5,47 @@ import TCForm from "../Forms/TCForm";
 import { useEffect, useState } from "react";
 import { selectOptions } from "@/utils/selectOptions";
 import TCInput from "../Forms/TCInput";
-import { lowerCase } from "lodash";
+import { selectUpozila } from "@/utils/selectUpozila";
 
 const TutorFilter = ({ setFilter, defaultValues }) => {
     const [districts, setDistricts] = useState([]);
     const [upozila, setUpozila] = useState([]);
-    console.log(defaultValues.district);
-    
-    const [selectedDistrict, setSelectedDistrict] = useState(defaultValues.district)
+    const [selectedDistrict, setSelectedDistrict] = useState({ id: "", name: "" });
 
     useEffect(() => {
-        fetch('https://bdapis.com/api/v1.2/districts')
+        fetch('https://sohojapi.vercel.app/api/districts')
             .then(res => res.json())
-            .then(data => setDistricts(data?.data))
-    }, []);
+            .then(data => {
+                setDistricts(data);
+                // Set initial selected district if defaultValues.district exists
+                if (defaultValues.district && data.length > 0) {
+                    const foundDistrict = data.find(d => d.name === defaultValues.district);
+                    if (foundDistrict) {
+                        setSelectedDistrict({ id: foundDistrict.id, name: foundDistrict.name });
+                    }
+                }
+            })
+    }, [defaultValues.district]);
 
     const handleSelect = (event) => {
-        setSelectedDistrict(event.target.value)
+        const districtId = event.target.value;
+        const district = districts.find(d => d.id === districtId);
+        setSelectedDistrict(district ? { id: district.id, name: district.name } : { id: "", name: "" });
     }
 
     useEffect(() => {
-        fetch(`https://bdapis.com/api/v1.2/district/${selectedDistrict}`)
-            .then(res => res.json())
-            .then(data => setUpozila(data.data));
-    }, [selectedDistrict]);
+        if (selectedDistrict?.id) {
+            fetch(`https://sohojapi.vercel.app/api/upzilas/${selectedDistrict.id}`)
+                .then(res => res.json())
+                .then(data => setUpozila(data))
+                .catch(error => {
+                    console.error('Error fetching upzilas:', error);
+                    setUpozila([]);
+                });
+        } else {
+            setUpozila([]);
+        }
+    }, [selectedDistrict.id]);
 
 
     const handleSubmit = (values) => {
@@ -58,16 +75,15 @@ const TutorFilter = ({ setFilter, defaultValues }) => {
                         -
                         <TCInput name="maxPrice" type="number" placeholder="Max Price" />
                     </div>
-                </div>
-                <div className="mb-4 space-y-3">
+                </div>                <div className="mb-4 space-y-3">
                     <h2 className="text-lg font-semibold ">Address</h2>
-                    <select name='district' value={selectedDistrict} onChange={handleSelect} className="select select-bordered w-full ">
-                        <option disabled selected value="">Choose District</option>
+                    <select name='district' value={selectedDistrict.id} onChange={handleSelect} className="select select-bordered w-full ">
+                        <option disabled value="">Choose District</option>
                         {
-                            districts?.map(district => <option value={district.district} key={district.district}>{district.district}</option>)
+                            districts?.map(district => <option value={district.id} key={district.id}>{district.name}</option>)
                         }
                     </select>
-                    <TCSelect disabled={!upozila} options={selectOptions(upozila?.upazillas)} placeholder="Choose Area" name="upozila" />
+                    <TCSelect disabled={!upozila?.length} options={selectUpozila(upozila)} placeholder="Choose Area" name="upozila" />
                 </div>
                 <div className="mb-4 space-y-3">
                     <h2 className="text-lg font-semibold ">Miscellaneous</h2>

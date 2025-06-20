@@ -5,18 +5,17 @@ import TCForm from "../Forms/TCForm";
 import TCInput from "../Forms/TCInput";
 import TCSelect from "../Forms/TCSelect";
 import { useEffect, useState } from "react";
-import { selectOptions } from "@/utils/selectOptions";
 import TCTimePicker from "../Forms/TCTimePicker";
 import TCMultiSelect from "../Forms/TCMultiSelect";
 import { toast } from "sonner";
 import { RiEdit2Line } from "react-icons/ri";
 import { useUpdateTuitionMutation } from "@/redux/features/tuition/tuitionApi";
+import { selectUpozila } from "@/utils/selectUpozila";
 
 const EditPostedTuitionModal = ({ postedTuition }) => {
     const [districts, setDistricts] = useState([]);
     const [upozila, setUpozila] = useState([]);
-    const [selectedDistrict, setSelectedDistrict] = useState("");
-    const [updateTuition] = useUpdateTuitionMutation()
+    const [selectedDistrict, setSelectedDistrict] = useState({ id: "", name: "" }); const [updateTuition] = useUpdateTuitionMutation();
 
     const { subject, contactNo, salary, medium } = postedTuition;
     const { address, area, district } = postedTuition.address;
@@ -37,27 +36,49 @@ const EditPostedTuitionModal = ({ postedTuition }) => {
     }
 
     useEffect(() => {
-        fetch('https://bdapis.com/api/v1.2/districts')
+        fetch('https://sohojapi.vercel.app/api/districts')
             .then(res => res.json())
-            .then(data => setDistricts(data?.data))
-    }, []);
+            .then(data => {
+                setDistricts(data);
+
+                // Find and set district ID from district name if it exists
+                if (district && data.length > 0) {
+                    const foundDistrict = data.find(d => d.name === district);
+                    if (foundDistrict) {
+                        setSelectedDistrict({ id: foundDistrict.id, name: foundDistrict.name });
+                    }
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching districts:', error);
+                setDistricts([]);
+            });
+    }, [district]);
 
     const handleSelect = (event) => {
-        setSelectedDistrict(event.target.value)
+        const districtId = event.target.value;
+        const foundDistrict = districts.find(d => d.id === districtId);
+        setSelectedDistrict(foundDistrict ? { id: foundDistrict.id, name: foundDistrict.name } : { id: "", name: "" });
     }
 
     useEffect(() => {
-        fetch(`https://bdapis.com/api/v1.2/district/${selectedDistrict}`)
-            .then(res => res.json())
-            .then(data => setUpozila(data.data));
-    }, [selectedDistrict]);
+        if (selectedDistrict?.id) {
+            fetch(`https://sohojapi.vercel.app/api/upzilas/${selectedDistrict.id}`)
+                .then(res => res.json())
+                .then(data => setUpozila(data))
+                .catch(error => {
+                    console.error('Error fetching upazilas:', error);
+                    setUpozila([]);
+                });
+        } else {
+            setUpozila([]);
+        }
+    }, [selectedDistrict.id]);
 
     const handleEdit = async (data) => {
         const toastId = toast.loading('Sending Request, please wait...')
 
-        data.fullAddress.district = selectedDistrict
-        // data.fullAddress.district = "Bogura T"
-        // data.fullAddress.area = "Bogura Test"
+        data.fullAddress.district = selectedDistrict.name || district;
 
         const fromData = {
             tuitionId: postedTuition.tuition_id,
@@ -88,15 +109,13 @@ const EditPostedTuitionModal = ({ postedTuition }) => {
                             <TCSelect options={subjectsOptions} placeholder="Select subject" name="subject" />
                             <TCSelect options={studentClassOptions} placeholder="Select Class" name="class" />
                             <TCSelect options={mediumOptions} placeholder="Select Medium" name="medium" />
-                            <TCInput name="fullAddress.address" placeholder="Enter your Address" type="text" />
-
-                            <select name="fullAddress.district" value={selectedDistrict} onChange={handleSelect} className="select select-bordered w-full">
-                                <option disabled selected value="">Select District</option>
+                            <TCInput name="fullAddress.address" placeholder="Enter your Address" type="text" />                            <select name="fullAddress.district" value={selectedDistrict.id || ""} onChange={handleSelect} className="select select-bordered w-full">
+                                <option disabled value="">Select District</option>
                                 {
-                                    districts?.map(district => <option value={district.district} key={district.district}>{district.district}</option>)
+                                    districts?.map(district => <option value={district.id} key={district.id}>{district.name}</option>)
                                 }
                             </select>
-                            <TCSelect disabled={!upozila} options={selectOptions(upozila?.upazillas)} placeholder="Select Area" name="fullAddress.area" />
+                            <TCSelect disabled={!upozila.length} options={selectUpozila(upozila)} placeholder="Select Area" name="fullAddress.area" />
 
                             <TCTimePicker name="schedule.startTime" placeholder="Start Time" />
                             <TCTimePicker name="schedule.endTime" placeholder="End Time" />

@@ -3,34 +3,35 @@ import React, { useEffect, useState } from 'react';
 import TCForm from '../Forms/TCForm';
 import TCSelect from '../Forms/TCSelect';
 import { genderOptions, mediumOptions, studentClassOptions, subjectsOptions } from '@/constant';
-import { selectOptions } from '@/utils/selectOptions';
 import { useRouter } from 'next/navigation';
+import { selectUpozila } from '@/utils/selectUpozila';
 
 const SearchTutor = () => {
     const router = useRouter();
     const [districts, setDistricts] = useState([]);
     const [upozila, setUpozila] = useState([]);
-    const [selectedDistrict, setSelectedDistrict] = useState("")
+    const [selectedDistrict, setSelectedDistrict] = useState({ id: "", name: "" });
 
     useEffect(() => {
-        fetch('https://bdapis.com/api/v1.2/districts')
+        fetch('https://sohojapi.vercel.app/api/districts')
             .then(res => res.json())
-            .then(data => setDistricts(data?.data))
+            .then(data => setDistricts(data))
     }, []);
 
     const handleSelect = (event) => {
-        setSelectedDistrict(event.target.value)
+        const district = districts.find(d => d.id === event.target.value);
+        setSelectedDistrict(district ? { id: district.id, name: district.name } : { id: "", name: "" });
     }
 
     useEffect(() => {
-        fetch(`https://bdapis.com/api/v1.2/district/${selectedDistrict}`)
+        fetch(`https://sohojapi.vercel.app/api/upzilas/${selectedDistrict.id}`)
             .then(res => res.json())
-            .then(data => setUpozila(data.data));
+            .then(data => setUpozila(data));
     }, [selectedDistrict]);
 
     const submitHandler = (data) => {
         const fromData = {
-            district: selectedDistrict,
+            district: selectedDistrict.name,
             ...data
         };
 
@@ -58,13 +59,13 @@ const SearchTutor = () => {
                 <div className='md:w-[45%] p-9 bg-[#0a202c] bg-opacity-50 rounded-xl'>
                     <TCForm onsubmit={submitHandler}>
                         <div className='grid md:grid-cols-2 gap-5 mb-4'>
-                            <select name='district' value={selectedDistrict} onChange={handleSelect} className="select select-bordered w-full  rounded-full">
-                                <option disabled selected value="">Select District</option>
+                            <select name='district' value={selectedDistrict.id} onChange={handleSelect} className="select select-bordered w-full  rounded-full">
+                                <option disabled value="">Select District</option>
                                 {
-                                    districts?.map(district => <option value={district.district} key={district.district}>{district.district}</option>)
+                                    districts?.map(district => <option value={district.id} key={district.id}>{district.name}</option>)
                                 }
                             </select>
-                            <TCSelect disabled={!upozila} options={selectOptions(upozila?.upazillas)} placeholder="Select Area" name="upozila" className="rounded-full" />
+                            <TCSelect disabled={!upozila} options={selectUpozila(upozila)} placeholder="Select Area" name="upozila" className="rounded-full" />
                             <TCSelect options={studentClassOptions} placeholder="Select Class" name="class" className="rounded-full" />
                             <TCSelect options={mediumOptions} placeholder="Select Medium" name="medium" className="rounded-full" />
                             <TCSelect options={subjectsOptions} placeholder="Select subject" name="experties" className="rounded-full" />

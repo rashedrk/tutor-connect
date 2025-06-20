@@ -5,7 +5,6 @@ import TCForm from "../Forms/TCForm";
 import TCInput from "../Forms/TCInput";
 import TCSelect from "../Forms/TCSelect";
 import { useEffect, useState } from "react";
-import { selectOptions } from "@/utils/selectOptions";
 import { useParams, useSearchParams } from "next/navigation";
 import { useRequestTutorMutation } from "@/redux/features/tuition/tuitionApi";
 import TCTimePicker from "../Forms/TCTimePicker";
@@ -13,13 +12,14 @@ import TCMultiSelect from "../Forms/TCMultiSelect";
 import { HttpStatusCode } from "axios";
 import { toast } from "sonner";
 import useUserInfo from "@/hooks/useUserInfo";
+import { selectUpozila } from "@/utils/selectUpozila";
 
 const BookTutorModal = () => {
     const { tutorId } = useParams();
     const searchParams = useSearchParams();
     const [districts, setDistricts] = useState([]);
     const [upozila, setUpozila] = useState([]);
-    const [selectedDistrict, setSelectedDistrict] = useState("")
+    const [selectedDistrict, setSelectedDistrict] = useState({ id: "", name: "" });
     const userInfo = useUserInfo();
 
     const details = searchParams.get("details");
@@ -28,25 +28,26 @@ const BookTutorModal = () => {
     const [addRequest] = useRequestTutorMutation()
 
     useEffect(() => {
-        fetch('https://bdapis.com/api/v1.2/districts')
+        fetch('https://sohojapi.vercel.app/api/districts')
             .then(res => res.json())
-            .then(data => setDistricts(data?.data))
+            .then(data => setDistricts(data))
     }, []);
 
     const handleSelect = (event) => {
-        setSelectedDistrict(event.target.value)
+        const district = districts.find(d => d.id === event.target.value);
+        setSelectedDistrict(district ? { id: district.id, name: district.name } : { id: "", name: "" });
     }
 
     useEffect(() => {
-        fetch(`https://bdapis.com/api/v1.2/district/${selectedDistrict}`)
+        fetch(`https://sohojapi.vercel.app/api/upzilas/${selectedDistrict.id}`)
             .then(res => res.json())
-            .then(data => setUpozila(data.data));
+            .then(data => setUpozila(data));
     }, [selectedDistrict]);
 
     const handleBookingSubmit = async (data) => {
         const toastId = toast.loading('Sending Request, please wait...')
 
-        data.fullAddress.district = selectedDistrict
+        data.fullAddress.district = selectedDistrict.name
 
         const fromData = {
             tutorId,
@@ -89,13 +90,13 @@ const BookTutorModal = () => {
                             <TCSelect options={mediumOptions} placeholder="Select Medium" name="medium" />
                             <TCInput name="fullAddress.address" placeholder="Enter your Address" type="text" />
 
-                            <select name="fullAddress.district" value={selectedDistrict} onChange={handleSelect} className="select select-bordered w-full">
+                            <select name="fullAddress.district" value={selectedDistrict.id} onChange={handleSelect} className="select select-bordered w-full">
                                 <option disabled selected value="">Select District</option>
                                 {
-                                    districts?.map(district => <option value={district.district} key={district.district}>{district.district}</option>)
+                                    districts?.map(district => <option value={district.id} key={district.id}>{district.name}</option>)
                                 }
                             </select>
-                            <TCSelect disabled={!upozila} options={selectOptions(upozila?.upazillas)} placeholder="Select Area" name="fullAddress.area" />
+                            <TCSelect disabled={!upozila} options={selectUpozila(upozila)} placeholder="Select Area" name="fullAddress.area" />
 
                             <TCTimePicker name="schedule.startTime" placeholder="Start Time" />
                             <TCTimePicker name="schedule.endTime" placeholder="End Time" />

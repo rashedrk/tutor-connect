@@ -95,13 +95,12 @@ const ProfilePage = () => {
                         <div className="card bg-base-100 w-[85%] md:w-3/4  border border-solid ">
                             <div className="card-body">
                                 <div className="grid md:grid-cols-2">
-                                    <div>
-                                        <div className="flex justify-between items-center md:hidden">
-                                            <h2 className="card-title mb-5">Address</h2>
-                                            <div>
-                                                <EditAddress info={data} />
-                                            </div>
+                                    <div>                                        <div className="flex justify-between items-center md:hidden">
+                                        <h2 className="card-title mb-5">Address</h2>
+                                        <div>
+                                            <EditAddress info={data} modalId="address-mobile" />
                                         </div>
+                                    </div>
                                         <h2 className="md:card-title text-lg mb-1 md:mb-5">Present Address</h2>
 
                                         <div className="text-gray-500">
@@ -119,13 +118,12 @@ const ProfilePage = () => {
                                             </div>
                                         </div>
                                     </div>
-                                    <div>
-                                        <div className="flex justify-between items-center">
-                                            <h2 className="md:card-title text-lg mb-1 md:mb-5">Permanent Address</h2>
-                                            <div className="hidden md:block">
-                                                <EditAddress info={data} />
-                                            </div>
+                                    <div>                                        <div className="flex justify-between items-center">
+                                        <h2 className="md:card-title text-lg mb-1 md:mb-5">Permanent Address</h2>
+                                        <div className="hidden md:block">
+                                            <EditAddress info={data} modalId="address-desktop" />
                                         </div>
+                                    </div>
                                         <div className="text-gray-500">
                                             <div className="mb-3">
                                                 <p>Address</p>

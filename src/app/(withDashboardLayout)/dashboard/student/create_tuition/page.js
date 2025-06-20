@@ -9,18 +9,20 @@ import { daysOptions, genderOptions, mediumOptions, studentClassOptions, subject
 import useUserInfo from '@/hooks/useUserInfo';
 import { useCreateTuitionMutation } from '@/redux/features/tuition/tuitionApi';
 import { selectOptions } from '@/utils/selectOptions';
+import { selectUpozila } from '@/utils/selectUpozila';
 import React, { useEffect, useState } from 'react';
 import { toast } from 'sonner';
 
 const CreateTuition = () => {
     const [districts, setDistricts] = useState([]);
     const [area, setArea] = useState([]);
-    const [selectedDistrict, setSelectedDistrict] = useState("");
+    const [selectedDistrict, setSelectedDistrict] = useState({ id: "", name: "" });
     const userInfo = useUserInfo();
     const [createTuition] = useCreateTuitionMutation();
 
     const handleSelect = (event) => {
-        setSelectedDistrict(event.target.value)
+        const district = districts.find(d => d.id === event.target.value);
+        setSelectedDistrict(district ? { id: district.id, name: district.name } : { id: "", name: "" });
     }
 
 
@@ -28,18 +30,18 @@ const CreateTuition = () => {
     //! Temporary solution
 
     useEffect(() => {
-        fetch('https://bdapis.com/api/v1.2/districts')
+        fetch('https://sohojapi.vercel.app/api/districts')
             .then(res => res.json())
-            .then(data => setDistricts(data?.data))
+            .then(data => setDistricts(data))
     }, []);
 
     useEffect(() => {
-        fetch(`https://bdapis.com/api/v1.2/district/${selectedDistrict}`)
+        fetch(`https://sohojapi.vercel.app/api/upzilas/${selectedDistrict.id}`)
             .then(res => res.json())
-            .then(data => setArea(data.data));
+            .then(data => setArea(data));
     }, [selectedDistrict]);
 
-    const submitHandler = async(data) => {
+    const submitHandler = async (data) => {
         const toastId = toast.loading("Creating! Please wait....");
         data.fullAddress.district = selectedDistrict;
         const tuitionData = {
@@ -69,13 +71,13 @@ const CreateTuition = () => {
                     <TCSelect name="subject" options={subjectsOptions} placeholder="Select Subject" />
                     <TCSelect name="medium" options={mediumOptions} placeholder="Select Your Medium" />
                     <TCInput name="fullAddress.address" placeholder="Enter your Address" />
-                    <select name='fullAddress.district' value={selectedDistrict} onChange={handleSelect} className="select select-bordered w-full">
+                    <select name='fullAddress.district' value={selectedDistrict.id} onChange={handleSelect} className="select select-bordered w-full">
                         <option disabled selected value="">Select District</option>
                         {
-                            districts?.map(district => <option value={district.district} key={district.district}>{district.district}</option>)
+                            districts?.map(district => <option value={district.id} key={district.id}>{district.name}</option>)
                         }
                     </select>
-                    <TCSelect disabled={!area} options={selectOptions(area?.upazillas)} placeholder="Select Area" name="fullAddress.area" />
+                    <TCSelect disabled={!area.length} options={selectUpozila(area)} placeholder="Select Area" name="fullAddress.area" />
                     <TCSelect name="gender" options={genderOptions} placeholder="Gender" />
                     <TCInput name="contactNo" placeholder="Enter your Contact No" />
                     <TCInput name="salary" placeholder="Enter Offered Salary" />

@@ -59,13 +59,13 @@ const Requested = () => {
         {
             name: 'Status',
             row: (rowData) => rowData.status === 'accepted' ?
-            <div className="badge badge-success text-white text-xs">{capitalize(rowData.status)}</div>
-            :
-            (
-                rowData.status === 'pending' ? <div className="badge badge-warning text-white text-xs">{capitalize(rowData.status)}</div>
+                <div className="badge badge-success text-white text-xs">{capitalize(rowData.status)}</div>
                 :
-                <div className="badge badge-error text-white text-xs">{capitalize(rowData.status)}</div>
-            )
+                (
+                    rowData.status === 'pending' ? <div className="badge badge-warning text-white text-xs">{capitalize(rowData.status)}</div>
+                        :
+                        <div className="badge badge-error text-white text-xs">{capitalize(rowData.status)}</div>
+                )
         },
         {
             name: 'Action',
@@ -73,8 +73,8 @@ const Requested = () => {
                 <div className="dropdown dropdown-end">
                     <div tabIndex={0} role="button" className="btn bg-transparent hover:bg-transparent "><SlOptionsVertical /></div>
                     <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box shadow-2xl text-xs border z-[1] w-32 ">
-                        <EditTuitionRequestModal tuitionRequest={rowData}/>
-                        <li onClick={() => cancelRequest(rowData?.tuition_request_id)}><a><ImCancelCircle fontSize={"17px"}/> Cancel</a></li>
+                        <EditTuitionRequestModal tuitionRequest={rowData} modalId={`tutor_req_${rowData?.tuition_request_id}`} />
+                        <li onClick={() => cancelRequest(rowData?.tuition_request_id)}><a><ImCancelCircle fontSize={"17px"} /> Cancel</a></li>
 
                     </ul>
                 </div>
@@ -86,7 +86,7 @@ const Requested = () => {
     return (
         <>
             {
-                isLoading ? <Loader/> :
+                isLoading ? <Loader /> :
                     <DataTable
                         columns={columns}
                         data={data.data}

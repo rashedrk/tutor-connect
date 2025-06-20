@@ -27,7 +27,7 @@ const TutorRegister = () => {
     const [registerTutor] = useRegisterTutorMutation()
 
     useEffect(() => {
-        fetch('https://bdapis.com/api/v1.2/districts')
+        fetch('hhttps://sohojapi.vercel.app/api/districts')
             .then(res => res.json())
             .then(data => setDistricts(data?.data))
     }, []);
@@ -42,13 +42,13 @@ const TutorRegister = () => {
     //TODO: Remove the useEffect make code efficient by using redux
     //! Temporary solution
     useEffect(() => {
-        fetch(`https://bdapis.com/api/v1.2/district/${selectedPresentDistrict}`)
+        fetch(`hhttps://sohojapi.vercel.app/api/upzilas/${selectedPresentDistrict}`)
             .then(res => res.json())
             .then(data => setPresentArea(data.data));
     }, [selectedPresentDistrict]);
 
     useEffect(() => {
-        fetch(`https://bdapis.com/api/v1.2/district/${selectedPermanentDistrict}`)
+        fetch(`hhttps://sohojapi.vercel.app/api/upzilas/${selectedPermanentDistrict}`)
             .then(res => res.json())
             .then(data => setPermanentArea(data.data));
     }, [selectedPermanentDistrict]);
@@ -106,7 +106,7 @@ const TutorRegister = () => {
                     <select name='presentAddress.district' value={selectedPresentDistrict} onChange={handlePresentSelect} className="select select-bordered w-full">
                         <option disabled selected value="">Select District</option>
                         {
-                            districts?.map(district => <option value={district.district} key={district.district}>{district.district}</option>)
+                            districts?.map(district => <option value={district.id} key={district.id}>{district.name}</option>)
                         }
                     </select>
                     <TCSelect disabled={!presentArea} options={selectOptions(presentArea?.upazillas)} placeholder="Select Area" name="presentAddress.area" />
@@ -119,7 +119,7 @@ const TutorRegister = () => {
                     <select name='permanentAddress.district' value={selectedPermanentDistrict} onChange={handlePermanentSelect} className="select select-bordered w-full ">
                         <option disabled selected value="">Select District</option>
                         {
-                            districts?.map(district => <option value={district.district} key={district.district}>{district.district}</option>)
+                            districts?.map(district => <option value={district.id} key={district.id}>{district.name}</option>)
                         }
                     </select>
                     <TCSelect disabled={!permanentArea} options={selectOptions(permanentArea?.upazillas)} placeholder="Select Area" name="permanentAddress.area" />

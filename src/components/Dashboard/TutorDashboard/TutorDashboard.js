@@ -1,7 +1,7 @@
 'use client'
 
 import CountUp from 'react-countup';
-import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
+import { Bar, BarChart, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import UpcomingTuitionCard from '../UpcomingTuitionCard/UpcomingTuitionCard';
 import { FaChalkboardTeacher } from 'react-icons/fa';
 import { FaRegClock } from 'react-icons/fa6';
